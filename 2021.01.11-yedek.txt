@@ -1,0 +1,1518 @@
+
+Imports System.IO
+
+Module Module1
+    'Public btnMOTOR2onOFF_status As Byte
+    'Public btnLIGHT1onOFF_status As Byte
+    'Public btnLIGHT2onOFF_status As Byte
+    'Public btnMOTOR2pwrON_status As Byte
+    'Public btnMOTOR2_1Press_status As Byte
+    'Public btnMOTOR2_2Press_status As Byte
+    'Public btnMOTOR2_3Press_status As Byte
+    'Public btnLIGHT1powerON_status As Byte
+    'Public btnLIGHT1_1Press_status As Byte
+    'Public btnLIGHT1_2Press_status As Byte
+    'Public btnLIGHT1_3Press_status As Byte
+    'Public btnLIGHT2powerON_status As Byte
+    'Public btnLIGHT2_1Press_status As Byte
+    'Public btnLIGHT2_2Press_status As Byte
+    'Public btnLIGHT2_3Press_status As Byte
+    'Public btnNumberOfCells_status As Byte
+    'Public btnAlarm_Buzzer_Light_status As Byte
+    'Public lblDelay_status As Byte
+    'Public RadioButton_R_PEDAL_status As Byte
+    'Public RadioButton_F_SWITCH_status As Byte
+
+    'Public MOTOR2SoftStart_status As Byte = &B0
+
+
+    Public M2CON(13) As Byte
+    Public L1CON(13) As Byte
+    Public L2CON(13) As Byte
+    Public DCR(13) As Byte
+
+    Public received_M2CON(13) As Byte
+
+    Public ILURA_M2CON(13) As Byte
+    Public ILURA_L1CON(13) As Byte
+    Public ILURA_L2CON(13) As Byte
+    Public ILURA_DCR(13) As Byte
+
+End Module
+
+Public Class Form1
+
+
+
+    Private Sub btnMOTOR2onOFF_Click(sender As Object, e As EventArgs) Handles btnMOTOR2onOFF.Click
+        If btnMOTOR2onOFF.Text = "ON" Then
+            btnMOTOR2onOFF.Text = "OFF"
+            btnMOTOR2onOFF.BackColor = Color.LightGray
+            'btnMOTOR2onOFF_status = &B0
+            M2CON(0) = 0
+            'M2CON.Set(0, 0)
+        Else
+            btnMOTOR2onOFF.Text = "ON"
+            btnMOTOR2onOFF.BackColor = Color.LightBlue
+            'btnMOTOR2onOFF_status = &B1
+            M2CON(0) = 1
+            'M2CON.Set(0, 1)
+        End If
+    End Sub
+
+    Private Sub btnLIGHT1onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT1onOFF.Click
+        If btnLIGHT1onOFF.Text = "ON" Then
+            btnLIGHT1onOFF.Text = "OFF"
+            btnLIGHT1onOFF.BackColor = Color.LightGray
+            L1CON(0) = 0
+            'L1CON.Set(0, 0)
+        Else
+            btnLIGHT1onOFF.Text = "ON"
+            btnLIGHT1onOFF.BackColor = Color.LightBlue
+            L1CON(0) = 1
+            'L1CON.Set(0, 1)
+        End If
+    End Sub
+
+    Private Sub btnLIGHT2onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT2onOFF.Click
+        If btnLIGHT2onOFF.Text = "ON" Then
+            btnLIGHT2onOFF.Text = "OFF"
+            btnLIGHT2onOFF.BackColor = Color.LightGray
+            L2CON(0) = 0
+            'L2CON.Set(0, 0)
+        Else
+            btnLIGHT2onOFF.Text = "ON"
+            btnLIGHT2onOFF.BackColor = Color.LightBlue
+            L2CON(0) = 0
+            'L2CON.Set(0, 1)
+        End If
+    End Sub
+
+    Private Sub btnMOTOR2pwrON_Click(sender As Object, e As EventArgs) Handles btnMOTOR2pwrON.Click
+        If btnMOTOR2pwrON.Text = "AUTO" Then
+            btnMOTOR2pwrON.Text = "SYNC"
+            btnMOTOR2pwrON.BackColor = Color.Orange
+            M2CON(2) = 1
+            M2CON(3) = 0
+            M2CON(4) = 0
+            'M2CON.Set(2, 1)
+            'M2CON.Set(3, 0)
+            'M2CON.Set(4, 0)
+        ElseIf btnMOTOR2pwrON.Text = "SYNC" Then
+            btnMOTOR2pwrON.Text = "PEDAL"
+            btnMOTOR2pwrON.BackColor = Color.Orange
+            M2CON(2) = 0
+            M2CON(3) = 1
+            M2CON(4) = 0
+            'M2CON.Set(2, 0)
+            'M2CON.Set(3, 1)
+            'M2CON.Set(4, 0)
+
+        ElseIf btnMOTOR2pwrON.Text = "PEDAL" Then
+            btnMOTOR2pwrON.Text = "RUN"
+            btnMOTOR2pwrON.BackColor = Color.LightGreen
+            M2CON(2) = 1
+            M2CON(3) = 1
+            M2CON(4) = 0
+            'M2CON.Set(2, 1)
+            'M2CON.Set(3, 1)
+            'M2CON.Set(4, 0)
+
+        ElseIf btnMOTOR2pwrON.Text = "RUN" Then
+            btnMOTOR2pwrON.Text = "OFF"
+            btnMOTOR2pwrON.BackColor = Color.Red
+            M2CON(2) = 0
+            M2CON(3) = 0
+            M2CON(4) = 1
+            'M2CON.Set(2, 0)
+            'M2CON.Set(3, 0)
+            'M2CON.Set(4, 1)
+
+        ElseIf btnMOTOR2pwrON.Text = "OFF" Then
+            btnMOTOR2pwrON.Text = "AUTO"
+            btnMOTOR2pwrON.BackColor = Color.Orange
+            M2CON(2) = 0
+            M2CON(3) = 0
+            M2CON(4) = 0
+            'M2CON.Set(2, 0)
+            'M2CON.Set(3, 0)
+            'M2CON.Set(4, 0)
+
+
+        End If
+    End Sub
+
+    Private Sub btnMOTOR2_1Press_Click(sender As Object, e As EventArgs) Handles btnMOTOR2_1Press.Click
+        If btnMOTOR2_1Press.Text = "AUTO" Then
+            btnMOTOR2_1Press.Text = "SYNC"
+            btnMOTOR2_1Press.BackColor = Color.Orange
+            M2CON(5) = 1
+            M2CON(6) = 0
+            M2CON(7) = 0
+            'M2CON.Set(5, 1)
+            'M2CON.Set(6, 0)
+            'M2CON.Set(7, 0)
+
+        ElseIf btnMOTOR2_1Press.Text = "SYNC" Then
+            btnMOTOR2_1Press.Text = "PEDAL"
+            btnMOTOR2_1Press.BackColor = Color.Orange
+            M2CON(5) = 0
+            M2CON(6) = 1
+            M2CON(7) = 0
+            'M2CON.Set(5, 0)
+            'M2CON.Set(6, 1)
+            'M2CON.Set(7, 0)
+
+        ElseIf btnMOTOR2_1Press.Text = "PEDAL" Then
+            btnMOTOR2_1Press.Text = "RUN"
+            btnMOTOR2_1Press.BackColor = Color.LightGreen
+            M2CON(5) = 1
+            M2CON(6) = 1
+            M2CON(7) = 0
+            'M2CON.Set(5, 1)
+            'M2CON.Set(6, 1)
+            'M2CON.Set(7, 0)
+
+        ElseIf btnMOTOR2_1Press.Text = "RUN" Then
+            btnMOTOR2_1Press.Text = "OFF"
+            btnMOTOR2_1Press.BackColor = Color.Red
+            M2CON(5) = 0
+            M2CON(6) = 0
+            M2CON(7) = 1
+            'M2CON.Set(5, 0)
+            'M2CON.Set(6, 0)
+            'M2CON.Set(7, 1)
+
+        ElseIf btnMOTOR2_1Press.Text = "OFF" Then
+            btnMOTOR2_1Press.Text = ""
+            btnMOTOR2_1Press.BackColor = Color.LightGray
+            M2CON(5) = 1
+            M2CON(6) = 0
+            M2CON(7) = 1
+            'M2CON.Set(5, 1)
+            'M2CON.Set(6, 0)
+            'M2CON.Set(7, 1)
+
+        ElseIf btnMOTOR2_1Press.Text = "" Then
+            btnMOTOR2_1Press.Text = "AUTO"
+            btnMOTOR2_1Press.BackColor = Color.Orange
+            M2CON(5) = 0
+            M2CON(6) = 0
+            M2CON(7) = 0
+            'M2CON.Set(5, 0)
+            'M2CON.Set(6, 0)
+            'M2CON.Set(7, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnMOTOR2_2Press_Click(sender As Object, e As EventArgs) Handles btnMOTOR2_2Press.Click
+        If btnMOTOR2_2Press.Text = "AUTO" Then
+            btnMOTOR2_2Press.Text = "SYNC"
+            btnMOTOR2_2Press.BackColor = Color.Orange
+            M2CON(8) = 1
+            M2CON(9) = 0
+            M2CON(10) = 0
+            'M2CON.Set(8, 1)
+            'M2CON.Set(9, 0)
+            'M2CON.Set(10, 0)
+
+        ElseIf btnMOTOR2_2Press.Text = "SYNC" Then
+            btnMOTOR2_2Press.Text = "PEDAL"
+            btnMOTOR2_2Press.BackColor = Color.Orange
+            M2CON(8) = 0
+            M2CON(9) = 1
+            M2CON(10) = 0
+            'M2CON.Set(8, 0)
+            'M2CON.Set(9, 1)
+            'M2CON.Set(10, 0)
+
+        ElseIf btnMOTOR2_2Press.Text = "PEDAL" Then
+            btnMOTOR2_2Press.Text = "RUN"
+            btnMOTOR2_2Press.BackColor = Color.LightGreen
+            M2CON(8) = 1
+            M2CON(9) = 1
+            M2CON(10) = 0
+            'M2CON.Set(8, 1)
+            'M2CON.Set(9, 1)
+            'M2CON.Set(10, 0)
+
+        ElseIf btnMOTOR2_2Press.Text = "RUN" Then
+            btnMOTOR2_2Press.Text = "OFF"
+            btnMOTOR2_2Press.BackColor = Color.Red
+            M2CON(8) = 0
+            M2CON(9) = 0
+            M2CON(10) = 1
+            'M2CON.Set(8, 0)
+            'M2CON.Set(9, 0)
+            'M2CON.Set(10, 1)
+
+        ElseIf btnMOTOR2_2Press.Text = "OFF" Then
+            btnMOTOR2_2Press.Text = ""
+            btnMOTOR2_2Press.BackColor = Color.LightGray
+            M2CON(8) = 1
+            M2CON(9) = 0
+            M2CON(10) = 1
+            'M2CON.Set(8, 1)
+            'M2CON.Set(9, 0)
+            'M2CON.Set(10, 1)
+
+        ElseIf btnMOTOR2_2Press.Text = "" Then
+            btnMOTOR2_2Press.Text = "AUTO"
+            btnMOTOR2_2Press.BackColor = Color.Orange
+            M2CON(8) = 0
+            M2CON(9) = 0
+            M2CON(10) = 0
+            'M2CON.Set(8, 0)
+            'M2CON.Set(9, 0)
+            'M2CON.Set(10, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnMOTOR2_3Press_Click(sender As Object, e As EventArgs) Handles btnMOTOR2_3Press.Click
+        If btnMOTOR2_3Press.Text = "AUTO" Then
+            btnMOTOR2_3Press.Text = "SYNC"
+            btnMOTOR2_3Press.BackColor = Color.Orange
+            M2CON(11) = 1
+            M2CON(12) = 0
+            M2CON(13) = 0
+            'M2CON.Set(11, 1)
+            'M2CON.Set(12, 0)
+            'M2CON.Set(13, 0)
+
+        ElseIf btnMOTOR2_3Press.Text = "SYNC" Then
+            btnMOTOR2_3Press.Text = "PEDAL"
+            btnMOTOR2_3Press.BackColor = Color.Orange
+            M2CON(11) = 0
+            M2CON(12) = 1
+            M2CON(13) = 0
+            'M2CON.Set(11, 0)
+            'M2CON.Set(12, 1)
+            'M2CON.Set(13, 0)
+
+        ElseIf btnMOTOR2_3Press.Text = "PEDAL" Then
+            btnMOTOR2_3Press.Text = "RUN"
+            btnMOTOR2_3Press.BackColor = Color.LightGreen
+            M2CON(11) = 0
+            M2CON(12) = 1
+            M2CON(13) = 0
+            'M2CON.Set(11, 1)
+            'M2CON.Set(12, 1)
+            'M2CON.Set(13, 0)
+
+        ElseIf btnMOTOR2_3Press.Text = "RUN" Then
+            btnMOTOR2_3Press.Text = "OFF"
+            btnMOTOR2_3Press.BackColor = Color.Red
+            M2CON(11) = 0
+            M2CON(12) = 0
+            M2CON(13) = 1
+            'M2CON.Set(11, 0)
+            'M2CON.Set(12, 0)
+            'M2CON.Set(13, 1)
+
+        ElseIf btnMOTOR2_3Press.Text = "OFF" Then
+            btnMOTOR2_3Press.Text = ""
+            btnMOTOR2_3Press.BackColor = Color.LightGray
+            M2CON(11) = 1
+            M2CON(12) = 0
+            M2CON(13) = 1
+            'M2CON.Set(11, 1)
+            'M2CON.Set(12, 0)
+            'M2CON.Set(13, 1)
+
+        ElseIf btnMOTOR2_3Press.Text = "" Then
+            btnMOTOR2_3Press.Text = "AUTO"
+            btnMOTOR2_3Press.BackColor = Color.Orange
+            M2CON(11) = 0
+            M2CON(12) = 0
+            M2CON(13) = 0
+            'M2CON.Set(11, 0)
+            'M2CON.Set(12, 0)
+            'M2CON.Set(13, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnLIGHT1powerON_Click(sender As Object, e As EventArgs) Handles btnLIGHT1powerON.Click
+        If btnLIGHT1powerON.Text = "OFF" Then
+            btnLIGHT1powerON.Text = "ON"
+            btnLIGHT1powerON.BackColor = Color.LightGreen
+            L1CON(2) = 0
+            L1CON(3) = 0
+            L1CON(4) = 1
+            'L1CON.Set(2, 0)
+            'L1CON.Set(3, 0)
+            'L1CON.Set(4, 1)
+
+        ElseIf btnLIGHT1powerON.Text = "ON" Then
+            btnLIGHT1powerON.Text = "FLASH"
+            btnLIGHT1powerON.BackColor = Color.Orange
+            L1CON(2) = 0
+            L1CON(3) = 1
+            L1CON(4) = 0
+            'L1CON.Set(2, 0)
+            'L1CON.Set(3, 1)
+            'L1CON.Set(4, 0)
+
+        ElseIf btnLIGHT1powerON.Text = "FLASH" Then
+            btnLIGHT1powerON.Text = "OFF"
+            btnLIGHT1powerON.BackColor = Color.Red
+            L1CON(2) = 0
+            L1CON(3) = 0
+            L1CON(4) = 0
+            'L1CON.Set(2, 0)
+            'L1CON.Set(3, 0)
+            'L1CON.Set(4, 0)
+        End If
+    End Sub
+
+    Private Sub btnLIGHT1_1Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT1_1Press.Click
+        If btnLIGHT1_1Press.Text = "OFF" Then
+            btnLIGHT1_1Press.Text = "ON"
+            btnLIGHT1_1Press.BackColor = Color.LightGreen
+            L1CON(5) = 0
+            L1CON(6) = 0
+            L1CON(7) = 1
+            'L1CON.Set(5, 0)
+            'L1CON.Set(6, 0)
+            'L1CON.Set(7, 1)
+
+        ElseIf btnLIGHT1_1Press.Text = "ON" Then
+            btnLIGHT1_1Press.Text = "FLASH"
+            btnLIGHT1_1Press.BackColor = Color.Orange
+            L1CON(5) = 0
+            L1CON(6) = 1
+            L1CON(7) = 0
+            'L1CON.Set(5, 0)
+            'L1CON.Set(6, 1)
+            'L1CON.Set(7, 0)
+
+        ElseIf btnLIGHT1_1Press.Text = "FLASH" Then
+            btnLIGHT1_1Press.Text = ""
+            btnLIGHT1_1Press.BackColor = Color.LightGray
+            L1CON(5) = 0
+            L1CON(6) = 1
+            L1CON(7) = 1
+            'L1CON.Set(5, 0)
+            'L1CON.Set(6, 1)
+            'L1CON.Set(7, 1)
+
+        ElseIf btnLIGHT1_1Press.Text = "" Then
+            btnLIGHT1_1Press.Text = "OFF"
+            btnLIGHT1_1Press.BackColor = Color.Red
+            L1CON(5) = 0
+            L1CON(6) = 0
+            L1CON(7) = 0
+            'L1CON.Set(5, 0)
+            'L1CON.Set(6, 0)
+            'L1CON.Set(7, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnLIGHT2powerON_Click(sender As Object, e As EventArgs) Handles btnLIGHT2powerON.Click
+        If btnLIGHT2powerON.Text = "OFF" Then
+            btnLIGHT2powerON.Text = "ON"
+            btnLIGHT2powerON.BackColor = Color.LightGreen
+            L2CON(2) = 0
+            L2CON(3) = 0
+            L2CON(4) = 1
+            'L2CON.Set(2, 0)
+            'L2CON.Set(3, 0)
+            'L2CON.Set(4, 1)
+
+        ElseIf btnLIGHT2powerON.Text = "ON" Then
+            btnLIGHT2powerON.Text = "FLASH"
+            btnLIGHT2powerON.BackColor = Color.Orange
+            L2CON(2) = 0
+            L2CON(3) = 1
+            L2CON(4) = 0
+            'L2CON.Set(2, 0)
+            'L2CON.Set(3, 1)
+            'L2CON.Set(4, 0)
+
+        ElseIf btnLIGHT2powerON.Text = "FLASH" Then
+            btnLIGHT2powerON.Text = "OFF"
+            btnLIGHT2powerON.BackColor = Color.Red
+            L2CON(2) = 0
+            L2CON(3) = 1
+            L2CON(4) = 1
+            'L2CON.Set(2, 0)
+            'L2CON.Set(3, 1)
+            'L2CON.Set(4, 1)
+
+        End If
+    End Sub
+
+    Private Sub btnLIGHT2_1Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT2_1Press.Click
+        If btnLIGHT2_1Press.Text = "OFF" Then
+            btnLIGHT2_1Press.Text = "ON"
+            btnLIGHT2_1Press.BackColor = Color.LightGreen
+            L2CON(5) = 0
+            L2CON(6) = 0
+            L2CON(7) = 1
+            'L2CON.Set(5, 0)
+            'L2CON.Set(6, 0)
+            'L2CON.Set(7, 1)
+
+        ElseIf btnLIGHT2_1Press.Text = "ON" Then
+            btnLIGHT2_1Press.Text = "FLASH"
+            btnLIGHT2_1Press.BackColor = Color.Orange
+            L2CON(5) = 0
+            L2CON(6) = 1
+            L2CON(7) = 0
+            'L2CON.Set(5, 0)
+            'L2CON.Set(6, 1)
+            'L2CON.Set(7, 0)
+
+        ElseIf btnLIGHT2_1Press.Text = "FLASH" Then
+            btnLIGHT2_1Press.Text = ""
+            btnLIGHT2_1Press.BackColor = Color.LightGray
+            L2CON(5) = 0
+            L2CON(6) = 1
+            L2CON(7) = 1
+            'L2CON.Set(5, 0)
+            'L2CON.Set(6, 1)
+            'L2CON.Set(7, 1)
+
+        ElseIf btnLIGHT2_1Press.Text = "" Then
+            btnLIGHT2_1Press.Text = "OFF"
+            btnLIGHT2_1Press.BackColor = Color.Red
+            L2CON(5) = 0
+            L2CON(6) = 0
+            L2CON(7) = 0
+            'L2CON.Set(5, 0)
+            'L2CON.Set(6, 0)
+            'L2CON.Set(7, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnNumberOfCells_Click(sender As Object, e As EventArgs) Handles btnNumberOfCells.Click
+        If btnNumberOfCells.Text = "1" Then
+            btnNumberOfCells.Text = "2"
+            btnNumberOfCells.BackColor = Color.LightGray
+            DCR(0) = 1
+            'DCR.Set(0, 1)
+
+        ElseIf btnNumberOfCells.Text = "2" Then
+            btnNumberOfCells.Text = "1"
+            btnNumberOfCells.BackColor = Color.LightBlue
+            DCR(0) = 0
+            'DCR.Set(0, 0)
+        End If
+    End Sub
+
+    Private Sub btnAlarm_Buzzer_Light_Click(sender As Object, e As EventArgs) Handles btnAlarm_Buzzer_Light.Click
+        If btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+            btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 1"
+            btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
+            DCR(4) = 1
+            DCR(5) = 1
+            DCR(6) = 0
+            'DCR.Set(4, 1)
+            'DCR.Set(5, 1)
+            'DCR.Set(6, 0)
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 1" Then
+            btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2"
+            btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
+            DCR(4) = 1
+            DCR(5) = 0
+            DCR(6) = 1
+            'DCR.Set(4, 1)
+            'DCR.Set(5, 0)
+            'DCR.Set(6, 1)
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2" Then
+            btnAlarm_Buzzer_Light.Text = "OFF"
+            btnAlarm_Buzzer_Light.BackColor = Color.Red
+            DCR(4) = 0
+            DCR(5) = 0
+            DCR(6) = 0
+            'DCR.Set(4, 0)
+            'DCR.Set(5, 0)
+            'DCR.Set(6, 0)
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "OFF" Then
+            btnAlarm_Buzzer_Light.Text = "BUZZER"
+            btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
+            DCR(4) = 1
+            DCR(5) = 0
+            DCR(6) = 0
+            'DCR.Set(4, 1)
+            'DCR.Set(5, 0)
+            'DCR.Set(6, 0)
+
+        End If
+    End Sub
+
+    Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.CenterToScreen()
+        'ilk açılışta ILURA programı ile açılıyor
+        btnMOTOR2onOFF.Text = "ON"
+        btnMOTOR2onOFF.BackColor = Color.LightBlue
+        btnMOTOR2pwrON.Text = "AUTO"
+        btnMOTOR2pwrON.BackColor = Color.Orange
+        btnMOTOR2_1Press.Text = "RUN"
+        btnMOTOR2_1Press.BackColor = Color.LightGreen
+        btnMOTOR2_2Press.Text = "PEDAL"
+        btnMOTOR2_2Press.BackColor = Color.Orange
+        btnMOTOR2_3Press.Text = ""
+        btnMOTOR2_3Press.BackColor = Color.LightGray
+
+
+
+    End Sub
+
+    Private Sub btnLIGHT1_2Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT1_2Press.Click
+        If btnLIGHT1_2Press.Text = "OFF" Then
+            btnLIGHT1_2Press.Text = "ON"
+            btnLIGHT1_2Press.BackColor = Color.LightGreen
+            L1CON(8) = 0
+            L1CON(9) = 0
+            L1CON(10) = 1
+            'L1CON.Set(8, 0)
+            'L1CON.Set(9, 0)
+            'L1CON.Set(10, 1)
+
+        ElseIf btnLIGHT1_2Press.Text = "ON" Then
+            btnLIGHT1_2Press.Text = "FLASH"
+            btnLIGHT1_2Press.BackColor = Color.Orange
+            L1CON(8) = 0
+            L1CON(9) = 1
+            L1CON(10) = 0
+            'L1CON.Set(8, 0)
+            'L1CON.Set(9, 1)
+            'L1CON.Set(10, 0)
+
+        ElseIf btnLIGHT1_2Press.Text = "FLASH" Then
+            btnLIGHT1_2Press.Text = ""
+            btnLIGHT1_2Press.BackColor = Color.LightGray
+            L1CON(8) = 0
+            L1CON(9) = 1
+            L1CON(10) = 1
+            'L1CON.Set(8, 0)
+            'L1CON.Set(9, 1)
+            'L1CON.Set(10, 1)
+
+        ElseIf btnLIGHT1_2Press.Text = "" Then
+            btnLIGHT1_2Press.Text = "OFF"
+            btnLIGHT1_2Press.BackColor = Color.Red
+            L1CON(8) = 0
+            L1CON(9) = 0
+            L1CON(10) = 0
+            'L1CON.Set(8, 0)
+            'L1CON.Set(9, 0)
+            'L1CON.Set(10, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnLIGHT1_3Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT1_3Press.Click
+        If btnLIGHT1_3Press.Text = "OFF" Then
+            btnLIGHT1_3Press.Text = "ON"
+            btnLIGHT1_3Press.BackColor = Color.LightGreen
+            L1CON(11) = 0
+            L1CON(12) = 0
+            L1CON(13) = 1
+            'L1CON.Set(11, 0)
+            'L1CON.Set(12, 0)
+            'L1CON.Set(13, 1)
+
+        ElseIf btnLIGHT1_3Press.Text = "ON" Then
+            btnLIGHT1_3Press.Text = "FLASH"
+            btnLIGHT1_3Press.BackColor = Color.Orange
+            L1CON(11) = 0
+            L1CON(12) = 1
+            L1CON(13) = 0
+            'L1CON.Set(11, 0)
+            'L1CON.Set(12, 1)
+            'L1CON.Set(13, 0)
+
+        ElseIf btnLIGHT1_3Press.Text = "FLASH" Then
+            btnLIGHT1_3Press.Text = ""
+            btnLIGHT1_3Press.BackColor = Color.LightGray
+            L1CON(11) = 0
+            L1CON(12) = 1
+            L1CON(13) = 1
+            'L1CON.Set(11, 0)
+            'L1CON.Set(12, 1)
+            'L1CON.Set(13, 1)
+
+        ElseIf btnLIGHT1_3Press.Text = "" Then
+            btnLIGHT1_3Press.Text = "OFF"
+            btnLIGHT1_3Press.BackColor = Color.Red
+            L1CON(11) = 0
+            L1CON(12) = 0
+            L1CON(13) = 0
+            'L1CON.Set(11, 0)
+            'L1CON.Set(12, 0)
+            'L1CON.Set(13, 0)
+
+        End If
+
+    End Sub
+
+    Private Sub btnLIGHT2_2Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT2_2Press.Click
+        If btnLIGHT2_2Press.Text = "OFF" Then
+            btnLIGHT2_2Press.Text = "ON"
+            btnLIGHT2_2Press.BackColor = Color.LightGreen
+            L2CON(8) = 0
+            L2CON(9) = 0
+            L2CON(10) = 1
+            'L2CON.Set(8, 0)
+            'L2CON.Set(9, 0)
+            'L2CON.Set(10, 1)
+
+        ElseIf btnLIGHT2_2Press.Text = "ON" Then
+            btnLIGHT2_2Press.Text = "FLASH"
+            btnLIGHT2_2Press.BackColor = Color.Orange
+            L2CON(8) = 0
+            L2CON(9) = 1
+            L2CON(10) = 0
+            'L2CON.Set(8, 0)
+            'L2CON.Set(9, 1)
+            'L2CON.Set(10, 0)
+
+        ElseIf btnLIGHT2_2Press.Text = "FLASH" Then
+            btnLIGHT2_2Press.Text = ""
+            btnLIGHT2_2Press.BackColor = Color.LightGray
+            L2CON(8) = 0
+            L2CON(9) = 1
+            L2CON(10) = 1
+            'L2CON.Set(8, 0)
+            'L2CON.Set(9, 1)
+            'L2CON.Set(10, 1)
+
+        ElseIf btnLIGHT2_2Press.Text = "" Then
+            btnLIGHT2_2Press.Text = "OFF"
+            btnLIGHT2_2Press.BackColor = Color.Red
+            L2CON(8) = 0
+            L2CON(9) = 0
+            L2CON(10) = 0
+            'L2CON.Set(8, 0)
+            'L2CON.Set(9, 0)
+            'L2CON.Set(10, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnLIGHT2_3Press_Click(sender As Object, e As EventArgs) Handles btnLIGHT2_3Press.Click
+        If btnLIGHT2_3Press.Text = "OFF" Then
+            btnLIGHT2_3Press.Text = "ON"
+            btnLIGHT2_3Press.BackColor = Color.LightGreen
+            L2CON(11) = 0
+            L2CON(12) = 0
+            L2CON(13) = 1
+            'L2CON.Set(11, 0)
+            'L2CON.Set(12, 0)
+            'L2CON.Set(13, 1)
+
+        ElseIf btnLIGHT2_3Press.Text = "ON" Then
+            btnLIGHT2_3Press.Text = "FLASH"
+            btnLIGHT2_3Press.BackColor = Color.Orange
+            L2CON(11) = 0
+            L2CON(12) = 1
+            L2CON(13) = 0
+            'L2CON.Set(11, 0)
+            'L2CON.Set(12, 1)
+            'L2CON.Set(13, 0)
+
+        ElseIf btnLIGHT2_3Press.Text = "FLASH" Then
+            btnLIGHT2_3Press.Text = ""
+            btnLIGHT2_3Press.BackColor = Color.LightGray
+            L2CON(11) = 0
+            L2CON(12) = 1
+            L2CON(13) = 1
+            'L2CON.Set(11, 0)
+            'L2CON.Set(12, 1)
+            'L2CON.Set(13, 1)
+
+        ElseIf btnLIGHT2_3Press.Text = "" Then
+            btnLIGHT2_3Press.Text = "OFF"
+            btnLIGHT2_3Press.BackColor = Color.Red
+            L2CON(11) = 0
+            L2CON(12) = 0
+            L2CON(13) = 0
+            'L2CON.Set(11, 0)
+            'L2CON.Set(12, 0)
+            'L2CON.Set(13, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnM2CON_Click(sender As Object, e As EventArgs) Handles btnM2CON.Click
+        MsgBox("Bit Status; " + M2CON(13).ToString +
+                    " " + M2CON(12).ToString +
+                    " " + M2CON(11).ToString +
+                    " " + M2CON(10).ToString +
+                    " " + M2CON(9).ToString +
+                    " " + M2CON(8).ToString +
+                    " " + M2CON(7).ToString +
+                    " " + M2CON(6).ToString +
+                    " " + M2CON(5).ToString +
+                    " " + M2CON(4).ToString +
+                    " " + M2CON(3).ToString +
+                    " " + M2CON(2).ToString +
+                    " " + M2CON(1).ToString +
+                    " " + M2CON(0).ToString)
+    End Sub
+
+    Private Sub btnL1CON_Click(sender As Object, e As EventArgs) Handles btnL1CON.Click
+        MsgBox("L1CON Bit Status; " + L1CON(13).ToString +
+                    " " + L1CON(12).ToString +
+                    " " + L1CON(11).ToString +
+                    " " + L1CON(10).ToString +
+                    " " + L1CON(9).ToString +
+                    " " + L1CON(8).ToString +
+                    " " + L1CON(7).ToString +
+                    " " + L1CON(6).ToString +
+                    " " + L1CON(5).ToString +
+                    " " + L1CON(4).ToString +
+                    " " + L1CON(3).ToString +
+                    " " + L1CON(2).ToString +
+                    " " + L1CON(1).ToString +
+                    " " + L1CON(0).ToString)
+    End Sub
+
+    Private Sub btnL2CON_Click(sender As Object, e As EventArgs) Handles btnL2CON.Click
+        MsgBox("L2CON Bit Status; " + L2CON(13).ToString +
+                    " " + L2CON(12).ToString +
+                    " " + L2CON(11).ToString +
+                    " " + L2CON(10).ToString +
+                    " " + L2CON(9).ToString +
+                    " " + L2CON(8).ToString +
+                    " " + L2CON(7).ToString +
+                    " " + L2CON(6).ToString +
+                    " " + L2CON(5).ToString +
+                    " " + L2CON(4).ToString +
+                    " " + L2CON(3).ToString +
+                    " " + L2CON(2).ToString +
+                    " " + L2CON(1).ToString +
+                    " " + L2CON(0).ToString)
+    End Sub
+
+    Private Sub btnDCR_Click(sender As Object, e As EventArgs) Handles btnDCR.Click
+        MsgBox("DCR Bit Status; " + DCR(13).ToString +
+                    " " + DCR(12).ToString +
+                    " " + DCR(11).ToString +
+                    " " + DCR(10).ToString +
+                    " " + DCR(9).ToString +
+                    " " + DCR(8).ToString +
+                    " " + DCR(7).ToString +
+                    " " + DCR(6).ToString +
+                    " " + DCR(5).ToString +
+                    " " + DCR(4).ToString +
+                    " " + DCR(3).ToString +
+                    " " + DCR(2).ToString +
+                    " " + DCR(1).ToString +
+                    " " + DCR(0).ToString)
+    End Sub
+
+    Private Sub RadioButton_R_PEDAL_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_R_PEDAL.CheckedChanged
+        If RadioButton_R_PEDAL.Checked Then
+            RadioButton_F_SWITCH.Checked = False
+            DCR(2) = 1
+            DCR(3) = 0
+            'DCR.Set(2, 1)
+            'DCR.Set(3, 0)
+        Else
+            RadioButton_F_SWITCH.Checked = True
+            DCR(2) = 0
+            DCR(3) = 1
+            'DCR.Set(2, 0)
+            'DCR.Set(3, 1)
+        End If
+    End Sub
+
+    Private Sub btnDelayPlus_Click(sender As Object, e As EventArgs) Handles btnDelayPlus.Click
+        If lblDelay.Text = "0,5s" Then
+            lblDelay.Text = "1,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "1,0s" Then
+            lblDelay.Text = "1,5s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "1,5s" Then
+            lblDelay.Text = "2,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "2,0s" Then
+            lblDelay.Text = "2,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "2,5s" Then
+            lblDelay.Text = "3,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "3,0s" Then
+            lblDelay.Text = "3,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "3,5s" Then
+            lblDelay.Text = "4,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "4,0s" Then
+            lblDelay.Text = "4,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "4,5s" Then
+            lblDelay.Text = "5,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "5,0s" Then
+            lblDelay.Text = "5,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "5,5s" Then
+            lblDelay.Text = "6,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "6,0s" Then
+            lblDelay.Text = "6,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "6,5s" Then
+            lblDelay.Text = "7,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "7,0s" Then
+            lblDelay.Text = "7,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "7,5s" Then
+            lblDelay.Text = "8,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "8,0s" Then
+            lblDelay.Text = "8,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "8,5s" Then
+            lblDelay.Text = "9,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "9,0s" Then
+            lblDelay.Text = "9,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        End If
+
+    End Sub
+
+    Private Sub btnDelayMinus_Click(sender As Object, e As EventArgs) Handles btnDelayMinus.Click
+        If lblDelay.Text = "9,5s" Then
+            lblDelay.Text = "9,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "9,0s" Then
+            lblDelay.Text = "8,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "8,5s" Then
+            lblDelay.Text = "8,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "8,0s" Then
+            lblDelay.Text = "7,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "7,5s" Then
+            lblDelay.Text = "7,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "7,0s" Then
+            lblDelay.Text = "6,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 1)
+
+        ElseIf lblDelay.Text = "6,5s" Then
+            lblDelay.Text = "6,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "6,0s" Then
+            lblDelay.Text = "5,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "5,5s" Then
+            lblDelay.Text = "5,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "5,0s" Then
+            lblDelay.Text = "4,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "4,5s" Then
+            lblDelay.Text = "4,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "4,0s" Then
+            lblDelay.Text = "3,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 1)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "3,5s" Then
+            lblDelay.Text = "3,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "3,0s" Then
+            lblDelay.Text = "2,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "2,5s" Then
+            lblDelay.Text = "2,0s"
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 1)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "2,0s" Then
+            lblDelay.Text = "1,5s"
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "1,5s" Then
+            lblDelay.Text = "1,0s"
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 0)
+            'DCR.Set(8, 1)
+            'DCR.Set(9, 0)
+            'DCR.Set(10, 1)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        ElseIf lblDelay.Text = "1,0s" Then
+            lblDelay.Text = "0,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+            'DCR.Set(7, 1)
+            'DCR.Set(8, 0)
+            'DCR.Set(9, 1)
+            'DCR.Set(10, 0)
+            'DCR.Set(11, 0)
+            'DCR.Set(12, 0)
+            'DCR.Set(13, 0)
+
+        End If
+    End Sub
+
+    Private Sub btnLOAD_Click(sender As Object, e As EventArgs) Handles btnLOAD.Click
+
+        'Dim received_M2CON() As Byte = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1}
+        'Dim M2CON() As Byte = received_M2CON.Clone
+
+
+        MsgBox("M2CON Bit Status: " + M2CON(13).ToString +
+                    " " + M2CON(12).ToString +
+                    " " + M2CON(11).ToString +
+                    " " + M2CON(10).ToString +
+                    " " + M2CON(9).ToString +
+                    " " + M2CON(8).ToString +
+                    " " + M2CON(7).ToString +
+                    " " + M2CON(6).ToString +
+                    " " + M2CON(5).ToString +
+                    " " + M2CON(4).ToString +
+                    " " + M2CON(3).ToString +
+                    " " + M2CON(2).ToString +
+                    " " + M2CON(1).ToString +
+                    " " + M2CON(0).ToString)
+
+        If received_M2CON(0) = 0 Then
+            btnMOTOR2onOFF.Text = "OFF"
+            btnMOTOR2onOFF.BackColor = Color.LightGray
+        ElseIf received_M2CON(0) = 1 Then
+            btnMOTOR2onOFF.Text = "ON"
+            btnMOTOR2onOFF.BackColor = Color.LightBlue
+        End If
+
+        If received_M2CON(2) = 0 And received_M2CON(3) = 0 AndAlso received_M2CON(4) = 0 Then
+            btnMOTOR2pwrON.Text = "AUTO"
+            btnMOTOR2pwrON.BackColor = Color.Orange
+        ElseIf received_M2CON(2) = 1 And received_M2CON(3) = 0 AndAlso received_M2CON(4) = 0 Then
+            btnMOTOR2pwrON.Text = "SYNC"
+            btnMOTOR2pwrON.BackColor = Color.Orange
+
+        End If
+
+    End Sub
+
+    Private Sub received_M2CON_Click(sender As Object, e As EventArgs) Handles btnReceived_M2CON.Click
+
+        M2CON(0) = 1
+        MsgBox("M2CON Bit Status: " + M2CON(13).ToString +
+                    " " + M2CON(12).ToString +
+                    " " + M2CON(11).ToString +
+                    " " + M2CON(10).ToString +
+                    " " + M2CON(9).ToString +
+                    " " + M2CON(8).ToString +
+                    " " + M2CON(7).ToString +
+                    " " + M2CON(6).ToString +
+                    " " + M2CON(5).ToString +
+                    " " + M2CON(4).ToString +
+                    " " + M2CON(3).ToString +
+                    " " + M2CON(2).ToString +
+                    " " + M2CON(1).ToString +
+                    " " + M2CON(0).ToString)
+    End Sub
+
+    Private Sub btnSAVE_Click(sender As Object, e As EventArgs) Handles btnSAVE.Click
+        M2CON(1) = 1
+    End Sub
+
+    Private Sub btnBitToByte_Click(sender As Object, e As EventArgs) Handles btnBitToByte.Click
+
+
+    End Sub
+End Class
