@@ -105,6 +105,8 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.lblStatus = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -523,51 +525,50 @@ Partial Class Form1
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1187, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1187, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MERCADONAToolStripMenuItem, Me.CUSTOMToolStripMenuItem})
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(148, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(148, 29)
         Me.ProgramsToolStripMenuItem.Text = "Program Select"
         '
         'MERCADONAToolStripMenuItem
         '
         Me.MERCADONAToolStripMenuItem.Name = "MERCADONAToolStripMenuItem"
-        Me.MERCADONAToolStripMenuItem.Size = New System.Drawing.Size(252, 34)
+        Me.MERCADONAToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.MERCADONAToolStripMenuItem.Text = "MERCADONA"
         '
         'CUSTOMToolStripMenuItem
         '
         Me.CUSTOMToolStripMenuItem.ForeColor = System.Drawing.Color.Maroon
         Me.CUSTOMToolStripMenuItem.Name = "CUSTOMToolStripMenuItem"
-        Me.CUSTOMToolStripMenuItem.Size = New System.Drawing.Size(252, 34)
+        Me.CUSTOMToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.CUSTOMToolStripMenuItem.Text = "CUSTOM DESIGN"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 32)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 29)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'StatusStrip1
@@ -667,6 +668,7 @@ Partial Class Form1
         'RadioButton_Inputs_ALM
         '
         Me.RadioButton_Inputs_ALM.AutoSize = True
+        Me.RadioButton_Inputs_ALM.ForeColor = System.Drawing.SystemColors.ActiveCaption
         Me.RadioButton_Inputs_ALM.Location = New System.Drawing.Point(164, 35)
         Me.RadioButton_Inputs_ALM.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadioButton_Inputs_ALM.Name = "RadioButton_Inputs_ALM"
@@ -693,6 +695,7 @@ Partial Class Form1
         'RadioButton_Inputs_P1
         '
         Me.RadioButton_Inputs_P1.AutoSize = True
+        Me.RadioButton_Inputs_P1.BackColor = System.Drawing.Color.Maroon
         Me.RadioButton_Inputs_P1.Location = New System.Drawing.Point(18, 34)
         Me.RadioButton_Inputs_P1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadioButton_Inputs_P1.Name = "RadioButton_Inputs_P1"
@@ -701,10 +704,11 @@ Partial Class Form1
         Me.RadioButton_Inputs_P1.TabIndex = 4
         Me.RadioButton_Inputs_P1.TabStop = True
         Me.RadioButton_Inputs_P1.Text = ":P1"
-        Me.RadioButton_Inputs_P1.UseVisualStyleBackColor = True
+        Me.RadioButton_Inputs_P1.UseVisualStyleBackColor = False
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Label10)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_TX)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_RX)
         Me.GroupBox5.Location = New System.Drawing.Point(282, 117)
@@ -744,6 +748,7 @@ Partial Class Form1
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.Label9)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_TX)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_RX)
         Me.GroupBox4.Location = New System.Drawing.Point(282, 29)
@@ -912,7 +917,7 @@ Partial Class Form1
         '
         'btnDCR
         '
-        Me.btnDCR.Location = New System.Drawing.Point(570, 259)
+        Me.btnDCR.Location = New System.Drawing.Point(570, 263)
         Me.btnDCR.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDCR.Name = "btnDCR"
         Me.btnDCR.Size = New System.Drawing.Size(112, 35)
@@ -985,6 +990,24 @@ Partial Class Form1
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(0, 20)
         Me.lblStatus.TabIndex = 46
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(174, 33)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 20)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "(%):"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(174, 28)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(37, 20)
+        Me.Label10.TabIndex = 4
+        Me.Label10.Text = "(%):"
         '
         'Form1
         '
@@ -1110,4 +1133,6 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents SerialPort1 As IO.Ports.SerialPort
     Friend WithEvents lblStatus As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
 End Class

@@ -722,13 +722,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 0
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "1,0s" Then
             lblDelay.Text = "1,5s"
@@ -739,13 +732,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 1
             DCR(13) = 1
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "1,5s" Then
             lblDelay.Text = "2,0s"
@@ -756,13 +742,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "2,0s" Then
             lblDelay.Text = "2,5s"
@@ -773,13 +752,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 0
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "2,5s" Then
             lblDelay.Text = "3,0s"
@@ -790,13 +762,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "3,0s" Then
             lblDelay.Text = "3,5s"
@@ -807,13 +772,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "3,5s" Then
             lblDelay.Text = "4,0s"
@@ -824,13 +782,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "4,0s" Then
             lblDelay.Text = "4,5s"
@@ -841,13 +792,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "4,5s" Then
             lblDelay.Text = "5,0s"
@@ -858,13 +802,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "5,0s" Then
             lblDelay.Text = "5,5s"
@@ -875,13 +812,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "5,5s" Then
             lblDelay.Text = "6,0s"
@@ -892,13 +822,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 1
             DCR(13) = 0
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 1)
-            'DCR.Set(13, 0)
 
         ElseIf lblDelay.Text = "6,0s" Then
             lblDelay.Text = "6,5s"
@@ -909,13 +832,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "6,5s" Then
             lblDelay.Text = "7,0s"
@@ -926,13 +842,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "7,0s" Then
             lblDelay.Text = "7,5s"
@@ -943,13 +852,6 @@ Public Class Form1
             DCR(11) = 0
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 0)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "7,5s" Then
             lblDelay.Text = "8,0s"
@@ -960,13 +862,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "8,0s" Then
             lblDelay.Text = "8,5s"
@@ -977,13 +872,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 0)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 0)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "8,5s" Then
             lblDelay.Text = "9,0s"
@@ -994,13 +882,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 0)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 0)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         ElseIf lblDelay.Text = "9,0s" Then
             lblDelay.Text = "9,5s"
@@ -1011,13 +892,6 @@ Public Class Form1
             DCR(11) = 1
             DCR(12) = 0
             DCR(13) = 1
-            'DCR.Set(7, 1)
-            'DCR.Set(8, 1)
-            'DCR.Set(9, 1)
-            'DCR.Set(10, 1)
-            'DCR.Set(11, 1)
-            'DCR.Set(12, 0)
-            'DCR.Set(13, 1)
 
         End If
 
@@ -1499,7 +1373,7 @@ Public Class Form1
         Dim DCRCONstring As String = ""
         Dim sayi As New System.Text.StringBuilder()
         For indexA = 7 To 13
-            sayi.Append(L2CON(indexA))
+            sayi.Append(DCR(indexA))
         Next indexA
         DCRCONstring = sayi.ToString
         If DCRCONstring = "1111101" Then
@@ -1637,7 +1511,7 @@ Public Class Form1
         Dim DCRCONstring As String = ""
         Dim sb4 As New System.Text.StringBuilder()
         For indexA = 0 To 13
-            sb4.Append(L2CON(indexA))
+            sb4.Append(DCR(indexA))
         Next indexA
         DCRCONstring = sb4.ToString
 
@@ -1999,7 +1873,7 @@ Public Class Form1
             L2CON(11) = 0
             L2CON(12) = 1
             L2CON(13) = 1
-        End If
+        End If  'EKLE
     End Sub
 
     Private Sub RadioButton_F_SWITCH_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_F_SWITCH.CheckedChanged
