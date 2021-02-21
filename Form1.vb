@@ -34,7 +34,7 @@ Public Class Form1
             btnMOTOR2pwrON.BackColor = Color.LightGray
             btnMOTOR2_1Press.Text = ""
             btnMOTOR2_1Press.BackColor = Color.LightGray
-            btnMOTOR2_1Press.Text = ""
+            btnMOTOR2_2Press.Text = ""
             btnMOTOR2_2Press.BackColor = Color.LightGray
             btnMOTOR2_3Press.Text = ""
             btnMOTOR2_3Press.BackColor = Color.LightGray
@@ -49,8 +49,18 @@ Public Class Form1
 
     Private Sub btnLIGHT1onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT1onOFF.Click
         If btnLIGHT1onOFF.Text = "ON" Then
+
             btnLIGHT1onOFF.Text = "OFF"
             btnLIGHT1onOFF.BackColor = Color.LightGray
+            btnLIGHT1powerON.Text = ""
+            btnLIGHT1powerON.BackColor = Color.LightGray
+            btnLIGHT1_1Press.Text = ""
+            btnLIGHT1_1Press.BackColor = Color.LightGray
+            btnLIGHT1_2Press.Text = ""
+            btnLIGHT1_2Press.BackColor = Color.LightGray
+            btnLIGHT1_3Press.Text = ""
+            btnLIGHT1_3Press.BackColor = Color.LightGray
+
             L1CON(0) = 0
         Else
             btnLIGHT1onOFF.Text = "ON"
@@ -61,8 +71,18 @@ Public Class Form1
 
     Private Sub btnLIGHT2onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT2onOFF.Click
         If btnLIGHT2onOFF.Text = "ON" Then
+
             btnLIGHT2onOFF.Text = "OFF"
             btnLIGHT2onOFF.BackColor = Color.LightGray
+            btnLIGHT2powerON.Text = ""
+            btnLIGHT2powerON.BackColor = Color.LightGray
+            btnLIGHT2_1Press.Text = ""
+            btnLIGHT2_1Press.BackColor = Color.LightGray
+            btnLIGHT2_2Press.Text = ""
+            btnLIGHT2_2Press.BackColor = Color.LightGray
+            btnLIGHT2_3Press.Text = ""
+            btnLIGHT2_3Press.BackColor = Color.LightGray
+
             L2CON(0) = 0
         Else
             btnLIGHT2onOFF.Text = "ON"
@@ -114,42 +134,46 @@ Public Class Form1
     End Sub
 
     Private Sub btnMOTOR2_1Press_Click(sender As Object, e As EventArgs) Handles btnMOTOR2_1Press.Click
-        If btnMOTOR2_1Press.Text = "AUTO" Then
-            btnMOTOR2_1Press.Text = "SYNC"
-            btnMOTOR2_1Press.BackColor = Color.Orange
-            M2CON(5) = 0
-            M2CON(6) = 0
-            M2CON(7) = 1
-        ElseIf btnMOTOR2_1Press.Text = "SYNC" Then
-            btnMOTOR2_1Press.Text = "PEDAL"
-            btnMOTOR2_1Press.BackColor = Color.Orange
-            M2CON(5) = 0
-            M2CON(6) = 1
-            M2CON(7) = 0
-        ElseIf btnMOTOR2_1Press.Text = "PEDAL" Then
-            btnMOTOR2_1Press.Text = "RUN"
-            btnMOTOR2_1Press.BackColor = Color.LightGreen
-            M2CON(5) = 0
-            M2CON(6) = 1
-            M2CON(7) = 1
-        ElseIf btnMOTOR2_1Press.Text = "RUN" Then
-            btnMOTOR2_1Press.Text = "OFF"
-            btnMOTOR2_1Press.BackColor = Color.Red
-            M2CON(5) = 1
-            M2CON(6) = 0
-            M2CON(7) = 0
-        ElseIf btnMOTOR2_1Press.Text = "OFF" Then
-            btnMOTOR2_1Press.Text = ""
-            btnMOTOR2_1Press.BackColor = Color.LightGray
-            M2CON(5) = 1
-            M2CON(6) = 0
-            M2CON(7) = 1
-        ElseIf btnMOTOR2_1Press.Text = "" Then
-            btnMOTOR2_1Press.Text = "AUTO"
-            btnMOTOR2_1Press.BackColor = Color.Orange
-            M2CON(5) = 0
-            M2CON(6) = 0
-            M2CON(7) = 0
+        If btnMOTOR2pwrON.Text <> "OFF" Then
+
+
+            If btnMOTOR2_1Press.Text = "AUTO" Then
+                btnMOTOR2_1Press.Text = "SYNC"
+                btnMOTOR2_1Press.BackColor = Color.Orange
+                M2CON(5) = 0
+                M2CON(6) = 0
+                M2CON(7) = 1
+            ElseIf btnMOTOR2_1Press.Text = "SYNC" Then
+                btnMOTOR2_1Press.Text = "PEDAL"
+                btnMOTOR2_1Press.BackColor = Color.Orange
+                M2CON(5) = 0
+                M2CON(6) = 1
+                M2CON(7) = 0
+            ElseIf btnMOTOR2_1Press.Text = "PEDAL" Then
+                btnMOTOR2_1Press.Text = "RUN"
+                btnMOTOR2_1Press.BackColor = Color.LightGreen
+                M2CON(5) = 0
+                M2CON(6) = 1
+                M2CON(7) = 1
+            ElseIf btnMOTOR2_1Press.Text = "RUN" Then
+                btnMOTOR2_1Press.Text = "OFF"
+                btnMOTOR2_1Press.BackColor = Color.Red
+                M2CON(5) = 1
+                M2CON(6) = 0
+                M2CON(7) = 0
+            ElseIf btnMOTOR2_1Press.Text = "OFF" Then
+                btnMOTOR2_1Press.Text = ""
+                btnMOTOR2_1Press.BackColor = Color.LightGray
+                M2CON(5) = 1
+                M2CON(6) = 0
+                M2CON(7) = 1
+            ElseIf btnMOTOR2_1Press.Text = "" Then
+                btnMOTOR2_1Press.Text = "AUTO"
+                btnMOTOR2_1Press.BackColor = Color.Orange
+                M2CON(5) = 0
+                M2CON(6) = 0
+                M2CON(7) = 0
+            End If
         End If
     End Sub
 
@@ -417,13 +441,24 @@ Public Class Form1
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
         'ilk açılışta ILURA programı ile açılıyor
+        'cmbPrograms.ForeColor = System.Drawing.Color.Red
+        Dim obj As Object = "CUSTOM DESIGN"
+        cmbPrograms.Items.Add(obj)
+
+        'cmbPrograms.Items.Item(0).ForeColor = System.Drawing.Color.Red
+
+        Dim ItemText As String = cmbPrograms.Items(0)
+
         GetListOfSettings()
-
-
 
         ClearForm()
 
         GroupBox2.Visible = False
+
+        For Each port In ports
+            cmbPorts.Items.Add(port)
+            'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
+        Next port
 
     End Sub
 
@@ -442,21 +477,22 @@ Public Class Form1
 
     Private Sub ClearForm()
 
-        txtPrgName.Text = ""
-
         btnMOTOR2onOFF.Text = "OFF"
+        btnMOTOR2onOFF.BackColor = Color.LightGray
         btnMOTOR2pwrON.Text = ""
         btnMOTOR2_1Press.Text = ""
         btnMOTOR2_2Press.Text = ""
         btnMOTOR2_3Press.Text = ""
 
         btnLIGHT1onOFF.Text = "OFF"
+        btnLIGHT1onOFF.BackColor = Color.LightGray
         btnLIGHT1powerON.Text = ""
         btnLIGHT1_1Press.Text = ""
         btnLIGHT1_2Press.Text = ""
         btnLIGHT1_3Press.Text = ""
 
         btnLIGHT2onOFF.Text = "OFF"
+        btnLIGHT2onOFF.BackColor = Color.LightGray
         btnLIGHT2powerON.Text = ""
         btnLIGHT2_1Press.Text = ""
         btnLIGHT2_2Press.Text = ""
@@ -1050,13 +1086,13 @@ Public Class Form1
 
         ElseIf lblDelay.Text = "2,0s" Then
             lblDelay.Text = "1,5s"
-            DCR(7) = 0
-            DCR(8) = 0
-            DCR(9) = 0
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
             DCR(10) = 1
-            DCR(11) = 1
-            DCR(12) = 1
-            DCR(13) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
 
         ElseIf lblDelay.Text = "1,5s" Then
             lblDelay.Text = "1,0s"
@@ -1099,12 +1135,17 @@ Public Class Form1
     End Function
 
     Private Function ParseText(filename As String)
+        If (filename = "CUSTOM DESIGN") Then
+            Exit Function
+        End If
+
         Dim testString As String = LoadSpecFile(filename)
+        If (testString = Nothing) Then
+            Exit Function
+        End If
 
         Dim testArray() As String = Split(testString)
 
-        Label2.Text = testArray(0)
-        txtPrgName.Text = testArray(0)
 
         Dim M2CON() As Byte = ConvertStringToByteArray(testArray(1))
         If M2CON(0) = "0" Then
@@ -1338,7 +1379,7 @@ Public Class Form1
 
         If DCR(0) = 0 Then
             btnNumberOfCells.Text = "1"
-            btnNumberOfCells.BackColor = Color.Blue
+            btnNumberOfCells.BackColor = Color.LightBlue
         ElseIf DCR(0) = 1 Then
             btnNumberOfCells.Text = "2"
             btnNumberOfCells.BackColor = Color.LightGray
@@ -1360,7 +1401,7 @@ Public Class Form1
             btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2"
             btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
 
-        ElseIf DCR(4) = 0 And DCR(5) = 0 AndAlso DCR(6) = 0 Then 'btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+        ElseIf DCR(4) = 0 And DCR(5) = 0 AndAlso DCR(6) = 0 Then 'btnAlarm_Buzzer_Light.Text = "OFF" Then
             btnAlarm_Buzzer_Light.Text = "OFF"
             btnAlarm_Buzzer_Light.BackColor = Color.Red
 
@@ -1424,6 +1465,7 @@ Public Class Form1
         Dim aryFi As IO.FileInfo() = di.GetFiles("*.txt")
         Dim fi As IO.FileInfo
 
+        cmbPrograms.ForeColor = System.Drawing.Color.Black
         For Each fi In aryFi
             Dim filename As String = fi.Name.Substring(0, fi.Name.Length - 4)
 
@@ -1433,18 +1475,20 @@ Public Class Form1
     End Sub
 
     Private Sub AddMenuItem(item As String)
-        Dim SubMenu As New ToolStripMenuItem
-        SubMenu.Text = item
-        AddHandler SubMenu.Click, AddressOf ClickMenuItem
+        cmbPrograms.Items.Add(item)
 
-        ProgramsToolStripMenuItem.DropDownItems.Add(SubMenu)
+
+
+        'Dim SubMenu As New ToolStripMenuItem
+        'SubMenu.Text = item
+        'AddHandler SubMenu.Click, AddressOf ClickMenuItem
+
+        'ProgramsToolStripMenuItem.DropDownItems.Add(SubMenu)
     End Sub
     Private Sub btnLOAD_Click(sender As Object, e As EventArgs) Handles btnLOAD.Click
         Dim testString As String = LoadSpecFile("")
 
         Dim testArray() As String = Split(testString)
-
-        Label2.Text = testArray(0)
 
         Dim received_M2CONByte() As Byte = ConvertStringToByteArray(testArray(1))
 
@@ -1516,7 +1560,7 @@ Public Class Form1
         DCRCONstring = sb4.ToString
 
         Dim st As String
-        st = txtPrgName.Text + " " + M2CONstring + " " + L1CONstring + " " + L2CONstring + " " + DCRCONstring
+        st = M2CONstring + " " + L1CONstring + " " + L2CONstring + " " + DCRCONstring
 
         Return st
     End Function
@@ -1524,29 +1568,43 @@ Public Class Form1
 
 
     Private Sub btnSAVE_Click(sender As Object, e As EventArgs) Handles btnSAVE.Click
+
+        If (cmbPrograms.SelectedItem = "") Then
+            MessageBox.Show("No program selected!")
+            Exit Sub
+        End If
+
+
         M2CON(1) = 1
         Dim st As String
-
         st = Save()
 
         'Dim M2CONstring As String = System.Text.Encoding.UTF8.GetString(M2CON)
 
-        Dim FILE_NAME As String = Application.StartupPath & "\SETTINGS\" + txtPrgName.Text + ".txt"
+        Dim FILE_NAME As String = Application.StartupPath & "\SETTINGS\" + cmbPrograms.SelectedItem + ".txt"
         If System.IO.File.Exists(FILE_NAME) = True Then
             Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
-            objWriter.Write(st)
+            objWriter.Write(cmbPrograms.SelectedItem + " " + st)
             objWriter.Close()
             MessageBox.Show("Text written to file")
         Else
+
+            Dim myValue As String = InputBox("Program Name:", "Program Name", "Please enter a valid program name here")
+            If (myValue = "" Or myValue = "Please enter a valid program name here") Then
+                MessageBox.Show("Enter a valid program name")
+                Exit Sub
+            End If
+            myValue = myValue.ToUpper
+            FILE_NAME = Application.StartupPath & "\SETTINGS\" + myValue + ".txt"
             'MessageBox.Show("File Does Not Exist")
             System.IO.File.Create(FILE_NAME).Dispose()
-            Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
-            objWriter.Write(st)
+                Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
+            objWriter.Write(myValue + " " + st)
             objWriter.Close()
 
-            ' MENUYE EKLEME
-            AddMenuItem(txtPrgName.Text)
-            MessageBox.Show("Text written to new file")
+                ' MENUYE EKLEME
+                AddMenuItem(myValue)
+            MessageBox.Show("Text written to new file named: " + myValue)
 
         End If
 
@@ -1576,15 +1634,17 @@ Public Class Form1
 
     Private Sub ProgramsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProgramsToolStripMenuItem.Click
         GroupBox1.Visible = True
-        GroupBox2.Visible=False
+        GroupBox2.Visible = False
+        GroupBox7.Visible = False
+
 
     End Sub
 
-    Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MERCADONAToolStripMenuItem.Click
+    Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub CUSTOMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CUSTOMToolStripMenuItem.Click
+    Private Sub CUSTOMToolStripMenuItem_Click(sender As Object, e As EventArgs)
         ClearForm()
 
     End Sub
@@ -1597,19 +1657,8 @@ Public Class Form1
     Private Sub MaintenanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MaintenanceToolStripMenuItem.Click
         GroupBox2.Visible = True
         GroupBox1.Visible = False
+        GroupBox7.Visible = False
 
-
-        Try
-
-            'Dim TxBuf() As Byte = {&HF0, &HF3, &HFA, &H74}           'Cihaz Test
-
-            SerialPort1.Write(M2CON, 0, 14)
-
-        Catch ex As SystemException
-            MsgBox("Com Port Error")
-        End Try
-
-        SerialPort1.Close()
     End Sub
 
     Private Sub GetLastStateBeforeSave()
@@ -1874,6 +1923,208 @@ Public Class Form1
             L2CON(12) = 1
             L2CON(13) = 1
         End If  'EKLE
+
+        If btnNumberOfCells.Text = "1" Then
+            DCR(0) = 0
+        ElseIf btnNumberOfCells.Text = "2" Then
+            DCR(0) = 1
+        End If
+
+        If btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 1" Then
+            DCR(4) = 1
+            DCR(5) = 1
+            DCR(6) = 0
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2" Then
+            DCR(4) = 1
+            DCR(5) = 0
+            DCR(6) = 1
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "OFF" Then
+            DCR(4) = 0
+            DCR(5) = 0
+            DCR(6) = 0
+
+        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+            DCR(4) = 1
+            DCR(5) = 0
+            DCR(6) = 0
+
+        End If
+
+        If lblDelay.Text = "0,5s" Then
+            lblDelay.Text = "0,5s"
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "1,0s" Then
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "1,5s" Then
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "2,0s" Then
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "2,5s" Then
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "3,0s" Then
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "3,5s" Then
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "4,0s" Then
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "4,5s" Then
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "5,0s" Then
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "5,5s" Then
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "6,0s" Then
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 1
+            DCR(13) = 0
+
+        ElseIf lblDelay.Text = "6,5s" Then
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "7,0s" Then
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "7,5s" Then
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 0
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "8,0s" Then
+            DCR(7) = 0
+            DCR(8) = 0
+            DCR(9) = 0
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "8,5s" Then
+            DCR(7) = 1
+            DCR(8) = 0
+            DCR(9) = 1
+            DCR(10) = 0
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "9,0s" Then
+            DCR(7) = 0
+            DCR(8) = 1
+            DCR(9) = 0
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+
+        ElseIf lblDelay.Text = "9,5s" Then
+            DCR(7) = 1
+            DCR(8) = 1
+            DCR(9) = 1
+            DCR(10) = 1
+            DCR(11) = 1
+            DCR(12) = 0
+            DCR(13) = 1
+        End If
+
     End Sub
 
     Private Sub RadioButton_F_SWITCH_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_F_SWITCH.CheckedChanged
@@ -1881,17 +2132,20 @@ Public Class Form1
     End Sub
 
     Private Sub ConnectionSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectionSToolStripMenuItem.Click
+        GroupBox7.Visible = True
+        GroupBox1.Visible = False
+        GroupBox2.Visible = False
 
+        cmbPorts.Items.Clear()
 
         Dim ports As String() = IO.Ports.SerialPort.GetPortNames()
         Dim port As String
-        Dim PortName As String
+        'Dim PortName As String
 
         For Each port In ports
             cmbPorts.Items.Add(port)
-            MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
+            'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
         Next port
-
 
         'MessageBox.Show("PORTLAR" + port)
 
@@ -1900,6 +2154,12 @@ Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         PortName = cmbPorts.SelectedItem
         If PortName <> "" Then
+
+            If SerialPort1.IsOpen = True Then
+                MsgBox("Serial Port that you want to connect is using by another program")
+                lblStatus.Text = "Com Port: " & PortName & " connected."
+                Exit Sub
+            End If
 
             SerialPort1.PortName = PortName
             SerialPort1.BaudRate = 9600 'The speed data used
@@ -1919,14 +2179,178 @@ Public Class Form1
                 End Try
 
             End If
+            lblStatus.Text = "Com Port: " & PortName & " connected."
 
-            lblStatus.Text = "Com Port: " & PortName
-
-            Try
-
-            Catch ex As Exception
-
-            End Try
         End If
+    End Sub
+
+    Private Sub cmbPrograms_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbPrograms.SelectedValueChanged
+        ClearForm()
+        ParseText(cmbPrograms.Text)
+    End Sub
+
+    Private Sub cmbPrograms_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPrograms.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cmbPrograms_DrawItem(sender As Object, e As DrawItemEventArgs) Handles cmbPrograms.DrawItem
+        Dim myFont As System.Drawing.Font = cmbPrograms.Font
+        Dim TextColor As New System.Drawing.Color
+        If e.Index = 0 Then
+            TextColor = System.Drawing.Color.Red
+        Else
+            TextColor = System.Drawing.Color.Black
+        End If
+
+        cmbPrograms.ForeColor = System.Drawing.Color.Red
+
+        Dim myBrush As SolidBrush = New SolidBrush(TextColor)
+        ' Draw the background of the item.
+        e.DrawBackground()
+
+        e.Graphics.DrawString(cmbPrograms.Items(0), myFont, myBrush, New RectangleF(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height))
+
+        ' Draw the focus rectangle if the mouse hovers over an item.
+        'e.DrawFocusRectangle()
+    End Sub
+
+    Private Sub btnRead_Click(sender As Object, e As EventArgs) Handles btnRead.Click
+
+        Dim txtBuff As String
+        Dim txtBuffChrArr As Char()
+
+        txtBuff = "00110010111111111111111110011001"
+
+        txtBuff = txtBuff.PadLeft(32, "0")
+
+        txtBuffChrArr = txtBuff.ToCharArray()
+
+        Dim vsNum As String = txtBuff.Substring(0, 4)
+
+        Dim rvsNum As String = txtBuff.Substring(4, 4)
+
+        Dim cell1Int As String = txtBuff.Substring(16, 8)
+
+        Dim cell2Int As String = txtBuff.Substring(24, 8)
+
+        lblVs.Text = "V" + ((10 + ConvertBinToStr(vsNum, 0, 0)).ToString) + "-R" + ConvertBinToStr(rvsNum, 0, 0).ToString
+
+        If txtBuffChrArr(9) = "0" Then
+            RadioButton_Cell1_RX.Checked = False
+        ElseIf txtBuffChrArr(9) = "1" Then
+            RadioButton_Cell1_RX.Checked = True
+        End If
+        If txtBuffChrArr(10) = "0" Then
+            RadioButton_Cell1_TX.Checked = False
+        ElseIf txtBuffChrArr(10) = "1" Then
+            RadioButton_Cell1_TX.Checked = True
+        End If
+
+        If txtBuffChrArr(11) = "0" Then
+            RadioButton_Cell2_RX.Checked = False
+        ElseIf txtBuffChrArr(11) = "1" Then
+            RadioButton_Cell2_RX.Checked = True
+        End If
+        If txtBuffChrArr(12) = "0" Then
+            RadioButton_Cell2_TX.Checked = False
+        ElseIf txtBuffChrArr(12) = "1" Then
+            RadioButton_Cell2_TX.Checked = True
+        End If
+
+        If txtBuffChrArr(13) = "0" Then
+            RadioButton_Inputs_P1.Checked = False
+        ElseIf txtBuffChrArr(13) = "1" Then
+            RadioButton_Inputs_P1.Checked = True
+        End If
+        If txtBuffChrArr(14) = "0" Then
+            RadioButton_Inputs_P2.Checked = False
+        ElseIf txtBuffChrArr(14) = "1" Then
+            RadioButton_Inputs_P2.Checked = True
+        End If
+
+        If txtBuffChrArr(15) = "0" Then
+            RadioButton_Inputs_ALM.Checked = False
+        ElseIf txtBuffChrArr(15) = "1" Then
+            RadioButton_Inputs_ALM.Checked = True
+        End If
+
+        lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
+        lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
+
+        'ConvertStrToBin(76, 32)
+
+        'ConvertBinToStr("0000000000000000000000001001100", 32, 0)
+
+    End Sub
+
+    Private Sub WriteSth()
+
+        Try
+
+            If SerialPort1.IsOpen Then
+
+                Dim d As String
+                d = "Bit Status; " + M2CON(0).ToString + "-" +
+                        " " + M2CON(1).ToString + "-" +
+                        " " + M2CON(2).ToString +
+                        " " + M2CON(3).ToString +
+                        " " + M2CON(4).ToString + "-" +
+                        " " + M2CON(5).ToString +
+                        " " + M2CON(6).ToString +
+                        " " + M2CON(7).ToString + "-" +
+                        " " + M2CON(8).ToString +
+                        " " + M2CON(9).ToString +
+                        " " + M2CON(10).ToString + "-" +
+                        " " + M2CON(11).ToString +
+                        " " + M2CON(12).ToString +
+                        " " + M2CON(13).ToString
+
+                SerialPort1.WriteLine(d)
+
+                Dim result As String
+                result = SerialPort1.ReadExisting
+                lblResult.Text = result
+
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Function ConvertStrToBin(num As Integer, len As Integer) As Char()
+        Dim chrArr As Char()
+        Dim strOfInt As String
+        If num > 0 Then
+            strOfInt = Convert.ToString(num, 2)
+            If (strOfInt.Length > 0) Then
+
+                If (strOfInt.Length < len) Then
+                    'Dim fark As Integer
+                    'fark = len - strOfInt.Length
+                    strOfInt = strOfInt.PadLeft(len, "0")
+                End If
+                Console.WriteLine(strOfInt)
+                chrArr = strOfInt.ToCharArray
+                Console.WriteLine(chrArr)
+            End If
+
+        End If
+        Return chrArr
+    End Function
+
+    Private Function ConvertBinToStr(strBin As String, min As Integer, max As Integer) As Integer
+        Dim strOfInt As Integer
+        If strBin.Length > 0 Then
+            strOfInt = Convert.ToInt32(strBin, 2)
+            If (strOfInt > 0) Then
+                Console.WriteLine(strOfInt)
+            End If
+        End If
+        Return strOfInt
+    End Function
+
+    Private Sub GroupBox3_Enter(sender As Object, e As EventArgs) Handles GroupBox3.Enter
+
     End Sub
 End Class

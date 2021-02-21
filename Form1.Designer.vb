@@ -25,11 +25,13 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtPrgName = New System.Windows.Forms.TextBox()
+        Me.cmbPrograms = New System.Windows.Forms.ComboBox()
+        Me.btnSend = New System.Windows.Forms.Button()
         Me.RadioButton_F_SWITCH = New System.Windows.Forms.RadioButton()
         Me.RadioButton_R_PEDAL = New System.Windows.Forms.RadioButton()
         Me.btnLIGHT2onOFF = New System.Windows.Forms.Button()
         Me.btnLIGHT1onOFF = New System.Windows.Forms.Button()
+        Me.btnSAVE = New System.Windows.Forms.Button()
         Me.btnMOTOR2onOFF = New System.Windows.Forms.Button()
         Me.lblDelay = New System.Windows.Forms.Label()
         Me.btnDelayPlus = New System.Windows.Forms.Button()
@@ -37,6 +39,7 @@ Partial Class Form1
         Me.btnAlarm_Buzzer_Light = New System.Windows.Forms.Button()
         Me.btnNumberOfCells = New System.Windows.Forms.Button()
         Me.btnLIGHT2_3Press = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnLIGHT2_2Press = New System.Windows.Forms.Button()
         Me.btnLIGHT2_1Press = New System.Windows.Forms.Button()
         Me.btnLIGHT2powerON = New System.Windows.Forms.Button()
@@ -58,17 +61,14 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ConnectionSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProgramsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MERCADONAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CUSTOMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnRead = New System.Windows.Forms.Button()
         Me.btnAlarm = New System.Windows.Forms.Button()
         Me.btnLIGHT2 = New System.Windows.Forms.Button()
         Me.btnLIGHT1 = New System.Windows.Forms.Button()
@@ -79,9 +79,11 @@ Partial Class Form1
         Me.RadioButton_Inputs_P2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_Inputs_P1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.RadioButton_Cell2_TX = New System.Windows.Forms.RadioButton()
         Me.RadioButton_Cell2_RX = New System.Windows.Forms.RadioButton()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.RadioButton_Cell1_TX = New System.Windows.Forms.RadioButton()
         Me.RadioButton_Cell1_RX = New System.Windows.Forms.RadioButton()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -98,15 +100,17 @@ Partial Class Form1
         Me.btnL2CON = New System.Windows.Forms.Button()
         Me.btnDCR = New System.Windows.Forms.Button()
         Me.btnLOAD = New System.Windows.Forms.Button()
-        Me.btnSAVE = New System.Windows.Forms.Button()
         Me.btnReceived_M2CON = New System.Windows.Forms.Button()
         Me.btnBitToByte = New System.Windows.Forms.Button()
         Me.cmbPorts = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.lblStatus = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.lblResult = New System.Windows.Forms.Label()
+        Me.lblCell1Intensity = New System.Windows.Forms.Label()
+        Me.lblCell2Intensity = New System.Windows.Forms.Label()
+        Me.lblVs = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -114,15 +118,18 @@ Partial Class Form1
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtPrgName)
+        Me.GroupBox1.Controls.Add(Me.cmbPrograms)
+        Me.GroupBox1.Controls.Add(Me.btnSend)
         Me.GroupBox1.Controls.Add(Me.RadioButton_F_SWITCH)
         Me.GroupBox1.Controls.Add(Me.RadioButton_R_PEDAL)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT2onOFF)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT1onOFF)
+        Me.GroupBox1.Controls.Add(Me.btnSAVE)
         Me.GroupBox1.Controls.Add(Me.btnMOTOR2onOFF)
         Me.GroupBox1.Controls.Add(Me.lblDelay)
         Me.GroupBox1.Controls.Add(Me.btnDelayPlus)
@@ -130,6 +137,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.btnAlarm_Buzzer_Light)
         Me.GroupBox1.Controls.Add(Me.btnNumberOfCells)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT2_3Press)
+        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT2_2Press)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT2_1Press)
         Me.GroupBox1.Controls.Add(Me.btnLIGHT2powerON)
@@ -151,23 +159,31 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(18, 42)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Size = New System.Drawing.Size(543, 323)
+        Me.GroupBox1.Size = New System.Drawing.Size(545, 380)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Program Settings"
         '
-        'txtPrgName
+        'cmbPrograms
         '
-        Me.txtPrgName.Location = New System.Drawing.Point(309, 24)
-        Me.txtPrgName.Name = "txtPrgName"
-        Me.txtPrgName.Size = New System.Drawing.Size(154, 26)
-        Me.txtPrgName.TabIndex = 36
+        Me.cmbPrograms.FormattingEnabled = True
+        Me.cmbPrograms.Location = New System.Drawing.Point(190, 27)
+        Me.cmbPrograms.Name = "cmbPrograms"
+        Me.cmbPrograms.Size = New System.Drawing.Size(214, 28)
+        Me.cmbPrograms.TabIndex = 43
+        '
+        'btnSend
+        '
+        Me.btnSend.Location = New System.Drawing.Point(363, 341)
+        Me.btnSend.Name = "btnSend"
+        Me.btnSend.Size = New System.Drawing.Size(166, 35)
+        Me.btnSend.TabIndex = 42
+        Me.btnSend.Text = "SEND"
+        Me.btnSend.UseVisualStyleBackColor = True
         '
         'RadioButton_F_SWITCH
         '
@@ -214,6 +230,16 @@ Partial Class Form1
         Me.btnLIGHT1onOFF.TabIndex = 32
         Me.btnLIGHT1onOFF.Text = "ON"
         Me.btnLIGHT1onOFF.UseVisualStyleBackColor = False
+        '
+        'btnSAVE
+        '
+        Me.btnSAVE.Location = New System.Drawing.Point(13, 341)
+        Me.btnSAVE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSAVE.Name = "btnSAVE"
+        Me.btnSAVE.Size = New System.Drawing.Size(166, 35)
+        Me.btnSAVE.TabIndex = 41
+        Me.btnSAVE.Text = "SAVE"
+        Me.btnSAVE.UseVisualStyleBackColor = True
         '
         'btnMOTOR2onOFF
         '
@@ -289,6 +315,16 @@ Partial Class Form1
         Me.btnLIGHT2_3Press.TabIndex = 25
         Me.btnLIGHT2_3Press.Text = "OFF"
         Me.btnLIGHT2_3Press.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 30)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(123, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Program Name: "
         '
         'btnLIGHT2_2Press
         '
@@ -502,34 +538,14 @@ Partial Class Form1
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "MOTOR 2"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.Maroon
-        Me.Label2.Location = New System.Drawing.Point(470, 25)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(58, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "ILURA"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(186, 25)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(123, 20)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Program Name: "
-        '
         'MenuStrip1
         '
+        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1187, 33)
+        Me.MenuStrip1.Size = New System.Drawing.Size(926, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -541,23 +557,9 @@ Partial Class Form1
         '
         'ProgramsToolStripMenuItem
         '
-        Me.ProgramsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MERCADONAToolStripMenuItem, Me.CUSTOMToolStripMenuItem})
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(148, 29)
-        Me.ProgramsToolStripMenuItem.Text = "Program Select"
-        '
-        'MERCADONAToolStripMenuItem
-        '
-        Me.MERCADONAToolStripMenuItem.Name = "MERCADONAToolStripMenuItem"
-        Me.MERCADONAToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
-        Me.MERCADONAToolStripMenuItem.Text = "MERCADONA"
-        '
-        'CUSTOMToolStripMenuItem
-        '
-        Me.CUSTOMToolStripMenuItem.ForeColor = System.Drawing.Color.Maroon
-        Me.CUSTOMToolStripMenuItem.Name = "CUSTOMToolStripMenuItem"
-        Me.CUSTOMToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
-        Me.CUSTOMToolStripMenuItem.Text = "CUSTOM DESIGN"
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
+        Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
@@ -574,15 +576,17 @@ Partial Class Form1
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 770)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 497)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 21, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1187, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(926, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.lblVs)
+        Me.GroupBox2.Controls.Add(Me.btnRead)
         Me.GroupBox2.Controls.Add(Me.btnAlarm)
         Me.GroupBox2.Controls.Add(Me.btnLIGHT2)
         Me.GroupBox2.Controls.Add(Me.btnLIGHT1)
@@ -592,14 +596,24 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.GroupBox5)
         Me.GroupBox2.Controls.Add(Me.GroupBox4)
         Me.GroupBox2.Controls.Add(Me.GroupBox3)
-        Me.GroupBox2.Location = New System.Drawing.Point(18, 374)
+        Me.GroupBox2.Location = New System.Drawing.Point(18, 42)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox2.Size = New System.Drawing.Size(543, 380)
+        Me.GroupBox2.Size = New System.Drawing.Size(545, 380)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Maintenance"
+        Me.GroupBox2.Visible = False
+        '
+        'btnRead
+        '
+        Me.btnRead.Location = New System.Drawing.Point(20, 341)
+        Me.btnRead.Name = "btnRead"
+        Me.btnRead.Size = New System.Drawing.Size(112, 31)
+        Me.btnRead.TabIndex = 9
+        Me.btnRead.Text = "READ"
+        Me.btnRead.UseVisualStyleBackColor = True
         '
         'btnAlarm
         '
@@ -656,6 +670,7 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_ALM)
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_P2)
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_P1)
+        Me.GroupBox6.Enabled = False
         Me.GroupBox6.Location = New System.Drawing.Point(282, 209)
         Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox6.Name = "GroupBox6"
@@ -695,7 +710,7 @@ Partial Class Form1
         'RadioButton_Inputs_P1
         '
         Me.RadioButton_Inputs_P1.AutoSize = True
-        Me.RadioButton_Inputs_P1.BackColor = System.Drawing.Color.Maroon
+        Me.RadioButton_Inputs_P1.BackColor = System.Drawing.SystemColors.Control
         Me.RadioButton_Inputs_P1.Location = New System.Drawing.Point(18, 34)
         Me.RadioButton_Inputs_P1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadioButton_Inputs_P1.Name = "RadioButton_Inputs_P1"
@@ -708,9 +723,11 @@ Partial Class Form1
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.lblCell2Intensity)
         Me.GroupBox5.Controls.Add(Me.Label10)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_TX)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_RX)
+        Me.GroupBox5.Enabled = False
         Me.GroupBox5.Location = New System.Drawing.Point(282, 117)
         Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox5.Name = "GroupBox5"
@@ -719,6 +736,15 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "CELL 2"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(162, 28)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(37, 20)
+        Me.Label10.TabIndex = 4
+        Me.Label10.Text = "(%):"
         '
         'RadioButton_Cell2_TX
         '
@@ -748,9 +774,11 @@ Partial Class Form1
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.lblCell1Intensity)
         Me.GroupBox4.Controls.Add(Me.Label9)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_TX)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_RX)
+        Me.GroupBox4.Enabled = False
         Me.GroupBox4.Location = New System.Drawing.Point(282, 29)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox4.Name = "GroupBox4"
@@ -759,6 +787,15 @@ Partial Class Form1
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "CELL 1"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(162, 33)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 20)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "(%):"
         '
         'RadioButton_Cell1_TX
         '
@@ -796,6 +833,7 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.Label19)
         Me.GroupBox3.Controls.Add(Me.Label17)
         Me.GroupBox3.Controls.Add(Me.Label16)
+        Me.GroupBox3.Enabled = False
         Me.GroupBox3.Location = New System.Drawing.Point(20, 29)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox3.Name = "GroupBox3"
@@ -887,7 +925,7 @@ Partial Class Form1
         '
         'btnM2CON
         '
-        Me.btnM2CON.Location = New System.Drawing.Point(570, 125)
+        Me.btnM2CON.Location = New System.Drawing.Point(605, 57)
         Me.btnM2CON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnM2CON.Name = "btnM2CON"
         Me.btnM2CON.Size = New System.Drawing.Size(112, 35)
@@ -897,7 +935,7 @@ Partial Class Form1
         '
         'btnL1CON
         '
-        Me.btnL1CON.Location = New System.Drawing.Point(570, 170)
+        Me.btnL1CON.Location = New System.Drawing.Point(605, 102)
         Me.btnL1CON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnL1CON.Name = "btnL1CON"
         Me.btnL1CON.Size = New System.Drawing.Size(112, 35)
@@ -907,7 +945,7 @@ Partial Class Form1
         '
         'btnL2CON
         '
-        Me.btnL2CON.Location = New System.Drawing.Point(570, 215)
+        Me.btnL2CON.Location = New System.Drawing.Point(605, 147)
         Me.btnL2CON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnL2CON.Name = "btnL2CON"
         Me.btnL2CON.Size = New System.Drawing.Size(112, 35)
@@ -917,7 +955,7 @@ Partial Class Form1
         '
         'btnDCR
         '
-        Me.btnDCR.Location = New System.Drawing.Point(570, 263)
+        Me.btnDCR.Location = New System.Drawing.Point(605, 195)
         Me.btnDCR.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDCR.Name = "btnDCR"
         Me.btnDCR.Size = New System.Drawing.Size(112, 35)
@@ -928,7 +966,7 @@ Partial Class Form1
         'btnLOAD
         '
         Me.btnLOAD.Enabled = False
-        Me.btnLOAD.Location = New System.Drawing.Point(570, 329)
+        Me.btnLOAD.Location = New System.Drawing.Point(605, 261)
         Me.btnLOAD.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnLOAD.Name = "btnLOAD"
         Me.btnLOAD.Size = New System.Drawing.Size(112, 63)
@@ -936,19 +974,9 @@ Partial Class Form1
         Me.btnLOAD.Text = "LOAD"
         Me.btnLOAD.UseVisualStyleBackColor = True
         '
-        'btnSAVE
-        '
-        Me.btnSAVE.Location = New System.Drawing.Point(570, 402)
-        Me.btnSAVE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.btnSAVE.Name = "btnSAVE"
-        Me.btnSAVE.Size = New System.Drawing.Size(112, 58)
-        Me.btnSAVE.TabIndex = 41
-        Me.btnSAVE.Text = "SAVE"
-        Me.btnSAVE.UseVisualStyleBackColor = True
-        '
         'btnReceived_M2CON
         '
-        Me.btnReceived_M2CON.Location = New System.Drawing.Point(570, 562)
+        Me.btnReceived_M2CON.Location = New System.Drawing.Point(752, 150)
         Me.btnReceived_M2CON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnReceived_M2CON.Name = "btnReceived_M2CON"
         Me.btnReceived_M2CON.Size = New System.Drawing.Size(112, 92)
@@ -958,7 +986,7 @@ Partial Class Form1
         '
         'btnBitToByte
         '
-        Me.btnBitToByte.Location = New System.Drawing.Point(572, 471)
+        Me.btnBitToByte.Location = New System.Drawing.Point(754, 59)
         Me.btnBitToByte.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnBitToByte.Name = "btnBitToByte"
         Me.btnBitToByte.Size = New System.Drawing.Size(112, 57)
@@ -969,14 +997,14 @@ Partial Class Form1
         'cmbPorts
         '
         Me.cmbPorts.FormattingEnabled = True
-        Me.cmbPorts.Location = New System.Drawing.Point(823, 369)
+        Me.cmbPorts.Location = New System.Drawing.Point(33, 42)
         Me.cmbPorts.Name = "cmbPorts"
         Me.cmbPorts.Size = New System.Drawing.Size(198, 28)
         Me.cmbPorts.TabIndex = 44
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(836, 422)
+        Me.Button1.Location = New System.Drawing.Point(303, 36)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(101, 38)
         Me.Button1.TabIndex = 45
@@ -986,49 +1014,77 @@ Partial Class Form1
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(862, 508)
+        Me.lblStatus.Location = New System.Drawing.Point(15, 461)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(0, 20)
+        Me.lblStatus.Size = New System.Drawing.Size(147, 20)
         Me.lblStatus.TabIndex = 46
+        Me.lblStatus.Text = "No Port Connection"
         '
-        'Label9
+        'GroupBox7
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(174, 33)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(37, 20)
-        Me.Label9.TabIndex = 2
-        Me.Label9.Text = "(%):"
+        Me.GroupBox7.Controls.Add(Me.cmbPorts)
+        Me.GroupBox7.Controls.Add(Me.Button1)
+        Me.GroupBox7.Location = New System.Drawing.Point(18, 42)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(545, 380)
+        Me.GroupBox7.TabIndex = 47
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Connection Settings"
+        Me.GroupBox7.Visible = False
         '
-        'Label10
+        'lblResult
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(174, 28)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(37, 20)
-        Me.Label10.TabIndex = 4
-        Me.Label10.Text = "(%):"
+        Me.lblResult.AutoSize = True
+        Me.lblResult.Location = New System.Drawing.Point(14, 427)
+        Me.lblResult.Name = "lblResult"
+        Me.lblResult.Size = New System.Drawing.Size(55, 20)
+        Me.lblResult.TabIndex = 47
+        Me.lblResult.Text = "Sonuç"
+        '
+        'lblCell1Intensity
+        '
+        Me.lblCell1Intensity.AutoSize = True
+        Me.lblCell1Intensity.Location = New System.Drawing.Point(213, 35)
+        Me.lblCell1Intensity.Name = "lblCell1Intensity"
+        Me.lblCell1Intensity.Size = New System.Drawing.Size(0, 20)
+        Me.lblCell1Intensity.TabIndex = 3
+        '
+        'lblCell2Intensity
+        '
+        Me.lblCell2Intensity.AutoSize = True
+        Me.lblCell2Intensity.Location = New System.Drawing.Point(213, 31)
+        Me.lblCell2Intensity.Name = "lblCell2Intensity"
+        Me.lblCell2Intensity.Size = New System.Drawing.Size(0, 20)
+        Me.lblCell2Intensity.TabIndex = 5
+        '
+        'lblVs
+        '
+        Me.lblVs.AutoSize = True
+        Me.lblVs.Location = New System.Drawing.Point(138, 346)
+        Me.lblVs.Name = "lblVs"
+        Me.lblVs.Size = New System.Drawing.Size(57, 20)
+        Me.lblVs.TabIndex = 10
+        Me.lblVs.Text = "Label2"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1187, 792)
+        Me.ClientSize = New System.Drawing.Size(926, 519)
+        Me.Controls.Add(Me.lblResult)
         Me.Controls.Add(Me.lblStatus)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.cmbPorts)
         Me.Controls.Add(Me.btnBitToByte)
         Me.Controls.Add(Me.btnReceived_M2CON)
-        Me.Controls.Add(Me.btnSAVE)
         Me.Controls.Add(Me.btnLOAD)
         Me.Controls.Add(Me.btnDCR)
         Me.Controls.Add(Me.btnL2CON)
         Me.Controls.Add(Me.btnL1CON)
         Me.Controls.Add(Me.btnM2CON)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GroupBox7)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -1039,6 +1095,7 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
@@ -1047,6 +1104,7 @@ Partial Class Form1
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1064,12 +1122,9 @@ Partial Class Form1
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents ConnectionSToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProgramsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MERCADONAToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CUSTOMToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MaintenanceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents btnAlarm_Buzzer_Light As Button
@@ -1128,11 +1183,18 @@ Partial Class Form1
     Friend WithEvents btnSAVE As Button
     Friend WithEvents btnReceived_M2CON As Button
     Friend WithEvents btnBitToByte As Button
-    Friend WithEvents txtPrgName As TextBox
     Friend WithEvents cmbPorts As ComboBox
     Friend WithEvents Button1 As Button
     Friend WithEvents SerialPort1 As IO.Ports.SerialPort
     Friend WithEvents lblStatus As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
+    Friend WithEvents btnSend As Button
+    Friend WithEvents cmbPrograms As ComboBox
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents lblResult As Label
+    Friend WithEvents btnRead As Button
+    Friend WithEvents lblCell2Intensity As Label
+    Friend WithEvents lblCell1Intensity As Label
+    Friend WithEvents lblVs As Label
 End Class
