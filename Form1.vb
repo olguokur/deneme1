@@ -1684,29 +1684,57 @@ Public Class Form1
     End Function
 
     Private Sub btnMOTOR1_Click(sender As Object, e As EventArgs) Handles btnMOTOR1.Click
-        Try
-            Dim input As Input = New Input
 
-            input.address = "10"
-            input.bitText = "00000000"
-            input.amount = 1
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
 
-            If SerialPort1.IsOpen Then
-                tryNumber = 0
-                Input = SentToWriteOne(Input)
-                If (Input.status = "F") Then
-                    MessageBox.Show("Transmit Error please SEND again.")
+        Dim input As Input = New Input
+        input.address = "10"
+        input.amount = 1
+        If (btnMOTOR1.BackColor = Color.LightGray) Then
+            input.bitText = "11111111"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 0
+                    input = SentToWriteOne(input)
+                    If (input.status = "F") Then
+                        btnMOTOR1.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnMOTOR1.BackColor = Color.LightGreen
+                    End If
                 End If
-            End If
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-        End Try
+            Catch ex As Exception
+                btnMOTOR1.BackColor = Color.LightGray
+                Console.WriteLine(ex.ToString)
+            End Try
+        Else
+            input.bitText = "00000000"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 0
+                    input = SentToWriteOne(input)
+                    If (input.status = "F") Then
+                        btnMOTOR1.BackColor = Color.LightGreen
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnMOTOR1.BackColor = Color.LightGray
+                    End If
+                End If
+            Catch ex As Exception
+                btnMOTOR1.BackColor = Color.LightGreen
+                Console.WriteLine(ex.ToString)
+            End Try
+        End If
+
     End Sub
 
     Private Sub ProgramsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProgramsToolStripMenuItem.Click
         GroupBox1.Visible = True
         GroupBox2.Visible = False
         GroupBox7.Visible = False
+        Timer1.Stop()
     End Sub
 
     Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -1727,8 +1755,12 @@ Public Class Form1
         GroupBox2.Visible = True
         GroupBox1.Visible = False
         GroupBox7.Visible = False
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
 
         btnRead_Click(sender, e)
+        Timer1.Start()
 
     End Sub
 
@@ -2123,7 +2155,7 @@ Public Class Form1
         GroupBox7.Visible = True
         GroupBox1.Visible = False
         GroupBox2.Visible = False
-
+        Timer1.Stop()
         cmbPorts.Items.Clear()
 
         Dim ports As String() = IO.Ports.SerialPort.GetPortNames()
@@ -2202,7 +2234,7 @@ Public Class Form1
         'e.DrawFocusRectangle()
     End Sub
 
-    Private Function ReadPortByAddress(address As String) As String
+    Private Function ReadPortByAddress(address As String, timeType As Boolean) As String
 
         Dim txtBuff As String = ""
 
@@ -2210,77 +2242,92 @@ Public Class Form1
 
         'READ D
         Try
-            SerialPort1.ReadTimeout = 10000
+            If (SerialPort1.IsOpen) Then
 
-            Dim first As Byte
-            Dim second As Byte
-            Dim third As Byte
-            Dim data1 As String = "0"
-            Dim data2 As String = "0"
-            Dim data3 As String = "0"
-            Dim data4 As String = "0"
+                SerialPort1.ReadTimeout = 10000
 
-            Dim writeBytes() As Byte
+                Dim first As Byte
+                Dim second As Byte
+                Dim third As Byte
+                Dim data1 As String = "0"
+                Dim data2 As String = "0"
+                Dim data3 As String = "0"
+                Dim data4 As String = "0"
 
-            first = Convert.ToByte("23", 16)  ' 34 22 write
-            second = Convert.ToByte(address, 16)  'inp.address ' 16 adres
-            third = Convert.ToByte("4", 16)    ' 2 kaç byte
+                Dim writeBytes() As Byte
 
-            writeBytes = {first, second, third}
+                first = Convert.ToByte("23", 16)  ' 34 22 write
+                second = Convert.ToByte(address, 16)  'inp.address ' 16 adres
+                third = Convert.ToByte("4", 16)    ' 2 kaç byte
 
-            Console.WriteLine("------------------>SerialPort1.Wite DEV YAZMA:" + "->" + first.ToString + " " + second.ToString + " " + third.ToString)
+                writeBytes = {first, second, third}
 
-            SerialPort1.Write(writeBytes, 0, writeBytes.Length)
+                Console.WriteLine("------------------>SerialPort1.Wite DEV YAZMA: ADRESS(" + address + ")" + "->" + first.ToString + " " + second.ToString + " " + third.ToString)
 
-            For i = 1 To 3 '3sn
-                Threading.Thread.Sleep(100)
-                Application.DoEvents()
-            Next
-
-            Try
-                Dim buff(SerialPort1.BytesToRead) As Byte
-                Dim bytesRead As Integer
-
-                Dim defM1C As String
-                defM1C = ""
-                bytesRead = SerialPort1.Read(buff, 0, buff.Length)
-                For Each valM1C As Byte In buff
-                    defM1C = defM1C + " " + valM1C.ToString
-                    If (buffIndx = 0) Then
-                        data1 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
-
-                    ElseIf (buffIndx = 1) Then
-                        data2 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
-
-                    ElseIf (buffIndx = 2) Then
-                        data3 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
-
-                    ElseIf (buffIndx = 3) Then
-                        data4 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
-
-                    End If
-                    buffIndx = buffIndx + 1
-                Next
-
-                data1 = Complete8BitPadLeft(data1)
-                data2 = Complete8BitPadLeft(data2)
-                data3 = Complete8BitPadLeft(data3)
-                data4 = Complete8BitPadLeft(data4)
-
-                If (address = "0A") Then
-                    txtBuff = data1 + data2 + data4 + data3
+                SerialPort1.Write(writeBytes, 0, writeBytes.Length)
+                Timer1.Stop()
+                If (timeType = True) Then
+                    For i = 1 To 2 '0,3sn
+                        Threading.Thread.Sleep(30)
+                        Application.DoEvents()
+                    Next
                 Else
-                    txtBuff = data1 + data2 + data3 + data4
+                    For i = 1 To 2 '0,3sn
+                        Threading.Thread.Sleep(300)
+                        Application.DoEvents()
+                    Next
                 End If
+                Timer1.Start()
 
-                Console.WriteLine("------------------>READ DATA  (ADDRESS) ->(" + address + ")" + txtBuff)
+                Try
+                    Dim buff(SerialPort1.BytesToRead) As Byte
+                    Dim bytesRead As Integer
 
-                Console.WriteLine("------------------>READ RAW DATA ->" + defM1C)
-            Catch ex As Exception
-                Console.WriteLine("------------------>READ ERROR ->" + ex.Message)
+                    Dim defM1C As String
+                    defM1C = ""
+                    bytesRead = SerialPort1.Read(buff, 0, buff.Length)
+                    For Each valM1C As Byte In buff
+                        defM1C = defM1C + " " + valM1C.ToString
+                        If (buffIndx = 0) Then
+                            data1 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
 
-            End Try
+                        ElseIf (buffIndx = 1) Then
+                            data2 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
 
+                        ElseIf (buffIndx = 2) Then
+                            data3 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
+
+                        ElseIf (buffIndx = 3) Then
+                            data4 = Convert.ToString(Convert.ToInt32(valM1C.ToString), 2)
+
+                        End If
+                        buffIndx = buffIndx + 1
+                    Next
+
+                    data1 = Complete8BitPadLeft(data1)
+                    data2 = Complete8BitPadLeft(data2)
+                    data3 = Complete8BitPadLeft(data3)
+                    data4 = Complete8BitPadLeft(data4)
+
+                    If (address = "0A") Then
+                        txtBuff = data1 + data2 + data4 + data3
+                    Else
+                        txtBuff = data1 + data2 + data3 + data4
+                    End If
+
+                    Console.WriteLine("------------------>READ DATA  (ADDRESS) ->(" + address + ")" + txtBuff)
+
+                    Console.WriteLine("------------------>READ RAW DATA ->" + defM1C)
+                Catch ex As Exception
+                    Console.WriteLine("------------------>READ ERROR ->" + ex.Message)
+
+                End Try
+
+            Else
+                MessageBox.Show("no port connection")
+                Timer1.Stop()
+
+            End If
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
@@ -2315,7 +2362,7 @@ Public Class Form1
     End Sub
 
     Private Sub ViewDeviceVersionRegister(txtBuffProperty As String)
-        ClearDeviceProperty()
+        'ClearDeviceProperty()
 
         If (txtBuffProperty <> Nothing) Then
             If (txtBuffProperty.Length > 0) Then
@@ -2382,26 +2429,25 @@ Public Class Form1
 
     Private Sub btnRead_Click(sender As Object, e As EventArgs) Handles btnRead.Click, btnRefresh.Click
 
-        If SerialPort1.IsOpen = False Then
-            MessageBox.Show("no port connection.")
-            lblStatus.Text = "No Connection"
-            Exit Sub
-        End If
+        Dim Stopwatch As New Stopwatch
 
-        Dim txtBuffDev As String = ReadPortByAddress("0A") ' Device version register
-        Dim txtBuffM1C As String = ReadPortByAddress("19") '
-        Dim txtBuffM1TCon As String = ReadPortByAddress("1E")
-        Dim txtBuffM2C As String = ReadPortByAddress("23")
-        Dim txtBuffM2Ton As String = ReadPortByAddress("28")
-        Dim txtBuffL1C As String = ReadPortByAddress("2D")
-        Dim txtBuffL1Tcon As String = ReadPortByAddress("32")
-        Dim txtBuffL2C As String = ReadPortByAddress("37")
-        Dim txtBuffL2Tcon As String = ReadPortByAddress("3C")
+        Stopwatch.Start()
+        ''// Test Code
 
-        ClearDeviceProperty()
-        ClearTimeProperty()
+        'Dim txtBuffDev As String = ReadPortByAddress("0A",False) ' Device version register
+        Dim txtBuffM1C As String = ReadPortByAddress("19", True) '
+        Dim txtBuffM1TCon As String = ReadPortByAddress("1E", True)
+        Dim txtBuffM2C As String = ReadPortByAddress("23", True)
+        Dim txtbuffm2ton As String = ReadPortByAddress("28", True)
+        Dim txtbuffl1c As String = ReadPortByAddress("2d", True)
+        Dim txtBuffL1Tcon As String = ReadPortByAddress("32", True)
+        Dim txtBuffL2C As String = ReadPortByAddress("37", True)
+        Dim txtBuffL2Tcon As String = ReadPortByAddress("3C", True)
 
-        ViewDeviceVersionRegister(txtBuffDev)
+        ' ClearDeviceProperty()
+        ' ClearTimeProperty()
+
+        'ViewDeviceVersionRegister(txtBuffDev)
 
 
         If txtBuffM1C.Length > 0 Then
@@ -2416,12 +2462,12 @@ Public Class Form1
             lblM2C.Text = ConvertBinToStr(txtBuffM2C, 0, 0)
         End If
 
-        If txtBuffM2Ton.Length > 0 Then
-            lblM2TCon.Text = ConvertBinToStr(txtBuffM2Ton, 0, 0)
+        If txtbuffm2ton.Length > 0 Then
+            lblM2TCon.Text = ConvertBinToStr(txtbuffm2ton, 0, 0)
         End If
 
-        If txtBuffL1C.Length > 0 Then
-            lblL1C.Text = ConvertBinToStr(txtBuffL1C, 0, 0)
+        If txtbuffl1c.Length > 0 Then
+            lblL1C.Text = ConvertBinToStr(txtbuffl1c, 0, 0)
         End If
 
         If txtBuffL1Tcon.Length > 0 Then
@@ -2435,6 +2481,9 @@ Public Class Form1
         If txtBuffL2Tcon.Length > 0 Then
             lblL2TCon.Text = ConvertBinToStr(txtBuffL2Tcon, 0, 0)
         End If
+
+        Stopwatch.Stop()
+        Console.WriteLine("ELAPSED TIME :" + Stopwatch.Elapsed.ToString)
     End Sub
 
 
@@ -2442,7 +2491,7 @@ Public Class Form1
     Private Function SentToWriteOne(inp As Input) As Input
 
         Try
-            SerialPort1.ReadTimeout = 10000
+            SerialPort1.ReadTimeout = 500
             Dim status As String = ""
             Dim strPart As String
 
@@ -2518,12 +2567,17 @@ Public Class Form1
                 inp.status = "F"
             End Try
             Console.WriteLine("STATUS:" + inp.status + " " + inp.name + "try number ->" + tryNumber.ToString)
-            If (inp.status = "F" And tryNumber < 5) Then
-                SentToWriteOne(inp)
+            If (inp.status = "F" And tryNumber < 4) Then
                 tryNumber = tryNumber + 1
+                SentToWriteOne(inp)
             End If
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
+            inp.status = "F"
+            If (inp.status = "F" And tryNumber < 4) Then
+                tryNumber = tryNumber + 1
+                SentToWriteOne(inp)
+            End If
         End Try
         Return inp
     End Function
@@ -2538,7 +2592,7 @@ Public Class Form1
                     tryNumber = 0
                     input = SentToWriteOne(input)
                     If (input.status = "F") Then
-                        MessageBox.Show("Transmit Error please SEND again.")
+                        MessageBox.Show("Transmit Error! Please check the port connection and SEND again.")
                         Exit For
                     End If
                 Next
@@ -2600,15 +2654,22 @@ Public Class Form1
         Return strOfInt
     End Function
 
+    Private Function CheckPortConnection() As Boolean
+        If SerialPort1.IsOpen = False Then
+            MessageBox.Show("Please check the port connection.")
+            lblStatus.Text = "No Connection"
+            Return False
+        End If
+        Return True
+    End Function
+
+
+
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
 
-        If SerialPort1.IsOpen = False Then
-            MessageBox.Show("no port connection.")
-            lblStatus.Text = "No Connection"
+        If (CheckPortConnection() = False) Then
             Exit Sub
-
         End If
-
 
         GetLastStateBeforeSave()
         Dim M2CONstring As String = ""
@@ -2741,12 +2802,25 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        ClearDeviceProperty()
-        Dim txtBuffDev As String = ReadPortByAddress("0A") ' Device version register
+        Console.WriteLine("TIMER BEGIN")
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
+        'ClearDeviceProperty()
+        Dim txtBuffDev As String = ReadPortByAddress("0A", False) ' Device version register
         ViewDeviceVersionRegister(txtBuffDev)
+        Console.WriteLine("TIMER END")
     End Sub
 
     Private Sub lblM1C_Click(sender As Object, e As EventArgs) Handles lblM1C.Click
+
+    End Sub
+
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        Timer1.Stop()
+    End Sub
+
+    Private Sub lblCell1Intensity_Click(sender As Object, e As EventArgs) Handles lblCell1Intensity.Click
 
     End Sub
 End Class

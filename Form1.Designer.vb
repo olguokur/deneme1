@@ -745,32 +745,32 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1199, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1199, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 32)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 29)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'StatusStrip1
@@ -819,7 +819,7 @@ Partial Class Form1
         '
         'btnRead
         '
-        Me.btnRead.Location = New System.Drawing.Point(420, 383)
+        Me.btnRead.Location = New System.Drawing.Point(270, 424)
         Me.btnRead.Name = "btnRead"
         Me.btnRead.Size = New System.Drawing.Size(112, 31)
         Me.btnRead.TabIndex = 9
