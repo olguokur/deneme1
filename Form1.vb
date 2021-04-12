@@ -34,7 +34,7 @@ Module Module1
 
     End Structure
 
-    Public tryNumber As Integer = 0
+    'Public tryNumber As Integer = 0
 
 End Module
 
@@ -1689,28 +1689,38 @@ Public Class Form1
             Exit Sub
         End If
 
+        Dim tryNumber As Integer
+
         Dim record As List(Of Input) = New List(Of Input)
 
         Dim input As Input = New Input
         input.address = "18"
         input.amount = 1
+        input.name = "M1C"
         If (btnMOTOR1.BackColor = Color.LightGray) Then
             'DRIVE
-            input.bitText = "00000001"
+            input.bitText = "10000001"
             Try
                 'WriteBulk(record)
                 'BAK Burayı otomatikleştirmek lazım
 
                 If SerialPort1.IsOpen Then
-                    tryNumber = 0
-                    input = SentToWriteOne(input)
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
                     If (input.status = "F") Then
-                        btnMOTOR1.BackColor = Color.LightGray
-                        MessageBox.Show("Transmit Error please SEND again.")
-                    Else
-                        btnMOTOR1.BackColor = Color.LightGreen
+                            btnMOTOR1.BackColor = Color.LightGray
+                            MessageBox.Show("Transmit Error please SEND again.")
+                        Else
+                            btnMOTOR1.BackColor = Color.LightGreen
+                        End If
                     End If
-                End If
             Catch ex As Exception
                 btnMOTOR1.BackColor = Color.LightGray
                 Console.WriteLine(ex.ToString)
@@ -1720,8 +1730,15 @@ Public Class Form1
             input.bitText = "00000000"
             Try
                 If SerialPort1.IsOpen Then
-                    tryNumber = 0
-                    input = SentToWriteOne(input)
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
                     If (input.status = "F") Then
                         btnMOTOR1.BackColor = Color.LightGreen
                         MessageBox.Show("Transmit Error please SEND again.")
@@ -1767,7 +1784,7 @@ Public Class Form1
         End If
 
         btnRead_Click(sender, e)
-        Timer1.Start()
+        'Timer1.Start()
 
     End Sub
 
@@ -2201,6 +2218,7 @@ Public Class Form1
 
                 Try
                     SerialPort1.Open()
+                    Timer1.Start()
                 Catch ex As Exception
                     MsgBox("Serial Port that you want to connect is using by another program")
                 End Try
@@ -2274,7 +2292,7 @@ Public Class Form1
                 SerialPort1.Write(writeBytes, 0, writeBytes.Length)
                 Timer1.Stop()
                 If (timeType = True) Then
-                    For i = 1 To 2 '0,3sn
+                    For i = 1 To 2 '0,03sn
                         Threading.Thread.Sleep(30)
                         Application.DoEvents()
                     Next
@@ -2495,7 +2513,7 @@ Public Class Form1
 
 
 
-    Private Function SentToWriteOne(inp As Input) As Input
+    Private Function SentToWriteOne(inp As Input, tryNumber As Integer) As Input
 
         Try
             SerialPort1.ReadTimeout = 500
@@ -2536,10 +2554,15 @@ Public Class Form1
 
             SerialPort1.Write(writeBytes, 0, writeBytes.Length)
 
+
+            Timer1.Enabled = False
+
             For i = 1 To 3 '3sn
                 Threading.Thread.Sleep(100)
                 Application.DoEvents()
             Next
+
+            Timer1.Enabled = True
 
             Try
                 Dim buff2(SerialPort1.BytesToRead) As Byte
@@ -2557,14 +2580,12 @@ Public Class Form1
                         inp.status = "S"
                     Else
                         inp.status = "F"
-                        tryNumber = tryNumber + 1
                     End If
                 ElseIf inp.amount = 1 Then
                     If (buff2(0) = fourth) Then
                         inp.status = "S"
                     Else
                         inp.status = "F"
-                        tryNumber = tryNumber + 1
                     End If
                 End If
 
@@ -2574,17 +2595,11 @@ Public Class Form1
                 inp.status = "F"
             End Try
             Console.WriteLine("STATUS:" + inp.status + " " + inp.name + "try number ->" + tryNumber.ToString)
-            If (inp.status = "F" And tryNumber < 4) Then
-                tryNumber = tryNumber + 1
-                SentToWriteOne(inp)
-            End If
+
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
             inp.status = "F"
-            If (inp.status = "F" And tryNumber < 4) Then
-                tryNumber = tryNumber + 1
-                SentToWriteOne(inp)
-            End If
+
         End Try
         Return inp
     End Function
@@ -2592,12 +2607,22 @@ Public Class Form1
     Private Sub WriteBulk(records As List(Of Input))
 
         Dim input As Input
-
+        Dim tryNumber As Integer
+        'REPAIR
         Try
             If SerialPort1.IsOpen Then
                 For Each input In records
-                    tryNumber = 0
-                    input = SentToWriteOne(input)
+
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+
                     If (input.status = "F") Then
                         MessageBox.Show("Transmit Error! Please check the port connection and SEND again.")
                         Exit For
@@ -2653,9 +2678,9 @@ Public Class Form1
         Dim strOfInt As Integer
         If strBin.Length > 0 Then
             strOfInt = Convert.ToInt32(strBin, 2)
-            If (strOfInt > 0) Then
-                Console.WriteLine(strOfInt)
-            End If
+            'If (strOfInt > 0) Then
+            'Console.WriteLine(strOfInt)
+            'End If
         End If
         Return strOfInt
     End Function
@@ -2828,5 +2853,283 @@ Public Class Form1
 
     Private Sub lblCell1Intensity_Click(sender As Object, e As EventArgs) Handles lblCell1Intensity.Click
 
+    End Sub
+
+    Private Sub btnLIGHT1_Click(sender As Object, e As EventArgs) Handles btnLIGHT1.Click
+
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
+
+        Dim tryNumber As Integer
+
+        Dim record As List(Of Input) = New List(Of Input)
+
+        Dim input As Input = New Input
+        input.address = "18"
+        input.amount = 1
+        input.name = "L1C"
+        If (btnLIGHT1.BackColor = Color.LightGray) Then
+            'DRIVE
+            input.bitText = "10000100"
+            Try
+                'WriteBulk(record)
+                'BAK Burayı otomatikleştirmek lazım
+
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnLIGHT1.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnLIGHT1.BackColor = Color.LightGreen
+                    End If
+                End If
+            Catch ex As Exception
+                btnLIGHT1.BackColor = Color.LightGray
+                Console.WriteLine(ex.ToString)
+            End Try
+        Else
+            'OFF
+            input.bitText = "00000000"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnLIGHT1.BackColor = Color.LightGreen
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnLIGHT1.BackColor = Color.LightGray
+                    End If
+                End If
+            Catch ex As Exception
+                btnLIGHT1.BackColor = Color.LightGreen
+                Console.WriteLine(ex.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnMOTOR2_Click(sender As Object, e As EventArgs) Handles btnMOTOR2.Click
+
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
+
+        Dim tryNumber As Integer
+
+        Dim record As List(Of Input) = New List(Of Input)
+
+        Dim input As Input = New Input
+        input.address = "18"
+        input.amount = 1
+        input.name = "M2C"
+        If (btnMOTOR2.BackColor = Color.LightGray) Then
+            'DRIVE
+            input.bitText = "10000010"
+            Try
+                'WriteBulk(record)
+                'BAK Burayı otomatikleştirmek lazım
+
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnMOTOR2.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnMOTOR2.BackColor = Color.LightGreen
+                    End If
+                End If
+            Catch ex As Exception
+                btnMOTOR2.BackColor = Color.LightGray
+                Console.WriteLine(ex.ToString)
+            End Try
+        Else
+            'OFF
+            input.bitText = "00000000"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnMOTOR2.BackColor = Color.LightGreen
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnMOTOR2.BackColor = Color.LightGray
+                    End If
+                End If
+            Catch ex As Exception
+                btnMOTOR2.BackColor = Color.LightGreen
+                Console.WriteLine(ex.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnLIGHT2_Click(sender As Object, e As EventArgs) Handles btnLIGHT2.Click
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
+
+        Dim tryNumber As Integer
+
+        Dim record As List(Of Input) = New List(Of Input)
+
+        Dim input As Input = New Input
+        input.address = "18"
+        input.amount = 1
+        input.name = "L2C"
+        If (btnLIGHT2.BackColor = Color.LightGray) Then
+            'DRIVE
+            input.bitText = "10001000"
+            Try
+                'WriteBulk(record)
+                'BAK Burayı otomatikleştirmek lazım
+
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnLIGHT2.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnLIGHT2.BackColor = Color.LightGreen
+                    End If
+                End If
+            Catch ex As Exception
+                btnLIGHT2.BackColor = Color.LightGray
+                Console.WriteLine(ex.ToString)
+            End Try
+        Else
+            'OFF
+            input.bitText = "00000000"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnLIGHT2.BackColor = Color.LightGreen
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnLIGHT2.BackColor = Color.LightGray
+                    End If
+                End If
+            Catch ex As Exception
+                btnLIGHT2.BackColor = Color.LightGreen
+                Console.WriteLine(ex.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnAlarm_Click(sender As Object, e As EventArgs) Handles btnAlarm.Click
+        If (CheckPortConnection() = False) Then
+            Exit Sub
+        End If
+
+        Dim tryNumber As Integer
+
+        Dim record As List(Of Input) = New List(Of Input)
+
+        Dim input As Input = New Input
+        input.address = "18"
+        input.amount = 1
+        input.name = "ALMC"
+        If (btnAlarm.BackColor = Color.LightGray) Then
+            'DRIVE
+            input.bitText = "10010000"
+            Try
+                'WriteBulk(record)
+                'BAK Burayı otomatikleştirmek lazım
+
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnAlarm.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnAlarm.BackColor = Color.LightGreen
+                    End If
+                End If
+            Catch ex As Exception
+                btnAlarm.BackColor = Color.LightGray
+                Console.WriteLine(ex.ToString)
+            End Try
+        Else
+            'OFF
+            input.bitText = "00000000"
+            Try
+                If SerialPort1.IsOpen Then
+                    tryNumber = 1
+
+                    For tryNumber = 1 To 3
+                        If (input.status = Nothing Or input.status = "F") Then
+                            input = SentToWriteOne(input, tryNumber)
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    If (input.status = "F") Then
+                        btnAlarm.BackColor = Color.LightGreen
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnAlarm.BackColor = Color.LightGray
+                    End If
+                End If
+            Catch ex As Exception
+                btnAlarm.BackColor = Color.LightGreen
+                Console.WriteLine(ex.ToString)
+            End Try
+        End If
     End Sub
 End Class
