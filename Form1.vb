@@ -1689,12 +1689,18 @@ Public Class Form1
             Exit Sub
         End If
 
+        Dim record As List(Of Input) = New List(Of Input)
+
         Dim input As Input = New Input
-        input.address = "10"
+        input.address = "18"
         input.amount = 1
         If (btnMOTOR1.BackColor = Color.LightGray) Then
-            input.bitText = "11111111"
+            'DRIVE
+            input.bitText = "00000001"
             Try
+                'WriteBulk(record)
+                'BAK Burayı otomatikleştirmek lazım
+
                 If SerialPort1.IsOpen Then
                     tryNumber = 0
                     input = SentToWriteOne(input)
@@ -1710,6 +1716,7 @@ Public Class Form1
                 Console.WriteLine(ex.ToString)
             End Try
         Else
+            'OFF
             input.bitText = "00000000"
             Try
                 If SerialPort1.IsOpen Then
@@ -2601,7 +2608,6 @@ Public Class Form1
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
-
     End Sub
 
     Private Shared buffer As String = ""

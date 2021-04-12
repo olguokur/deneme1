@@ -838,53 +838,58 @@ Partial Class Form1
         '
         'btnAlarm
         '
+        Me.btnAlarm.BackColor = System.Drawing.Color.LightGray
         Me.btnAlarm.Location = New System.Drawing.Point(422, 339)
         Me.btnAlarm.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAlarm.Name = "btnAlarm"
         Me.btnAlarm.Size = New System.Drawing.Size(112, 35)
         Me.btnAlarm.TabIndex = 8
         Me.btnAlarm.Text = "ALARM"
-        Me.btnAlarm.UseVisualStyleBackColor = True
+        Me.btnAlarm.UseVisualStyleBackColor = False
         '
         'btnLIGHT2
         '
+        Me.btnLIGHT2.BackColor = System.Drawing.Color.LightGray
         Me.btnLIGHT2.Location = New System.Drawing.Point(140, 379)
         Me.btnLIGHT2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnLIGHT2.Name = "btnLIGHT2"
         Me.btnLIGHT2.Size = New System.Drawing.Size(112, 35)
         Me.btnLIGHT2.TabIndex = 7
         Me.btnLIGHT2.Text = "LIGHT 2"
-        Me.btnLIGHT2.UseVisualStyleBackColor = True
+        Me.btnLIGHT2.UseVisualStyleBackColor = False
         '
         'btnLIGHT1
         '
+        Me.btnLIGHT1.BackColor = System.Drawing.Color.LightGray
         Me.btnLIGHT1.Location = New System.Drawing.Point(140, 337)
         Me.btnLIGHT1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnLIGHT1.Name = "btnLIGHT1"
         Me.btnLIGHT1.Size = New System.Drawing.Size(112, 35)
         Me.btnLIGHT1.TabIndex = 6
         Me.btnLIGHT1.Text = "LIGHT 1"
-        Me.btnLIGHT1.UseVisualStyleBackColor = True
+        Me.btnLIGHT1.UseVisualStyleBackColor = False
         '
         'btnMOTOR2
         '
+        Me.btnMOTOR2.BackColor = System.Drawing.Color.LightGray
         Me.btnMOTOR2.Location = New System.Drawing.Point(20, 379)
         Me.btnMOTOR2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMOTOR2.Name = "btnMOTOR2"
         Me.btnMOTOR2.Size = New System.Drawing.Size(112, 35)
         Me.btnMOTOR2.TabIndex = 5
         Me.btnMOTOR2.Text = "MOTOR 2"
-        Me.btnMOTOR2.UseVisualStyleBackColor = True
+        Me.btnMOTOR2.UseVisualStyleBackColor = False
         '
         'btnMOTOR1
         '
+        Me.btnMOTOR1.BackColor = System.Drawing.Color.LightGray
         Me.btnMOTOR1.Location = New System.Drawing.Point(20, 337)
         Me.btnMOTOR1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnMOTOR1.Name = "btnMOTOR1"
         Me.btnMOTOR1.Size = New System.Drawing.Size(112, 35)
         Me.btnMOTOR1.TabIndex = 4
         Me.btnMOTOR1.Text = "MOTOR 1"
-        Me.btnMOTOR1.UseVisualStyleBackColor = True
+        Me.btnMOTOR1.UseVisualStyleBackColor = False
         '
         'GroupBox6
         '
