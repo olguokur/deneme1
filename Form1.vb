@@ -1,5 +1,6 @@
 ﻿
 Imports System.IO
+Imports System.Threading
 
 Module Module1
 
@@ -39,6 +40,12 @@ Module Module1
 End Module
 
 Public Class Form1
+
+    Dim thReadAll As New Thread(New ThreadStart(AddressOf Me.ReadAll))
+    Dim thReadDev As New Thread(New ThreadStart(AddressOf Me.ReadDev))
+    Dim thL1Op As New Thread(New ThreadStart(AddressOf Me.Light1Operation))
+    'Dim thread3 As New Thread(New ThreadStart(ProgressBar3Doldur))
+
 
     Private Sub btnMOTOR2onOFF_Click(sender As Object, e As EventArgs) Handles btnMOTOR2onOFF.Click
         If btnMOTOR2onOFF.Text = "ON" Then
@@ -579,6 +586,9 @@ Public Class Form1
 
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
+
+        CheckForIllegalCrossThreadCalls = False
+
         'ilk açılışta ILURA programı ile açılıyor
         'cmbPrograms.ForeColor = System.Drawing.Color.Red
         Dim obj As Object = "CUSTOM DESIGN"
@@ -1715,12 +1725,12 @@ Public Class Form1
                         End If
                     Next
                     If (input.status = "F") Then
-                            btnMOTOR1.BackColor = Color.LightGray
-                            MessageBox.Show("Transmit Error please SEND again.")
-                        Else
-                            btnMOTOR1.BackColor = Color.LightGreen
-                        End If
+                        btnMOTOR1.BackColor = Color.LightGray
+                        MessageBox.Show("Transmit Error please SEND again.")
+                    Else
+                        btnMOTOR1.BackColor = Color.LightGreen
                     End If
+                End If
             Catch ex As Exception
                 btnMOTOR1.BackColor = Color.LightGray
                 Console.WriteLine(ex.ToString)
@@ -1783,7 +1793,7 @@ Public Class Form1
             Exit Sub
         End If
 
-        btnRead_Click(sender, e)
+        'btnRead_Click(sender, e)
         'Timer1.Start()
 
     End Sub
@@ -2179,8 +2189,13 @@ Public Class Form1
         GroupBox7.Visible = True
         GroupBox1.Visible = False
         GroupBox2.Visible = False
-        Timer1.Stop()
+        'Timer1.Stop()
+
+        cmbPorts.SelectedText = ""
         cmbPorts.Items.Clear()
+        'cmbPorts.SelectedIndex = -1
+        'cmbPorts.SelectedItem = Nothing
+
 
         Dim ports As String() = IO.Ports.SerialPort.GetPortNames()
         Dim port As String
@@ -2211,14 +2226,36 @@ Public Class Form1
             SerialPort1.StopBits = 1 'number of stop bits used
             'SerialPort1.Encoding = System.Text.Encoding.GetEncoding(28591)
             SerialPort1.Encoding = System.Text.Encoding.Default
-            SerialPort1.WriteTimeout = 1000
+            SerialPort1.WriteTimeout = 100
             SerialPort1.ReadTimeout = 1000
 
             If SerialPort1.IsOpen = False Then
-
                 Try
                     SerialPort1.Open()
-                    Timer1.Start()
+
+                    If (thReadAll.IsAlive = False) Then
+
+                        thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
+
+                        thReadAll.Start()
+                        thReadAll.Join()
+                        ' thReadAll.IsBackground = True
+                        'thReadAll.Priority = ThreadPriority.AboveNormal
+                    Else
+                        If (thReadAll.IsBackground = False) Then
+                            thReadAll.Resume()
+                        End If
+                    End If
+
+                    If (thReadDev.IsAlive = False) Then
+                        thReadDev = New Thread(New ThreadStart(AddressOf Me.ReadDev))
+                        thReadDev.IsBackground = True
+                        thReadDev.Start()
+                        'thReadDev.Priority = ThreadPriority.Highest
+                    Else
+                        thReadDev.Resume()
+                    End If
+
                 Catch ex As Exception
                     MsgBox("Serial Port that you want to connect is using by another program")
                 End Try
@@ -2269,7 +2306,7 @@ Public Class Form1
         Try
             If (SerialPort1.IsOpen) Then
 
-                SerialPort1.ReadTimeout = 10000
+                'SerialPort1.ReadTimeout = 10
 
                 Dim first As Byte
                 Dim second As Byte
@@ -2290,19 +2327,9 @@ Public Class Form1
                 Console.WriteLine("------------------>SerialPort1.Wite DEV YAZMA: ADRESS(" + address + ")" + "->" + first.ToString + " " + second.ToString + " " + third.ToString)
 
                 SerialPort1.Write(writeBytes, 0, writeBytes.Length)
-                Timer1.Stop()
-                If (timeType = True) Then
-                    For i = 1 To 2 '0,03sn
-                        Threading.Thread.Sleep(30)
-                        Application.DoEvents()
-                    Next
-                Else
-                    For i = 1 To 2 '0,3sn
-                        Threading.Thread.Sleep(300)
-                        Application.DoEvents()
-                    Next
-                End If
-                Timer1.Start()
+
+                SerialPort1_DataReceived(Convert.ToInt32(third))
+                'Thread.Sleep(30)
 
                 Try
                     Dim buff(SerialPort1.BytesToRead) As Byte
@@ -2343,14 +2370,15 @@ Public Class Form1
                     Console.WriteLine("------------------>READ DATA  (ADDRESS) ->(" + address + ")" + txtBuff)
 
                     Console.WriteLine("------------------>READ RAW DATA ->" + defM1C)
+                    If (txtBuff = "11111111111111111111111111111111") Then
+                        MessageBox.Show("Please check the device connection.")
+                        Thread.CurrentThread.Abort()
+                    End If
                 Catch ex As Exception
                     Console.WriteLine("------------------>READ ERROR ->" + ex.Message)
-
                 End Try
-
             Else
-                MessageBox.Show("no port connection")
-                Timer1.Stop()
+                MessageBox.Show("Please check the port connection.")
 
             End If
         Catch ex As Exception
@@ -2452,28 +2480,42 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnRead_Click(sender As Object, e As EventArgs) Handles btnRead.Click, btnRefresh.Click
+    Private Sub ReadAll()
+        Console.WriteLine("ReadAll BEGIN")
 
-        Dim Stopwatch As New Stopwatch
-
-        Stopwatch.Start()
-        ''// Test Code
-
-        'Dim txtBuffDev As String = ReadPortByAddress("0A",False) ' Device version register
         Dim txtBuffM1C As String = ReadPortByAddress("19", True) '
+        If (CheckPortConnection() = False) Then
+            'thReadAll.IsBackground = False
+            thReadAll.Abort()
+        End If
         Dim txtBuffM1TCon As String = ReadPortByAddress("1E", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtBuffM2C As String = ReadPortByAddress("23", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtbuffm2ton As String = ReadPortByAddress("28", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtbuffl1c As String = ReadPortByAddress("2d", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtBuffL1Tcon As String = ReadPortByAddress("32", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtBuffL2C As String = ReadPortByAddress("37", True)
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
         Dim txtBuffL2Tcon As String = ReadPortByAddress("3C", True)
-
-        ' ClearDeviceProperty()
-        ' ClearTimeProperty()
-
-        'ViewDeviceVersionRegister(txtBuffDev)
-
+        If (CheckPortConnection() = False) Then
+            thReadAll.Abort()
+        End If
 
         If txtBuffM1C.Length > 0 Then
             lblM1C.Text = ConvertBinToStr(txtBuffM1C, 0, 0)
@@ -2506,6 +2548,20 @@ Public Class Form1
         If txtBuffL2Tcon.Length > 0 Then
             lblL2TCon.Text = ConvertBinToStr(txtBuffL2Tcon, 0, 0)
         End If
+        Thread.Sleep(100)
+
+        Console.WriteLine("ReadAll END")
+
+    End Sub
+
+    Private Sub btnRead_Click(sender As Object, e As EventArgs) Handles btnRead.Click, btnRefresh.Click
+
+        Dim Stopwatch As New Stopwatch
+
+        Stopwatch.Start()
+        ''// Test Code
+        ReadAll()
+        'Dim txtBuffDev As String = ReadPortByAddress("0A",False) ' Device version register
 
         Stopwatch.Stop()
         Console.WriteLine("ELAPSED TIME :" + Stopwatch.Elapsed.ToString)
@@ -2555,14 +2611,16 @@ Public Class Form1
             SerialPort1.Write(writeBytes, 0, writeBytes.Length)
 
 
-            Timer1.Enabled = False
+            'Timer1.Enabled = False
 
-            For i = 1 To 3 '3sn
-                Threading.Thread.Sleep(100)
-                Application.DoEvents()
-            Next
+            'For i = 1 To 3 '3sn
+            '    Threading.Thread.Sleep(100)
+            '    Application.DoEvents()
+            'Next
 
-            Timer1.Enabled = True
+
+
+            ' Timer1.Enabled = True
 
             Try
                 Dim buff2(SerialPort1.BytesToRead) As Byte
@@ -2636,18 +2694,13 @@ Public Class Form1
     End Sub
 
     Private Shared buffer As String = ""
-    Private Sub SerialPort1_DataReceived(rcv As String)
-
+    Private Sub SerialPort1_DataReceived(length As Integer)
         Try
-            'Dim rcv As String = _SerialPort1.ReadExisting()
-            buffer = String.Concat(buffer, rcv)
+            If SerialPort1.IsOpen Then
+                While SerialPort1.BytesToRead < length
 
-
-            Dim hexVal As Integer
-            hexVal = Convert.ToInt32(rcv, 16) '16 specifies the base
-
-            lblResult.Text = hexVal
-
+                End While
+            End If
         Catch ex As Exception
         End Try
 
@@ -2689,6 +2742,7 @@ Public Class Form1
         If SerialPort1.IsOpen = False Then
             MessageBox.Show("Please check the port connection.")
             lblStatus.Text = "No Connection"
+            SerialPort1.Close()
             Return False
         End If
         Return True
@@ -2832,15 +2886,25 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Console.WriteLine("TIMER BEGIN")
+    Private Sub ReadDev()
+
         If (CheckPortConnection() = False) Then
             Exit Sub
         End If
-        'ClearDeviceProperty()
-        Dim txtBuffDev As String = ReadPortByAddress("0A", False) ' Device version register
-        ViewDeviceVersionRegister(txtBuffDev)
-        Console.WriteLine("TIMER END")
+        While SerialPort1.IsOpen
+            Console.WriteLine("ReadDev BEGIN")
+            Dim txtBuffDev As String = ReadPortByAddress("0A", False) ' Device version register
+            ViewDeviceVersionRegister(txtBuffDev)
+            System.Threading.Thread.Sleep(400)
+            Console.WriteLine("ReadDev END")
+        End While
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
+
+        'thReadDev.IsBackground = True
+        'thReadDev.Start()
     End Sub
 
     Private Sub lblM1C_Click(sender As Object, e As EventArgs) Handles lblM1C.Click
@@ -2860,7 +2924,18 @@ Public Class Form1
         If (CheckPortConnection() = False) Then
             Exit Sub
         End If
+        If (thL1Op.IsAlive = False) Then
+            thL1Op = New Thread(New ThreadStart(AddressOf Me.Light1Operation))
+            thL1Op.IsBackground = True
+            thL1Op.Start()
+            'thReadDev.Priority = ThreadPriority.Highest
+        Else
+            thL1Op.Resume()
+        End If
 
+    End Sub
+
+    Private Sub Light1Operation()
         Dim tryNumber As Integer
 
         Dim record As List(Of Input) = New List(Of Input)
