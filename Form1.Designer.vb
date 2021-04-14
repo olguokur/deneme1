@@ -711,30 +711,33 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(9, 172)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(70, 20)
+        Me.Label5.Size = New System.Drawing.Size(116, 30)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "LIGHT 2"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(9, 135)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 20)
+        Me.Label4.Size = New System.Drawing.Size(116, 30)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "LIGHT 1"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(9, 100)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 20)
+        Me.Label3.Size = New System.Drawing.Size(131, 30)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "MOTOR 2"
         '
@@ -745,32 +748,32 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1199, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1199, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 32)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(65, 29)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'StatusStrip1
@@ -816,6 +819,7 @@ Partial Class Form1
         Me.btnRefresh.TabIndex = 10
         Me.btnRefresh.Text = "REFRESH"
         Me.btnRefresh.UseVisualStyleBackColor = True
+        Me.btnRefresh.Visible = False
         '
         'btnRead
         '
@@ -1404,9 +1408,9 @@ Partial Class Form1
         Me.Controls.Add(Me.btnM2CON)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
