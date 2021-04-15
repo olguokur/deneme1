@@ -605,6 +605,7 @@ Public Class Form1
         toolTip1.SetToolTip(Me.Label4, "Set Light 1 parameters")
         toolTip1.SetToolTip(Me.Label5, "Set Light 2 parameters")
         toolTip1.SetToolTip(Me.GroupBox9, "Select the 'Pedal 2' connector function (Pedal or Flap Switch)")
+        toolTip1.SetToolTip(Me.GroupBox6, "Check if related inputs are working")
         toolTip1.SetToolTip(Me.Label8, "Set the action of alarm")
         toolTip1.SetToolTip(Me.Label6, "Select the photocell quantity on the board")
         toolTip1.SetToolTip(Me.Label7, "Set the time delay for the front belt restart")
