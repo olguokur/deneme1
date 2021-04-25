@@ -42,10 +42,8 @@ Partial Class Form1
         Me.Label28 = New System.Windows.Forms.Label()
         Me.cmbPrograms = New System.Windows.Forms.ComboBox()
         Me.btnSend = New System.Windows.Forms.Button()
-        Me.RadioButton_F_SWITCH = New System.Windows.Forms.RadioButton()
         Me.btnLIGHT2onOFF = New System.Windows.Forms.Button()
         Me.btnLIGHT1onOFF = New System.Windows.Forms.Button()
-        Me.RadioButton_R_PEDAL = New System.Windows.Forms.RadioButton()
         Me.btnSAVE = New System.Windows.Forms.Button()
         Me.btnMOTOR2onOFF = New System.Windows.Forms.Button()
         Me.lblDelay = New System.Windows.Forms.Label()
@@ -76,6 +74,9 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_F_SWITCH = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_R_PEDAL = New System.Windows.Forms.RadioButton()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ConnectionSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProgramsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -128,10 +129,11 @@ Partial Class Form1
         Me.lblResult = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.lblActionStatus = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.gbMotor2.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.gbTest.SuspendLayout()
@@ -140,7 +142,6 @@ Partial Class Form1
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -378,17 +379,6 @@ Partial Class Form1
         Me.btnSend.Text = "SEND"
         Me.btnSend.UseVisualStyleBackColor = True
         '
-        'RadioButton_F_SWITCH
-        '
-        Me.RadioButton_F_SWITCH.AutoSize = True
-        Me.RadioButton_F_SWITCH.Location = New System.Drawing.Point(8, 27)
-        Me.RadioButton_F_SWITCH.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RadioButton_F_SWITCH.Name = "RadioButton_F_SWITCH"
-        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(111, 24)
-        Me.RadioButton_F_SWITCH.TabIndex = 35
-        Me.RadioButton_F_SWITCH.Text = "F.SWITCH"
-        Me.RadioButton_F_SWITCH.UseVisualStyleBackColor = True
-        '
         'btnLIGHT2onOFF
         '
         Me.btnLIGHT2onOFF.BackColor = System.Drawing.Color.LightGreen
@@ -410,19 +400,6 @@ Partial Class Form1
         Me.btnLIGHT1onOFF.TabIndex = 32
         Me.btnLIGHT1onOFF.Text = "ON"
         Me.btnLIGHT1onOFF.UseVisualStyleBackColor = False
-        '
-        'RadioButton_R_PEDAL
-        '
-        Me.RadioButton_R_PEDAL.AutoSize = True
-        Me.RadioButton_R_PEDAL.Checked = True
-        Me.RadioButton_R_PEDAL.Location = New System.Drawing.Point(8, 55)
-        Me.RadioButton_R_PEDAL.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RadioButton_R_PEDAL.Name = "RadioButton_R_PEDAL"
-        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(103, 24)
-        Me.RadioButton_R_PEDAL.TabIndex = 34
-        Me.RadioButton_R_PEDAL.TabStop = True
-        Me.RadioButton_R_PEDAL.Text = "R.PEDAL"
-        Me.RadioButton_R_PEDAL.UseVisualStyleBackColor = True
         '
         'btnSAVE
         '
@@ -742,6 +719,41 @@ Partial Class Form1
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "MOTOR 2"
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.RadioButton_F_SWITCH)
+        Me.GroupBox9.Controls.Add(Me.RadioButton_R_PEDAL)
+        Me.GroupBox9.Location = New System.Drawing.Point(257, 257)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(138, 89)
+        Me.GroupBox9.TabIndex = 56
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "P2 INPUT"
+        '
+        'RadioButton_F_SWITCH
+        '
+        Me.RadioButton_F_SWITCH.AutoSize = True
+        Me.RadioButton_F_SWITCH.Location = New System.Drawing.Point(8, 27)
+        Me.RadioButton_F_SWITCH.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_F_SWITCH.Name = "RadioButton_F_SWITCH"
+        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(111, 24)
+        Me.RadioButton_F_SWITCH.TabIndex = 35
+        Me.RadioButton_F_SWITCH.Text = "F.SWITCH"
+        Me.RadioButton_F_SWITCH.UseVisualStyleBackColor = True
+        '
+        'RadioButton_R_PEDAL
+        '
+        Me.RadioButton_R_PEDAL.AutoSize = True
+        Me.RadioButton_R_PEDAL.Checked = True
+        Me.RadioButton_R_PEDAL.Location = New System.Drawing.Point(8, 55)
+        Me.RadioButton_R_PEDAL.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_R_PEDAL.Name = "RadioButton_R_PEDAL"
+        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(103, 24)
+        Me.RadioButton_R_PEDAL.TabIndex = 34
+        Me.RadioButton_R_PEDAL.TabStop = True
+        Me.RadioButton_R_PEDAL.Text = "R.PEDAL"
+        Me.RadioButton_R_PEDAL.UseVisualStyleBackColor = True
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
@@ -756,19 +768,19 @@ Partial Class Form1
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 30)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 30)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 30)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'StatusStrip1
@@ -1315,31 +1327,29 @@ Partial Class Form1
         Me.Label30.TabIndex = 50
         Me.Label30.Text = "Device Information:"
         '
-        'GroupBox9
+        'lblActionStatus
         '
-        Me.GroupBox9.Controls.Add(Me.RadioButton_F_SWITCH)
-        Me.GroupBox9.Controls.Add(Me.RadioButton_R_PEDAL)
-        Me.GroupBox9.Location = New System.Drawing.Point(257, 257)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(138, 89)
-        Me.GroupBox9.TabIndex = 56
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "P2 INPUT"
+        Me.lblActionStatus.AutoSize = True
+        Me.lblActionStatus.Location = New System.Drawing.Point(480, 565)
+        Me.lblActionStatus.Name = "lblActionStatus"
+        Me.lblActionStatus.Size = New System.Drawing.Size(0, 20)
+        Me.lblActionStatus.TabIndex = 51
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(725, 659)
+        Me.Controls.Add(Me.lblActionStatus)
         Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.lblVs)
         Me.Controls.Add(Me.lblResult)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox7)
+        Me.Controls.Add(Me.GroupBox2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -1353,6 +1363,8 @@ Partial Class Form1
         Me.GroupBox8.PerformLayout()
         Me.gbMotor2.ResumeLayout(False)
         Me.gbMotor2.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -1366,8 +1378,6 @@ Partial Class Form1
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1478,4 +1488,5 @@ Partial Class Form1
     Friend WithEvents gbTest As GroupBox
     Friend WithEvents Label30 As Label
     Friend WithEvents GroupBox9 As GroupBox
+    Friend WithEvents lblActionStatus As Label
 End Class

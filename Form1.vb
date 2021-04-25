@@ -1,5 +1,6 @@
 ﻿
 Imports System.IO
+Imports System.Management
 Imports System.Threading
 
 Module Module1
@@ -66,6 +67,11 @@ Public Class Form1
             btnMOTOR2onOFF.Text = "ON"
             btnMOTOR2onOFF.BackColor = Color.LightGreen
             M2CON(0) = 1
+
+            If cmbPrograms.SelectedItem <> "NEW" And cmbPrograms.SelectedItem <> "" Then
+                MessageBox.Show("yuppi")
+            End If
+
         End If
     End Sub
 
@@ -617,11 +623,11 @@ Public Class Form1
         toolTip1.SetToolTip(Me.Label26, "Set the off cycle time of rear belt in 'Auto' mode")
         toolTip1.SetToolTip(Me.Label25, "Set the on cycle time of rear belt in 'Auto' mode")
         toolTip1.SetToolTip(Me.Label28, "Set the on cycle time of rear belt in 'Auto' mode")
-        toolTip1.SetToolTip(Me.btnMOTOR1, "Test the front belt indipendently")
-        toolTip1.SetToolTip(Me.btnMOTOR2, "Test the rear belt indipendently")
-        toolTip1.SetToolTip(Me.btnLIGHT1, "Test the Light 1 indipendently")
-        toolTip1.SetToolTip(Me.btnLIGHT2, "Test the Light 2 indipendently")
-        toolTip1.SetToolTip(Me.btnAlarm, "Test the Alarm indipendently")
+        toolTip1.SetToolTip(Me.btnMOTOR1, "Test the front belt")
+        toolTip1.SetToolTip(Me.btnMOTOR2, "Test the rear belt")
+        toolTip1.SetToolTip(Me.btnLIGHT1, "Test the Light 1")
+        toolTip1.SetToolTip(Me.btnLIGHT2, "Test the Light 2")
+        toolTip1.SetToolTip(Me.btnAlarm, "Test the Alarm")
         toolTip1.SetToolTip(Me.Label11, "Set the 'Power On' parameter of corresponding key")
         toolTip1.SetToolTip(Me.Label12, "Set the first press parameter of corresponding key")
         toolTip1.SetToolTip(Me.Label13, "Set the second press parameter of corresponding key")
@@ -664,6 +670,7 @@ Public Class Form1
     End Sub
 
     Private Sub ClearForm()
+
 
         btnMOTOR2onOFF.Text = "OFF"
         btnMOTOR2onOFF.BackColor = Color.Salmon
@@ -1093,7 +1100,6 @@ Public Class Form1
 
         Dim testArray() As String = Split(testString)
 
-
         Dim M2CON() As Byte = ConvertBitStringToByteArray(testArray(1))
         If M2CON(0) = "0" Then
             btnMOTOR2onOFF.Text = "OFF"
@@ -1417,13 +1423,13 @@ Public Class Form1
 
     End Function
     Private Sub GetListOfSettings()
+
         Dim strFileSize As String = ""
         Dim di As New IO.DirectoryInfo(Application.StartupPath & "\SETTINGS")
-
+        'MessageBox.Show(Application.StartupPath)
         If (di.Exists = False) Then
             IO.Directory.CreateDirectory(Application.StartupPath & "\SETTINGS")
         End If
-
 
         Dim aryFi As IO.FileInfo() = di.GetFiles("*.txt")
         Dim fi As IO.FileInfo
@@ -1439,8 +1445,6 @@ Public Class Form1
 
     Private Sub AddMenuItem(item As String)
         cmbPrograms.Items.Add(item)
-
-
 
         'Dim SubMenu As New ToolStripMenuItem
         'SubMenu.Text = item
@@ -1656,11 +1660,6 @@ Public Class Form1
         Return st
     End Function
 
-    Private Function CheckFileNameIsExist(name As String)
-        'dsasdasd
-
-    End Function
-
     Private Sub btnSAVE_Click(sender As Object, e As EventArgs) Handles btnSAVE.Click
 
         If InputControl() = 0 Then
@@ -1681,7 +1680,7 @@ Public Class Form1
         Else
 
             Dim myValue As String = InputBox("Program Name:", "Program Name", "Please enter a valid program name here")
-            If (myValue = "" Or myValue = "Please enter a valid program name here") Then
+            If (myValue = "" Or myValue = "Please enter a valid program name here" Or cmbPrograms.Items.Contains(myValue)) Then
                 MessageBox.Show("Enter a valid program name")
                 Exit Sub
             End If
@@ -1697,7 +1696,7 @@ Public Class Form1
             'MENUYE EKLEME
             AddMenuItem(myValue)
 
-            cmbPrograms.SelectedText = ""
+            cmbPrograms.SelectedText = "NEW"
 
             MessageBox.Show("Text written to new file named: " + myValue)
 
@@ -2209,6 +2208,17 @@ Public Class Form1
 
         'MessageBox.Show("PORTLAR" + port)
 
+        'Dim ManObjSearch As ManagementObjectSearcher = New ManagementObjectSearcher("root\cimv2", "SELECT * FROM Win32_SerialPort")
+        'Dim ManObjReturn As ManagementObjectCollection
+        'ManObjReturn = ManObjSearch.Get()
+        'For Each ManObj In ManObjReturn
+        '    Dim ss As PropertyDataCollection
+        '    ss = ManObj.Properties
+        'Next
+
+
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -2230,6 +2240,7 @@ Public Class Form1
             SerialPort1.WriteTimeout = 1000
             SerialPort1.ReadTimeout = 1000
 
+
             TEST(7) = 0
             TEST(6) = 0
             TEST(5) = 0
@@ -2243,12 +2254,16 @@ Public Class Form1
                 Try
                     SerialPort1.Open()
 
+                    Thread.Sleep(2000)
+
                     If (thReadAll.IsAlive = False) Then
 
                         thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
 
                         thReadAll.Start()
+
                         thReadAll.Join()
+
                         ' thReadAll.IsBackground = True
                         'thReadAll.Priority = ThreadPriority.AboveNormal
                     Else
@@ -2316,8 +2331,6 @@ Public Class Form1
         Try
             If (SerialPort1.IsOpen) Then
 
-                'SerialPort1.ReadTimeout = 10
-
                 Dim first As Byte
                 Dim second As Byte
                 Dim third As Byte
@@ -2339,7 +2352,6 @@ Public Class Form1
                 SerialPort1.Write(writeBytes, 0, writeBytes.Length)
 
                 SerialPort1_DataReceived(Convert.ToInt32(third))
-                'Thread.Sleep(30)
 
                 Try
                     Dim buff(SerialPort1.BytesToRead) As Byte
@@ -2712,7 +2724,8 @@ Public Class Form1
                 Next
 
                 If (len = records.Count) Then
-                    MessageBox.Show("Successfully transmitted.")
+                    'MessageBox.Show("Successfully transmitted.")
+                    lblActionStatus.Text = "Program was sent successfully" + Environment.NewLine + Environment.NewLine + System.DateTime.Now
                 End If
             End If
         Catch ex As Exception
@@ -2721,17 +2734,27 @@ Public Class Form1
     End Function
 
     Private Shared buffer As String = ""
-    Private Sub SerialPort1_DataReceived(length As Integer)
+    Private Function SerialPort1_DataReceived(length As Integer) As Boolean
+        Dim return_key As Boolean = True
+
         Try
+            Dim count As Integer = 0
             If SerialPort1.IsOpen Then
                 While SerialPort1.BytesToRead < length
+                    '  Console.WriteLine("while" + SerialPort1.BytesToRead.ToString)
+                    count += 1
+                    If (count > 100) Then
+                        return_key = False
+                        'Exit While
 
+                    End If
                 End While
             End If
         Catch ex As Exception
+            Console.WriteLine(ex.ToString)
         End Try
-
-    End Sub
+        Return return_key
+    End Function
 
     Private Function ConvertStrToBin(num As Integer, len As Integer) As Char()
         Dim chrArr As Char()
@@ -2912,7 +2935,7 @@ Public Class Form1
                           TCON)
     End Sub
 
-    Private Sub GroupBox4_Enter(sender As Object, e As EventArgs) Handles GroupBox4.Enter
+    Private Sub GroupBox4_Enter(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -3075,11 +3098,4 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub GroupBox7_Enter(sender As Object, e As EventArgs) Handles GroupBox7.Enter
-
-    End Sub
-
-    Private Sub GroupBox2_Enter(sender As Object, e As EventArgs) Handles GroupBox2.Enter
-
-    End Sub
 End Class
