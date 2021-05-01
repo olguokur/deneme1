@@ -124,65 +124,65 @@ Public Class Form1
             If btnMOTOR2pwrON.Text = "AUTO" Then
                 btnMOTOR2pwrON.Text = "SYNC"
                 btnMOTOR2pwrON.BackColor = Color.Orange
-                M2CON(2) = 0
+                M2CON(4) = 0
                 M2CON(3) = 0
-                M2CON(4) = 1
+                M2CON(2) = 1
             ElseIf btnMOTOR2pwrON.Text = "SYNC" Then
                 btnMOTOR2pwrON.Text = "PEDAL"
                 btnMOTOR2pwrON.BackColor = Color.Orange
-                M2CON(2) = 0
-                M2CON(3) = 1
                 M2CON(4) = 0
+                M2CON(3) = 1
+                M2CON(2) = 0
             ElseIf btnMOTOR2pwrON.Text = "PEDAL" Then
                 btnMOTOR2pwrON.Text = "OFF"
                 btnMOTOR2pwrON.BackColor = Color.Salmon
-                M2CON(2) = 1
+                M2CON(4) = 1
                 M2CON(3) = 0
-                M2CON(4) = 0
+                M2CON(2) = 0
             ElseIf btnMOTOR2pwrON.Text = "RUN" Then
                 btnMOTOR2pwrON.Text = "OFF"
                 btnMOTOR2pwrON.BackColor = Color.Salmon
-                M2CON(2) = 1
+                M2CON(4) = 1
                 M2CON(3) = 0
-                M2CON(4) = 0
+                M2CON(2) = 0
             ElseIf btnMOTOR2pwrON.Text = "OFF" Then
                 btnMOTOR2pwrON.Text = ""
                 btnMOTOR2pwrON.BackColor = Color.LightGray
-                M2CON(2) = 1
-                M2CON(3) = 0
                 M2CON(4) = 1
+                M2CON(3) = 0
+                M2CON(2) = 1
 
                 '-----
 
                 btnMOTOR2_1Press.Text = ""
                 btnMOTOR2_1Press.BackColor = Color.LightGray
-                M2CON(5) = 1
-                M2CON(6) = 0
                 M2CON(7) = 1
+                M2CON(6) = 0
+                M2CON(5) = 1
 
                 '----
 
                 btnMOTOR2_2Press.Text = ""
                 btnMOTOR2_2Press.BackColor = Color.LightGray
-                M2CON(8) = 1
-                M2CON(9) = 0
                 M2CON(10) = 1
+                M2CON(9) = 0
+                M2CON(8) = 1
 
                 '-----
 
                 btnMOTOR2_3Press.Text = ""
                 btnMOTOR2_3Press.BackColor = Color.LightGray
 
-                M2CON(11) = 1
-                M2CON(12) = 0
                 M2CON(13) = 1
+                M2CON(12) = 0
+                M2CON(11) = 1
 
             ElseIf btnMOTOR2pwrON.Text = "" Then
                 btnMOTOR2pwrON.Text = "AUTO"
                 btnMOTOR2pwrON.BackColor = Color.Orange
-                M2CON(2) = 0
-                M2CON(3) = 0
                 M2CON(4) = 0
+                M2CON(3) = 0
+                M2CON(2) = 0
 
                 GetHistoric(1, 2)
             End If
@@ -194,15 +194,15 @@ Public Class Form1
             If btnMOTOR2_1Press.Text = "AUTO" Then
                 btnMOTOR2_1Press.Text = "SYNC"
                 btnMOTOR2_1Press.BackColor = Color.Orange
-                M2CON(5) = 0
+                M2CON(7) = 0
                 M2CON(6) = 0
-                M2CON(7) = 1
+                M2CON(5) = 1
             ElseIf btnMOTOR2_1Press.Text = "SYNC" Then
                 btnMOTOR2_1Press.Text = "PEDAL"
                 btnMOTOR2_1Press.BackColor = Color.Orange
-                M2CON(5) = 0
-                M2CON(6) = 1
                 M2CON(7) = 0
+                M2CON(6) = 1
+                M2CON(5) = 0
                 'ElseIf btnMOTOR2_1Press.Text = "PEDAL" Then
                 '   btnMOTOR2_1Press.Text = "RUN"
                 '  btnMOTOR2_1Press.BackColor = Color.LightGreen
@@ -212,44 +212,44 @@ Public Class Form1
             ElseIf btnMOTOR2_1Press.Text = "PEDAL" Then
                 btnMOTOR2_1Press.Text = "OFF"
                 btnMOTOR2_1Press.BackColor = Color.Salmon
-                M2CON(5) = 1
+                M2CON(7) = 1
                 M2CON(6) = 0
-                M2CON(7) = 0
+                M2CON(5) = 0
             ElseIf btnMOTOR2_1Press.Text = "RUN" Then
                 btnMOTOR2_1Press.Text = "OFF"
                 btnMOTOR2_1Press.BackColor = Color.Salmon
-                M2CON(5) = 1
+                M2CON(7) = 1
                 M2CON(6) = 0
-                M2CON(7) = 0
+                M2CON(5) = 0
             ElseIf btnMOTOR2_1Press.Text = "OFF" Then
                 btnMOTOR2_1Press.Text = ""
                 btnMOTOR2_1Press.BackColor = Color.LightGray
-                M2CON(5) = 1
-                M2CON(6) = 0
                 M2CON(7) = 1
+                M2CON(6) = 0
+                M2CON(5) = 1
 
                 '----
 
                 btnMOTOR2_2Press.Text = ""
                 btnMOTOR2_2Press.BackColor = Color.LightGray
-                M2CON(8) = 1
-                M2CON(9) = 0
                 M2CON(10) = 1
+                M2CON(9) = 0
+                M2CON(8) = 1
 
                 '-----
 
                 btnMOTOR2_3Press.Text = ""
                 btnMOTOR2_3Press.BackColor = Color.LightGray
 
-                M2CON(11) = 1
-                M2CON(12) = 0
                 M2CON(13) = 1
+                M2CON(12) = 0
+                M2CON(11) = 1
             ElseIf btnMOTOR2_1Press.Text = "" Then
                 btnMOTOR2_1Press.Text = "AUTO"
                 btnMOTOR2_1Press.BackColor = Color.Orange
-                M2CON(5) = 0
-                M2CON(6) = 0
                 M2CON(7) = 0
+                M2CON(6) = 0
+                M2CON(5) = 0
                 GetHistoric(1, 3)
             End If
         End If
@@ -260,49 +260,49 @@ Public Class Form1
             If btnMOTOR2_2Press.Text = "AUTO" Then
                 btnMOTOR2_2Press.Text = "SYNC"
                 btnMOTOR2_2Press.BackColor = Color.Orange
-                M2CON(8) = 0
+                M2CON(10) = 0
                 M2CON(9) = 0
-                M2CON(10) = 1
+                M2CON(8) = 1
             ElseIf btnMOTOR2_2Press.Text = "SYNC" Then
                 btnMOTOR2_2Press.Text = "PEDAL"
                 btnMOTOR2_2Press.BackColor = Color.Orange
-                M2CON(8) = 0
-                M2CON(9) = 1
                 M2CON(10) = 0
+                M2CON(9) = 1
+                M2CON(8) = 0
             ElseIf btnMOTOR2_2Press.Text = "PEDAL" Then
                 btnMOTOR2_2Press.Text = "OFF"
                 btnMOTOR2_2Press.BackColor = Color.Salmon
-                M2CON(8) = 1
+                M2CON(10) = 1
                 M2CON(9) = 0
-                M2CON(10) = 0
+                M2CON(8) = 0
             ElseIf btnMOTOR2_2Press.Text = "RUN" Then
                 btnMOTOR2_2Press.Text = "OFF"
                 btnMOTOR2_2Press.BackColor = Color.Salmon
-                M2CON(8) = 1
+                M2CON(10) = 1
                 M2CON(9) = 0
-                M2CON(10) = 0
+                M2CON(8) = 0
             ElseIf btnMOTOR2_2Press.Text = "OFF" Then
                 btnMOTOR2_2Press.Text = ""
                 btnMOTOR2_2Press.BackColor = Color.LightGray
-                M2CON(8) = 1
-                M2CON(9) = 0
                 M2CON(10) = 1
+                M2CON(9) = 0
+                M2CON(8) = 1
 
                 '-----
 
                 btnMOTOR2_3Press.Text = ""
                 btnMOTOR2_3Press.BackColor = Color.LightGray
 
-                M2CON(11) = 1
-                M2CON(12) = 0
                 M2CON(13) = 1
+                M2CON(12) = 0
+                M2CON(11) = 1
 
             ElseIf btnMOTOR2_2Press.Text = "" Then
                 btnMOTOR2_2Press.Text = "AUTO"
                 btnMOTOR2_2Press.BackColor = Color.Orange
-                M2CON(8) = 0
-                M2CON(9) = 0
                 M2CON(10) = 0
+                M2CON(9) = 0
+                M2CON(8) = 0
                 GetHistoric(1, 4)
             End If
         End If
@@ -313,39 +313,39 @@ Public Class Form1
             If btnMOTOR2_3Press.Text = "AUTO" Then
                 btnMOTOR2_3Press.Text = "SYNC"
                 btnMOTOR2_3Press.BackColor = Color.Orange
-                M2CON(11) = 0
+                M2CON(13) = 0
                 M2CON(12) = 0
-                M2CON(13) = 1
+                M2CON(11) = 1
             ElseIf btnMOTOR2_3Press.Text = "SYNC" Then
                 btnMOTOR2_3Press.Text = "PEDAL"
                 btnMOTOR2_3Press.BackColor = Color.Orange
-                M2CON(11) = 0
-                M2CON(12) = 1
                 M2CON(13) = 0
+                M2CON(12) = 1
+                M2CON(11) = 0
             ElseIf btnMOTOR2_3Press.Text = "PEDAL" Then
                 btnMOTOR2_3Press.Text = "OFF"
                 btnMOTOR2_3Press.BackColor = Color.Salmon
-                M2CON(11) = 1
+                M2CON(13) = 1
                 M2CON(12) = 0
-                M2CON(13) = 0
+                M2CON(11) = 0
             ElseIf btnMOTOR2_3Press.Text = "RUN" Then
                 btnMOTOR2_3Press.Text = "OFF"
                 btnMOTOR2_3Press.BackColor = Color.Salmon
-                M2CON(11) = 1
+                M2CON(13) = 1
                 M2CON(12) = 0
-                M2CON(13) = 0
+                M2CON(11) = 0
             ElseIf btnMOTOR2_3Press.Text = "OFF" Then
                 btnMOTOR2_3Press.Text = ""
                 btnMOTOR2_3Press.BackColor = Color.LightGray
-                M2CON(11) = 1
-                M2CON(12) = 0
                 M2CON(13) = 1
+                M2CON(12) = 0
+                M2CON(11) = 1
             ElseIf btnMOTOR2_3Press.Text = "" Then
                 btnMOTOR2_3Press.Text = "AUTO"
                 btnMOTOR2_3Press.BackColor = Color.Orange
-                M2CON(11) = 0
-                M2CON(12) = 0
                 M2CON(13) = 0
+                M2CON(12) = 0
+                M2CON(11) = 0
             End If
         End If
     End Sub
@@ -355,52 +355,52 @@ Public Class Form1
             If btnLIGHT1powerON.Text = "" Then
                 btnLIGHT1powerON.Text = "OFF"
                 btnLIGHT1powerON.BackColor = Color.Salmon
-                L1CON(2) = 0
-                L1CON(3) = 0
                 L1CON(4) = 0
+                L1CON(3) = 0
+                L1CON(2) = 0
                 GetHistoric(2, 2)
             ElseIf btnLIGHT1powerON.Text = "OFF" Then
                 btnLIGHT1powerON.Text = "ON"
                 btnLIGHT1powerON.BackColor = Color.LightGreen
-                L1CON(2) = 0
+                L1CON(4) = 0
                 L1CON(3) = 0
-                L1CON(4) = 1
+                L1CON(2) = 1
             ElseIf btnLIGHT1powerON.Text = "ON" Then
                 btnLIGHT1powerON.Text = "FLASH"
                 btnLIGHT1powerON.BackColor = Color.Orange
-                L1CON(2) = 0
-                L1CON(3) = 1
                 L1CON(4) = 0
+                L1CON(3) = 1
+                L1CON(2) = 0
             ElseIf btnLIGHT1powerON.Text = "FLASH" Then
                 btnLIGHT1powerON.Text = ""
                 btnLIGHT1powerON.BackColor = Color.LightGray
-                L1CON(2) = 1
-                L1CON(3) = 0
                 L1CON(4) = 1
+                L1CON(3) = 0
+                L1CON(2) = 1
 
                 '------
 
                 btnLIGHT1_1Press.Text = ""
                 btnLIGHT1_1Press.BackColor = Color.LightGray
-                L1CON(5) = 0
+                L1CON(7) = 0
                 L1CON(6) = 1
-                L1CON(7) = 1
+                L1CON(5) = 1
 
                 '----
 
                 btnLIGHT1_2Press.Text = ""
                 btnLIGHT1_2Press.BackColor = Color.LightGray
-                L1CON(8) = 0
+                L1CON(10) = 0
                 L1CON(9) = 1
-                L1CON(10) = 1
+                L1CON(8) = 1
 
                 '--
 
                 btnLIGHT1_3Press.Text = ""
                 btnLIGHT1_3Press.BackColor = Color.LightGray
-                L1CON(11) = 0
+                L1CON(13) = 0
                 L1CON(12) = 1
-                L1CON(13) = 1
+                L1CON(11) = 1
             End If
         End If
     End Sub
@@ -410,44 +410,44 @@ Public Class Form1
             If btnLIGHT1_1Press.Text = "" Then
                 btnLIGHT1_1Press.Text = "OFF"
                 btnLIGHT1_1Press.BackColor = Color.Salmon
-                L1CON(5) = 0
-                L1CON(6) = 0
                 L1CON(7) = 0
+                L1CON(6) = 0
+                L1CON(5) = 0
                 GetHistoric(2, 3)
             ElseIf btnLIGHT1_1Press.Text = "OFF" Then
                 btnLIGHT1_1Press.Text = "ON"
                 btnLIGHT1_1Press.BackColor = Color.LightGreen
-                L1CON(5) = 0
+                L1CON(7) = 0
                 L1CON(6) = 0
-                L1CON(7) = 1
+                L1CON(5) = 1
             ElseIf btnLIGHT1_1Press.Text = "ON" Then
                 btnLIGHT1_1Press.Text = "FLASH"
                 btnLIGHT1_1Press.BackColor = Color.Orange
-                L1CON(5) = 0
-                L1CON(6) = 1
                 L1CON(7) = 0
+                L1CON(6) = 1
+                L1CON(5) = 0
             ElseIf btnLIGHT1_1Press.Text = "FLASH" Then 'NA
                 btnLIGHT1_1Press.Text = ""
                 btnLIGHT1_1Press.BackColor = Color.LightGray
-                L1CON(5) = 0
+                L1CON(7) = 0
                 L1CON(6) = 1
-                L1CON(7) = 1
+                L1CON(5) = 1
 
                 '----
 
                 btnLIGHT1_2Press.Text = ""
                 btnLIGHT1_2Press.BackColor = Color.LightGray
-                L1CON(8) = 0
+                L1CON(10) = 0
                 L1CON(9) = 1
-                L1CON(10) = 1
+                L1CON(8) = 1
 
                 '--
 
                 btnLIGHT1_3Press.Text = ""
                 btnLIGHT1_3Press.BackColor = Color.LightGray
-                L1CON(11) = 0
+                L1CON(13) = 0
                 L1CON(12) = 1
-                L1CON(13) = 1
+                L1CON(11) = 1
             End If
         End If
     End Sub
@@ -458,51 +458,51 @@ Public Class Form1
             If btnLIGHT2powerON.Text = "OFF" Then
                 btnLIGHT2powerON.Text = "ON"
                 btnLIGHT2powerON.BackColor = Color.LightGreen
-                L2CON(2) = 0
+                L2CON(4) = 0
                 L2CON(3) = 0
-                L2CON(4) = 1
+                L2CON(2) = 1
 
             ElseIf btnLIGHT2powerON.Text = "ON" Then
                 btnLIGHT2powerON.Text = "FLASH"
                 btnLIGHT2powerON.BackColor = Color.Orange
-                L2CON(2) = 0
-                L2CON(3) = 1
                 L2CON(4) = 0
+                L2CON(3) = 1
+                L2CON(2) = 0
 
             ElseIf btnLIGHT2powerON.Text = "FLASH" Then
                 btnLIGHT2powerON.Text = ""
                 btnLIGHT2powerON.BackColor = Color.LightGray
-                L2CON(2) = 0
+                L2CON(4) = 0
                 L2CON(3) = 1
-                L2CON(4) = 1
+                L2CON(2) = 1
 
                 '----
                 btnLIGHT2_1Press.Text = ""
                 btnLIGHT2_1Press.BackColor = Color.LightGray
-                L2CON(5) = 0
+                L2CON(7) = 0
                 L2CON(6) = 1
-                L2CON(7) = 1
+                L2CON(5) = 1
 
                 '----
                 btnLIGHT2_2Press.Text = ""
                 btnLIGHT2_2Press.BackColor = Color.LightGray
-                L2CON(8) = 0
+                L2CON(10) = 0
                 L2CON(9) = 1
-                L2CON(10) = 1
+                L2CON(8) = 1
 
                 '-----
 
                 btnLIGHT2_3Press.Text = ""
                 btnLIGHT2_3Press.BackColor = Color.LightGray
-                L2CON(11) = 0
+                L2CON(13) = 0
                 L2CON(12) = 1
-                L2CON(13) = 1
+                L2CON(11) = 1
             ElseIf btnLIGHT2powerON.Text = "" Then
                 btnLIGHT2powerON.Text = "OFF"
                 btnLIGHT2powerON.BackColor = Color.Salmon
-                L2CON(2) = 0
-                L2CON(3) = 0
                 L2CON(4) = 0
+                L2CON(3) = 0
+                L2CON(2) = 0
                 GetHistoric(3, 2)
             End If
         End If
@@ -513,42 +513,42 @@ Public Class Form1
             If btnLIGHT2_1Press.Text = "OFF" Then
                 btnLIGHT2_1Press.Text = "ON"
                 btnLIGHT2_1Press.BackColor = Color.LightGreen
-                L2CON(5) = 0
+                L2CON(7) = 0
                 L2CON(6) = 0
-                L2CON(7) = 1
+                L2CON(5) = 1
             ElseIf btnLIGHT2_1Press.Text = "ON" Then
                 btnLIGHT2_1Press.Text = "FLASH"
                 btnLIGHT2_1Press.BackColor = Color.Orange
-                L2CON(5) = 0
-                L2CON(6) = 1
                 L2CON(7) = 0
+                L2CON(6) = 1
+                L2CON(5) = 0
             ElseIf btnLIGHT2_1Press.Text = "FLASH" Then
                 btnLIGHT2_1Press.Text = ""
                 btnLIGHT2_1Press.BackColor = Color.LightGray
-                L2CON(5) = 0
+                L2CON(7) = 0
                 L2CON(6) = 1
-                L2CON(7) = 1
+                L2CON(5) = 1
 
                 '----
                 btnLIGHT2_2Press.Text = ""
                 btnLIGHT2_2Press.BackColor = Color.LightGray
-                L2CON(8) = 0
+                L2CON(10) = 0
                 L2CON(9) = 1
-                L2CON(10) = 1
+                L2CON(8) = 1
 
                 '-----
 
                 btnLIGHT2_3Press.Text = ""
                 btnLIGHT2_3Press.BackColor = Color.LightGray
-                L2CON(11) = 0
+                L2CON(13) = 0
                 L2CON(12) = 1
-                L2CON(13) = 1
+                L2CON(11) = 1
             ElseIf btnLIGHT2_1Press.Text = "" Then
                 btnLIGHT2_1Press.Text = "OFF"
                 btnLIGHT2_1Press.BackColor = Color.Salmon
-                L2CON(5) = 0
-                L2CON(6) = 0
                 L2CON(7) = 0
+                L2CON(6) = 0
+                L2CON(5) = 0
                 GetHistoric(3, 3)
             End If
         End If
@@ -646,9 +646,7 @@ Public Class Form1
         Dim obj As Object = "NEW"
         cmbPrograms.Items.Add(obj)
 
-        'cmbPrograms.Items.Item(0).ForeColor = System.Drawing.Color.Salmon
-
-        Dim ItemText As String = cmbPrograms.Items(0)
+        cmbPrograms.SelectedItem = "NEW"
 
         GetListOfSettings()
 
@@ -661,6 +659,7 @@ Public Class Form1
             'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
         Next port
 
+        GetLastStateBeforeSave()
     End Sub
 
     Private Sub SetForm()
@@ -756,37 +755,37 @@ Public Class Form1
             If btnLIGHT1_2Press.Text = "OFF" Then
                 btnLIGHT1_2Press.Text = "ON"
                 btnLIGHT1_2Press.BackColor = Color.LightGreen
-                L1CON(8) = 0
+                L1CON(10) = 0
                 L1CON(9) = 0
-                L1CON(10) = 1
+                L1CON(8) = 1
             ElseIf btnLIGHT1_2Press.Text = "ON" Then
                 btnLIGHT1_2Press.Text = "FLASH"
                 btnLIGHT1_2Press.BackColor = Color.Orange
-                L1CON(8) = 0
-                L1CON(9) = 1
                 L1CON(10) = 0
+                L1CON(9) = 1
+                L1CON(8) = 0
             ElseIf btnLIGHT1_2Press.Text = "FLASH" Then
                 btnLIGHT1_2Press.Text = ""
                 btnLIGHT1_2Press.BackColor = Color.LightGray
-                L1CON(8) = 0
+                L1CON(10) = 0
                 L1CON(9) = 1
-                L1CON(10) = 1
+                L1CON(8) = 1
 
                 '--
 
                 btnLIGHT1_3Press.Text = ""
                 btnLIGHT1_3Press.BackColor = Color.LightGray
-                L1CON(11) = 0
+                L1CON(13) = 0
                 L1CON(12) = 1
-                L1CON(13) = 1
+                L1CON(11) = 1
 
 
             ElseIf btnLIGHT1_2Press.Text = "" Then
                 btnLIGHT1_2Press.Text = "OFF"
                 btnLIGHT1_2Press.BackColor = Color.Salmon
-                L1CON(8) = 0
-                L1CON(9) = 0
                 L1CON(10) = 0
+                L1CON(9) = 0
+                L1CON(8) = 0
                 GetHistoric(2, 4)
             End If
         End If
@@ -797,27 +796,27 @@ Public Class Form1
             If btnLIGHT1_3Press.Text = "OFF" Then
                 btnLIGHT1_3Press.Text = "ON"
                 btnLIGHT1_3Press.BackColor = Color.LightGreen
-                L1CON(11) = 0
+                L1CON(13) = 0
                 L1CON(12) = 0
-                L1CON(13) = 1
+                L1CON(11) = 1
             ElseIf btnLIGHT1_3Press.Text = "ON" Then
                 btnLIGHT1_3Press.Text = "FLASH"
                 btnLIGHT1_3Press.BackColor = Color.Orange
-                L1CON(11) = 0
-                L1CON(12) = 1
                 L1CON(13) = 0
+                L1CON(12) = 1
+                L1CON(11) = 0
             ElseIf btnLIGHT1_3Press.Text = "FLASH" Then
                 btnLIGHT1_3Press.Text = ""
                 btnLIGHT1_3Press.BackColor = Color.LightGray
-                L1CON(11) = 0
+                L1CON(13) = 0
                 L1CON(12) = 1
-                L1CON(13) = 1
+                L1CON(11) = 1
             ElseIf btnLIGHT1_3Press.Text = "" Then
                 btnLIGHT1_3Press.Text = "OFF"
                 btnLIGHT1_3Press.BackColor = Color.Salmon
-                L1CON(11) = 0
-                L1CON(12) = 0
                 L1CON(13) = 0
+                L1CON(12) = 0
+                L1CON(11) = 0
             End If
         End If
     End Sub
@@ -827,37 +826,37 @@ Public Class Form1
             If btnLIGHT2_2Press.Text = "OFF" Then
                 btnLIGHT2_2Press.Text = "ON"
                 btnLIGHT2_2Press.BackColor = Color.LightGreen
-                L2CON(8) = 0
+                L2CON(10) = 0
                 L2CON(9) = 0
-                L2CON(10) = 1
+                L2CON(8) = 1
             ElseIf btnLIGHT2_2Press.Text = "ON" Then
                 btnLIGHT2_2Press.Text = "FLASH"
                 btnLIGHT2_2Press.BackColor = Color.Orange
-                L2CON(8) = 0
-                L2CON(9) = 1
                 L2CON(10) = 0
+                L2CON(9) = 1
+                L2CON(8) = 0
             ElseIf btnLIGHT2_2Press.Text = "FLASH" Then
                 btnLIGHT2_2Press.Text = ""
                 btnLIGHT2_2Press.BackColor = Color.LightGray
-                L2CON(8) = 0
+                L2CON(10) = 0
                 L2CON(9) = 1
-                L2CON(10) = 1
+                L2CON(8) = 1
 
                 '-----
 
                 btnLIGHT2_3Press.Text = ""
                 btnLIGHT2_3Press.BackColor = Color.LightGray
-                L2CON(11) = 0
+                L2CON(13) = 0
                 L2CON(12) = 1
-                L2CON(13) = 1
+                L2CON(11) = 1
 
 
             ElseIf btnLIGHT2_2Press.Text = "" Then
                 btnLIGHT2_2Press.Text = "OFF"
                 btnLIGHT2_2Press.BackColor = Color.Salmon
-                L2CON(8) = 0
-                L2CON(9) = 0
                 L2CON(10) = 0
+                L2CON(9) = 0
+                L2CON(8) = 0
                 GetHistoric(3, 4)
             End If
         End If
@@ -868,27 +867,27 @@ Public Class Form1
             If btnLIGHT2_3Press.Text = "OFF" Then
                 btnLIGHT2_3Press.Text = "ON"
                 btnLIGHT2_3Press.BackColor = Color.LightGreen
-                L2CON(11) = 0
+                L2CON(13) = 0
                 L2CON(12) = 0
-                L2CON(13) = 1
+                L2CON(11) = 1
             ElseIf btnLIGHT2_3Press.Text = "ON" Then
                 btnLIGHT2_3Press.Text = "FLASH"
                 btnLIGHT2_3Press.BackColor = Color.Orange
-                L2CON(11) = 0
-                L2CON(12) = 1
                 L2CON(13) = 0
+                L2CON(12) = 1
+                L2CON(11) = 0
             ElseIf btnLIGHT2_3Press.Text = "FLASH" Then
                 btnLIGHT2_3Press.Text = ""
                 btnLIGHT2_3Press.BackColor = Color.LightGray
-                L2CON(11) = 0
+                L2CON(13) = 0
                 L2CON(12) = 1
-                L2CON(13) = 1
+                L2CON(11) = 1
             ElseIf btnLIGHT2_3Press.Text = "" Then
                 btnLIGHT2_3Press.Text = "OFF"
                 btnLIGHT2_3Press.BackColor = Color.Salmon
-                L2CON(11) = 0
-                L2CON(12) = 0
                 L2CON(13) = 0
+                L2CON(12) = 0
+                L2CON(11) = 0
             End If
         End If
     End Sub
@@ -1109,6 +1108,7 @@ Public Class Form1
         Dim testArray() As String = Split(testString)
 
         Dim M2CON() As Byte = ConvertBitStringToByteArray(testArray(1))
+
         If M2CON(0) = "0" Then
             btnMOTOR2onOFF.Text = "OFF"
             btnMOTOR2onOFF.BackColor = Color.Salmon
@@ -1684,18 +1684,17 @@ Public Class Form1
             Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
             objWriter.Write(cmbPrograms.SelectedItem + " " + st)
             objWriter.Close()
-            MessageBox.Show("Text written to file")
+            MessageBox.Show("File is succesfully saved.")
         Else
 
             Dim myValue As String = InputBox("Program Name:", "Program Name", "Please enter a valid program name here")
+            myValue = myValue.Trim.Replace(" ", "_").ToUpper
             If (myValue = "" Or myValue = "Please enter a valid program name here" Or cmbPrograms.Items.Contains(myValue)) Then
-                MessageBox.Show("Enter a valid program name")
+                MessageBox.Show("Please enter a valid program name.")
                 Exit Sub
             End If
 
-            myValue = myValue.ToUpper
             FILE_NAME = Application.StartupPath & "\SETTINGS\" + myValue + ".txt"
-            'MessageBox.Show("File Does Not Exist")
             System.IO.File.Create(FILE_NAME).Dispose()
             Dim objWriter As New System.IO.StreamWriter(FILE_NAME)
             objWriter.Write(myValue + " " + st)
@@ -1704,18 +1703,11 @@ Public Class Form1
             'MENUYE EKLEME
             AddMenuItem(myValue)
 
-            cmbPrograms.SelectedText = "NEW"
+            cmbPrograms.SelectedItem = myValue
 
-            MessageBox.Show("Text written to new file named: " + myValue)
+            MessageBox.Show("Settings are saved in a file named: " + myValue)
 
         End If
-
-        'Dim path As String = Application.StartupPath & "\M2CON.txt"
-        'IO.File.WriteAllLines(FileName, M2CON)
-        'Dim fs As New FileStream(Path, FileMode.Create)
-        'fs.Write(M2CON, 0, M2CON.Length)
-        'fs.Close()
-        'MessageBox.Show("M2CON saved")
 
     End Sub
 
@@ -1792,20 +1784,47 @@ Public Class Form1
         GroupBox2.Visible = True
         GroupBox1.Visible = False
         GroupBox7.Visible = False
+        ClearDeviceProperty()
+        ClearTimeProperty()
         If (CheckPortConnection() = False) Then
             ClearDeviceProperty()
             ClearTimeProperty()
             'ClearForm()
             Exit Sub
         End If
+
+        '--------------------
+
+        'If (thReadAll.IsAlive = False) Then
+
+        '    thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
+
+        '    thReadAll.Start()
+
+        '    thReadAll.Join()
+        '    'thReadAll.Priority = ThreadPriority.AboveNormal
+        '    'thReadAll.IsBackground = True
+        '    'Else
+        '    '    If (thReadAll.IsBackground = False) Then
+        '    '        'thReadAll.Resume()
+        '    '    End If
+        'End If
+
+        'Thread.Sleep(100)
+
+        '--------------------
+
         If (thReadDev.IsAlive = False) Then
+
             thReadDev = New Thread(New ThreadStart(AddressOf Me.ReadDev))
             thReadDev.IsBackground = True
             thReadDev.Start()
+            thReadDev.Join()
             'thReadDev.Priority = ThreadPriority.Highest
         Else
             ' thReadDev.Resume()
         End If
+
     End Sub
 
     Private Sub GetLastStateBeforeSave()
@@ -2264,30 +2283,23 @@ Public Class Form1
 
                     Thread.Sleep(2000)
 
-                    If (thReadAll.IsAlive = False) Then
+                    'If (thReadAll.IsAlive = False) Then
 
-                        thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
+                    '    thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
 
-                        thReadAll.Start()
+                    '    thReadAll.Start()
 
-                        thReadAll.Join()
+                    '    thReadAll.Join()
 
-                        ' thReadAll.IsBackground = True
-                        'thReadAll.Priority = ThreadPriority.AboveNormal
-                    Else
-                        If (thReadAll.IsBackground = False) Then
-                            'thReadAll.Resume()
-                        End If
-                    End If
+                    '    ' thReadAll.IsBackground = True
+                    '    'thReadAll.Priority = ThreadPriority.AboveNormal
+                    'Else
+                    '    If (thReadAll.IsBackground = False) Then
+                    '        'thReadAll.Resume()
+                    '    End If
+                    'End If
 
-                    If (thReadDev.IsAlive = False) Then
-                        thReadDev = New Thread(New ThreadStart(AddressOf Me.ReadDev))
-                        thReadDev.IsBackground = True
-                        thReadDev.Start()
-                        'thReadDev.Priority = ThreadPriority.Highest
-                    Else
-                        'thReadDev.Resume()
-                    End If
+
 
                 Catch ex As Exception
                     MsgBox("Serial Port that you want to connect is using by another program")
@@ -2302,6 +2314,7 @@ Public Class Form1
     Private Sub cmbPrograms_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbPrograms.SelectedValueChanged
         ClearForm()
         ParseText(cmbPrograms.Text)
+        GetLastStateBeforeSave()
     End Sub
 
 
@@ -2431,6 +2444,7 @@ Public Class Form1
         btnLIGHT1.BackColor = Color.LightGray
         btnLIGHT2.BackColor = Color.LightGray
         btnAlarm.BackColor = Color.LightGray
+        lblVs.Text = ""
     End Sub
 
 
@@ -2459,66 +2473,75 @@ Public Class Form1
                 txtBuffChrArr = txtBuffProperty.ToCharArray()
 
                 Dim vsNum As String = txtBuffProperty.Substring(12, 4)
+                vsNum = ConvertBinToStr(vsNum, 0, 0)
 
                 Dim rvsNum As String = txtBuffProperty.Substring(8, 4)
+                rvsNum = ConvertBinToStr(rvsNum, 0, 0)
+
+                If (vsNum = "0" Or rvsNum = "0") Then
+                    MessageBox.Show("Versiyon hatası oluştu.")
+                    Exit Sub
+                End If
 
                 Dim cell1Int As String = txtBuffProperty.Substring(24, 8)
 
-                Dim cell2Int As String = txtBuffProperty.Substring(16, 8)
+                    Dim cell2Int As String = txtBuffProperty.Substring(16, 8)
 
-                lblVs.Text = "V" + ((10 + ConvertBinToStr(vsNum, 0, 0)).ToString) + "-R" + ConvertBinToStr(rvsNum, 0, 0).ToString
+                    lblVs.Text = "V" + ((10 + vsNum).ToString) + "-R" + ((-1 + rvsNum).ToString)
 
-                If txtBuffChrArr(6) = "0" Then
-                    RadioButton_Cell1_RX.Checked = False
-                    RadioButton_Cell1_RX.ForeColor = Color.Black
-                ElseIf txtBuffChrArr(6) = "1" Then
-                    RadioButton_Cell1_RX.ForeColor = Color.Red
-                    RadioButton_Cell1_RX.Checked = True
-                End If
-                If txtBuffChrArr(5) = "0" Then
-                    RadioButton_Cell1_TX.Checked = False
-                    RadioButton_Cell1_TX.ForeColor = Color.Black
-                ElseIf txtBuffChrArr(5) = "1" Then
-                    RadioButton_Cell1_TX.Checked = True
-                    RadioButton_Cell1_TX.ForeColor = Color.Red
-                End If
+                    If txtBuffChrArr(6) = "0" Then
+                        RadioButton_Cell1_RX.Checked = False
+                        RadioButton_Cell1_RX.ForeColor = Color.Black
+                    ElseIf txtBuffChrArr(6) = "1" Then
+                        RadioButton_Cell1_RX.ForeColor = Color.Red
+                        RadioButton_Cell1_RX.Checked = True
+                    End If
+                    If txtBuffChrArr(5) = "0" Then
+                        RadioButton_Cell1_TX.Checked = False
+                        RadioButton_Cell1_TX.ForeColor = Color.Black
+                    ElseIf txtBuffChrArr(5) = "1" Then
+                        RadioButton_Cell1_TX.Checked = True
+                        RadioButton_Cell1_TX.ForeColor = Color.Red
+                    End If
 
-                If txtBuffChrArr(4) = "0" Then
-                    RadioButton_Cell2_RX.Checked = False
-                ElseIf txtBuffChrArr(4) = "1" Then
-                    RadioButton_Cell2_RX.Checked = True
-                End If
-                If txtBuffChrArr(3) = "0" Then
-                    RadioButton_Cell2_TX.Checked = False
-                ElseIf txtBuffChrArr(3) = "1" Then
-                    RadioButton_Cell2_TX.Checked = True
-                End If
+                    If txtBuffChrArr(4) = "0" Then
+                        RadioButton_Cell2_RX.Checked = False
+                    ElseIf txtBuffChrArr(4) = "1" Then
+                        RadioButton_Cell2_RX.Checked = True
+                    End If
+                    If txtBuffChrArr(3) = "0" Then
+                        RadioButton_Cell2_TX.Checked = False
+                    ElseIf txtBuffChrArr(3) = "1" Then
+                        RadioButton_Cell2_TX.Checked = True
+                    End If
 
-                If txtBuffChrArr(2) = "0" Then
-                    RadioButton_Inputs_P1.Checked = False
-                ElseIf txtBuffChrArr(2) = "1" Then
-                    RadioButton_Inputs_P1.Checked = True
-                End If
-                If txtBuffChrArr(1) = "0" Then
-                    RadioButton_Inputs_P2.Checked = False
-                ElseIf txtBuffChrArr(1) = "1" Then
-                    RadioButton_Inputs_P2.Checked = True
-                End If
+                    If txtBuffChrArr(2) = "0" Then
+                        RadioButton_Inputs_P1.Checked = False
+                    ElseIf txtBuffChrArr(2) = "1" Then
+                        RadioButton_Inputs_P1.Checked = True
+                    End If
+                    If txtBuffChrArr(1) = "0" Then
+                        RadioButton_Inputs_P2.Checked = False
+                    ElseIf txtBuffChrArr(1) = "1" Then
+                        RadioButton_Inputs_P2.Checked = True
+                    End If
 
-                If txtBuffChrArr(0) = "0" Then
-                    RadioButton_Inputs_ALM.Checked = False
-                ElseIf txtBuffChrArr(0) = "1" Then
-                    RadioButton_Inputs_ALM.Checked = True
-                End If
+                    If txtBuffChrArr(0) = "0" Then
+                        RadioButton_Inputs_ALM.Checked = False
+                    ElseIf txtBuffChrArr(0) = "1" Then
+                        RadioButton_Inputs_ALM.Checked = True
+                    End If
 
-                lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
-                lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
+                    lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
+                    lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
+                End If
             End If
-        End If
     End Sub
 
     Private Sub ReadAll()
         Console.WriteLine("ReadAll BEGIN")
+
+        'Thread.Sleep(1000)
 
         Dim txtBuffM1C As String = ReadPortByAddress("19", True) '
         If (CheckPortConnection() = False) Then
@@ -2729,7 +2752,7 @@ Public Class Form1
                 Next
 
                 If (len = records.Count) Then
-                    'MessageBox.Show("Successfully transmitted.")
+                    MessageBox.Show("Successfully transmitted.")
                     lblActionStatus.Text = "Program was sent successfully" + Environment.NewLine + Environment.NewLine + System.DateTime.Now
                 End If
             End If
@@ -2806,10 +2829,10 @@ Public Class Form1
 
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        btnSend.Enabled = False
+        'btnSend.Enabled = False
 
         If (CheckPortConnection() = False) Then
-            btnSend.Enabled = True
+            '   btnSend.Enabled = True
             Exit Sub
         End If
 
@@ -2918,7 +2941,7 @@ Public Class Form1
         records.Add(input5)
         records.Add(input6)
         WriteBulk(records)
-        btnSend.Enabled = True
+        'btnSend.Enabled = True
     End Sub
 
     Private Sub btnRFP_Click(sender As Object, e As EventArgs) Handles btnRFP.Click
@@ -2947,6 +2970,8 @@ Public Class Form1
     Private Sub ReadDev()
 
         If (CheckPortConnection() = False) Then
+            ClearDeviceProperty()
+            ClearTimeProperty()
             Exit Sub
         End If
         While SerialPort1.IsOpen
@@ -3104,278 +3129,291 @@ Public Class Form1
     End Sub
 
     Private Sub GetHistoric(lineNum As Integer, levelNum As Integer)
-        If cmbPrograms.SelectedItem <> "NEW" And cmbPrograms.SelectedItem <> "" Then
 
-            Dim testString As String = LoadSpecFile(cmbPrograms.SelectedItem)
-            If (testString = Nothing) Then
-                Exit Sub
-            End If
+        If (lineNum = 1) Then
 
-            Dim testArray() As String = Split(testString)
+            'Dim M2CON() As Byte = ConvertBitStringToByteArray(testArray(1))
 
-            If (lineNum = 1) Then
+            If (levelNum = 1) Then
 
-                Dim M2CON() As Byte = ConvertBitStringToByteArray(testArray(1))
-
-                If (levelNum = 1) Then
-
-                    'MOTOR2 Power On
-                    If M2CON(4) = "0" And M2CON(3) = "0" AndAlso M2CON(2) = "0" Then
-                        btnMOTOR2pwrON.Text = "AUTO"
-                        btnMOTOR2pwrON.BackColor = Color.Orange
-                    ElseIf M2CON(4) = "0" And M2CON(3) = "0" AndAlso M2CON(2) = "1" Then
-                        btnMOTOR2pwrON.Text = "SYNC"
-                        btnMOTOR2pwrON.BackColor = Color.Orange
-                    ElseIf M2CON(4) = "0" And M2CON(3) = "1" AndAlso M2CON(2) = "0" Then
-                        btnMOTOR2pwrON.Text = "PEDAL"
-                        btnMOTOR2pwrON.BackColor = Color.Orange
-                    ElseIf M2CON(4) = "0" And M2CON(3) = "1" AndAlso M2CON(2) = "1" Then
-                        btnMOTOR2pwrON.Text = "RUN"
-                        btnMOTOR2pwrON.BackColor = Color.LightGreen
-                    ElseIf M2CON(4) = "1" And M2CON(3) = "0" AndAlso M2CON(2) = "0" Then
-                        btnMOTOR2pwrON.Text = "OFF"
-                        btnMOTOR2pwrON.BackColor = Color.Salmon
-                    ElseIf M2CON(4) = "1" And M2CON(3) = "0" AndAlso M2CON(2) = "1" Then
-                        btnMOTOR2pwrON.Text = ""
-                        btnMOTOR2pwrON.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2) Then
-
-                    'Motor2 1.Press
-                    If M2CON(7) = "0" And M2CON(6) = "0" AndAlso M2CON(5) = "0" Then
-                        btnMOTOR2_1Press.Text = "AUTO"
-                        btnMOTOR2_1Press.BackColor = Color.Orange
-                    ElseIf M2CON(7) = "0" And M2CON(6) = "0" AndAlso M2CON(5) = "1" Then
-                        btnMOTOR2_1Press.Text = "SYNC"
-                        btnMOTOR2_1Press.BackColor = Color.Orange
-                    ElseIf M2CON(7) = "0" And M2CON(6) = "1" AndAlso M2CON(5) = "0" Then
-                        btnMOTOR2_1Press.Text = "PEDAL"
-                        btnMOTOR2_1Press.BackColor = Color.Orange
-                    ElseIf M2CON(7) = "0" And M2CON(6) = "1" AndAlso M2CON(5) = "1" Then
-                        btnMOTOR2_1Press.Text = "RUN"
-                        btnMOTOR2_1Press.BackColor = Color.LightGreen
-                    ElseIf M2CON(7) = "1" And M2CON(6) = "0" AndAlso M2CON(5) = "0" Then
-                        btnMOTOR2_1Press.Text = "OFF"
-                        btnMOTOR2_1Press.BackColor = Color.Salmon
-                    ElseIf M2CON(7) = "1" And M2CON(6) = "0" AndAlso M2CON(5) = "1" Then
-                        btnMOTOR2_1Press.Text = ""
-                        btnMOTOR2_1Press.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
-
-                    'Motor2 2.Press
-                    If M2CON(10) = "0" And M2CON(9) = "0" AndAlso M2CON(8) = "0" Then
-                        btnMOTOR2_2Press.Text = "AUTO"
-                        btnMOTOR2_2Press.BackColor = Color.Orange
-                    ElseIf M2CON(10) = "0" And M2CON(9) = "0" AndAlso M2CON(8) = "1" Then
-                        btnMOTOR2_2Press.Text = "SYNC"
-                        btnMOTOR2_2Press.BackColor = Color.Orange
-                    ElseIf M2CON(10) = "0" And M2CON(9) = "1" AndAlso M2CON(8) = "0" Then
-                        btnMOTOR2_2Press.Text = "PEDAL"
-                        btnMOTOR2_2Press.BackColor = Color.Orange
-                    ElseIf M2CON(10) = "0" And M2CON(9) = "1" AndAlso M2CON(8) = "1" Then
-                        btnMOTOR2_2Press.Text = "RUN"
-                        btnMOTOR2_2Press.BackColor = Color.LightGreen
-                    ElseIf M2CON(10) = "1" And M2CON(9) = "0" AndAlso M2CON(8) = "0" Then
-                        btnMOTOR2_2Press.Text = "OFF"
-                        btnMOTOR2_2Press.BackColor = Color.Salmon
-                    ElseIf M2CON(10) = "1" And M2CON(9) = "0" AndAlso M2CON(8) = "1" Then
-                        btnMOTOR2_2Press.Text = ""
-                        btnMOTOR2_2Press.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
-
-                    'Motor2 3.Press
-                    If M2CON(13) = "0" And M2CON(12) = "0" AndAlso M2CON(11) = "0" Then
-                        btnMOTOR2_3Press.Text = "AUTO"
-                        btnMOTOR2_3Press.BackColor = Color.Orange
-                    ElseIf M2CON(13) = "0" And M2CON(12) = "0" AndAlso M2CON(11) = "1" Then
-                        btnMOTOR2_3Press.Text = "SYNC"
-                        btnMOTOR2_3Press.BackColor = Color.Orange
-                    ElseIf M2CON(13) = "0" And M2CON(12) = "1" AndAlso M2CON(11) = "0" Then
-                        btnMOTOR2_3Press.Text = "PEDAL"
-                        btnMOTOR2_3Press.BackColor = Color.Orange
-                    ElseIf M2CON(13) = "0" And M2CON(12) = "1" AndAlso M2CON(11) = "1" Then
-                        btnMOTOR2_3Press.Text = "RUN"
-                        btnMOTOR2_3Press.BackColor = Color.LightGreen
-                    ElseIf M2CON(13) = "1" And M2CON(12) = "0" AndAlso M2CON(11) = "0" Then
-                        btnMOTOR2_3Press.Text = "OFF"
-                        btnMOTOR2_3Press.BackColor = Color.Salmon
-                    ElseIf M2CON(13) = "1" And M2CON(12) = "0" AndAlso M2CON(11) = "1" Then
-                        btnMOTOR2_3Press.Text = ""
-                        btnMOTOR2_3Press.BackColor = Color.LightGray
-                    End If
-
+                'MOTOR2 Power On
+                If M2CON(4) = "0" And M2CON(3) = "0" AndAlso M2CON(2) = "0" Then
+                    btnMOTOR2pwrON.Text = "AUTO"
+                    btnMOTOR2pwrON.BackColor = Color.Orange
+                ElseIf M2CON(4) = "0" And M2CON(3) = "0" AndAlso M2CON(2) = "1" Then
+                    btnMOTOR2pwrON.Text = "SYNC"
+                    btnMOTOR2pwrON.BackColor = Color.Orange
+                ElseIf M2CON(4) = "0" And M2CON(3) = "1" AndAlso M2CON(2) = "0" Then
+                    btnMOTOR2pwrON.Text = "PEDAL"
+                    btnMOTOR2pwrON.BackColor = Color.Orange
+                ElseIf M2CON(4) = "0" And M2CON(3) = "1" AndAlso M2CON(2) = "1" Then
+                    btnMOTOR2pwrON.Text = "RUN"
+                    btnMOTOR2pwrON.BackColor = Color.LightGreen
+                ElseIf M2CON(4) = "1" And M2CON(3) = "0" AndAlso M2CON(2) = "0" Then
+                    btnMOTOR2pwrON.Text = "OFF"
+                    btnMOTOR2pwrON.BackColor = Color.Salmon
+                ElseIf M2CON(4) = "1" And M2CON(3) = "0" AndAlso M2CON(2) = "1" Then
+                    btnMOTOR2pwrON.Text = ""
+                    btnMOTOR2pwrON.BackColor = Color.LightGray
                 End If
 
             End If
 
-            If (lineNum = 2) Then
+            If (levelNum = 1 Or levelNum = 2) Then
 
-                Dim L1CON() As Byte = ConvertBitStringToByteArray(testArray(2)) 'testArray(2).ToCharArray
-
-                If (levelNum = 1) Then
-                    'LIGHT1 Power On
-                    If L1CON(4) = "0" And L1CON(3) = "0" AndAlso L1CON(2) = "0" Then
-                        btnLIGHT1powerON.Text = "OFF"
-                        btnLIGHT1powerON.BackColor = Color.Salmon
-                    ElseIf L1CON(4) = "0" And L1CON(3) = "0" AndAlso L1CON(2) = "1" Then
-                        btnLIGHT1powerON.Text = "ON"
-                        btnLIGHT1powerON.BackColor = Color.LightGreen
-                    ElseIf L1CON(4) = "0" And L1CON(3) = "1" AndAlso L1CON(2) = "0" Then
-                        btnLIGHT1powerON.Text = "FLASH"
-                        btnLIGHT1powerON.BackColor = Color.Orange
-                    ElseIf L1CON(4) = "0" And L1CON(3) = "1" AndAlso L1CON(2) = "1" Then
-                        btnLIGHT1powerON.Text = ""
-                        btnLIGHT1powerON.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2) Then
-
-                    'LIGHT1 1.Press
-                    If L1CON(7) = "0" And L1CON(6) = "0" AndAlso L1CON(5) = "0" Then
-                        btnLIGHT1_1Press.Text = "OFF"
-                        btnLIGHT1_1Press.BackColor = Color.Salmon
-                    ElseIf L1CON(7) = "0" And L1CON(6) = "0" AndAlso L1CON(5) = "1" Then
-                        btnLIGHT1_1Press.Text = "ON"
-                        btnLIGHT1_1Press.BackColor = Color.LightGreen
-                    ElseIf L1CON(7) = "0" And L1CON(6) = "1" AndAlso L1CON(5) = "0" Then
-                        btnLIGHT1_1Press.Text = "FLASH"
-                        btnLIGHT1_1Press.BackColor = Color.Orange
-                    ElseIf L1CON(7) = "0" And L1CON(6) = "1" AndAlso L1CON(5) = "1" Then
-                        btnLIGHT1_1Press.Text = ""
-                        btnLIGHT1_1Press.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
-                    'LIGHT1 2.Press
-                    If L1CON(10) = "0" And L1CON(9) = "0" AndAlso L1CON(8) = "0" Then
-                        btnLIGHT1_2Press.Text = "OFF"
-                        btnLIGHT1_2Press.BackColor = Color.Salmon
-                    ElseIf L1CON(10) = "0" And L1CON(9) = "0" AndAlso L1CON(8) = "1" Then
-                        btnLIGHT1_2Press.Text = "ON"
-                        btnLIGHT1_2Press.BackColor = Color.LightGreen
-                    ElseIf L1CON(10) = "0" And L1CON(9) = "1" AndAlso L1CON(8) = "0" Then
-                        btnLIGHT1_2Press.Text = "FLASH"
-                        btnLIGHT1_2Press.BackColor = Color.Orange
-                    ElseIf L1CON(10) = "0" And L1CON(9) = "1" AndAlso L1CON(8) = "1" Then
-                        btnLIGHT1_2Press.Text = ""
-                        btnLIGHT1_2Press.BackColor = Color.LightGray
-                    End If
-
-                End If
-
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
-
-                    'LIGHT1 3.Press
-                    If L1CON(13) = "0" And L1CON(12) = "0" AndAlso L1CON(11) = "0" Then
-                        btnLIGHT1_3Press.Text = "OFF"
-                        btnLIGHT1_3Press.BackColor = Color.Salmon
-                    ElseIf L1CON(13) = "0" And L1CON(12) = "0" AndAlso L1CON(11) = "1" Then
-                        btnLIGHT1_3Press.Text = "ON"
-                        btnLIGHT1_3Press.BackColor = Color.LightGreen
-                    ElseIf L1CON(13) = "0" And L1CON(12) = "1" AndAlso L1CON(11) = "0" Then
-                        btnLIGHT1_3Press.Text = "FLASH"
-                        btnLIGHT1_3Press.BackColor = Color.Orange
-                    ElseIf L1CON(13) = "0" And L1CON(12) = "1" AndAlso L1CON(11) = "1" Then
-                        btnLIGHT1_3Press.Text = ""
-                        btnLIGHT1_3Press.BackColor = Color.LightGray
-                    End If
+                'Motor2 1.Press
+                If M2CON(7) = "0" And M2CON(6) = "0" AndAlso M2CON(5) = "0" Then
+                    btnMOTOR2_1Press.Text = "AUTO"
+                    btnMOTOR2_1Press.BackColor = Color.Orange
+                ElseIf M2CON(7) = "0" And M2CON(6) = "0" AndAlso M2CON(5) = "1" Then
+                    btnMOTOR2_1Press.Text = "SYNC"
+                    btnMOTOR2_1Press.BackColor = Color.Orange
+                ElseIf M2CON(7) = "0" And M2CON(6) = "1" AndAlso M2CON(5) = "0" Then
+                    btnMOTOR2_1Press.Text = "PEDAL"
+                    btnMOTOR2_1Press.BackColor = Color.Orange
+                ElseIf M2CON(7) = "0" And M2CON(6) = "1" AndAlso M2CON(5) = "1" Then
+                    btnMOTOR2_1Press.Text = "RUN"
+                    btnMOTOR2_1Press.BackColor = Color.LightGreen
+                ElseIf M2CON(7) = "1" And M2CON(6) = "0" AndAlso M2CON(5) = "0" Then
+                    btnMOTOR2_1Press.Text = "OFF"
+                    btnMOTOR2_1Press.BackColor = Color.Salmon
+                ElseIf M2CON(7) = "1" And M2CON(6) = "0" AndAlso M2CON(5) = "1" Then
+                    btnMOTOR2_1Press.Text = ""
+                    btnMOTOR2_1Press.BackColor = Color.LightGray
                 End If
 
             End If
 
-            If (lineNum = 3) Then
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
 
-                Dim L2CON() As Byte = ConvertBitStringToByteArray(testArray(3)) 'testArray(3).ToCharArray
-
-                If (levelNum = 1) Then
-                    'LIGHT2 Power On
-                    If L2CON(4) = "0" And L2CON(3) = "0" AndAlso L2CON(2) = "0" Then
-                        btnLIGHT2powerON.Text = "OFF"
-                        btnLIGHT2powerON.BackColor = Color.Salmon
-                    ElseIf L2CON(4) = "0" And L2CON(3) = "0" AndAlso L2CON(2) = "1" Then
-                        btnLIGHT2powerON.Text = "ON"
-                        btnLIGHT2powerON.BackColor = Color.LightGreen
-                    ElseIf L2CON(4) = "0" And L2CON(3) = "1" AndAlso L2CON(2) = "0" Then
-                        btnLIGHT2powerON.Text = "FLASH"
-                        btnLIGHT2powerON.BackColor = Color.Orange
-                    ElseIf L2CON(4) = "0" And L2CON(3) = "1" AndAlso L2CON(2) = "1" Then
-                        btnLIGHT2powerON.Text = ""
-                        btnLIGHT2powerON.BackColor = Color.LightGray
-                    End If
+                'Motor2 2.Press
+                If M2CON(10) = "0" And M2CON(9) = "0" AndAlso M2CON(8) = "0" Then
+                    btnMOTOR2_2Press.Text = "AUTO"
+                    btnMOTOR2_2Press.BackColor = Color.Orange
+                ElseIf M2CON(10) = "0" And M2CON(9) = "0" AndAlso M2CON(8) = "1" Then
+                    btnMOTOR2_2Press.Text = "SYNC"
+                    btnMOTOR2_2Press.BackColor = Color.Orange
+                ElseIf M2CON(10) = "0" And M2CON(9) = "1" AndAlso M2CON(8) = "0" Then
+                    btnMOTOR2_2Press.Text = "PEDAL"
+                    btnMOTOR2_2Press.BackColor = Color.Orange
+                ElseIf M2CON(10) = "0" And M2CON(9) = "1" AndAlso M2CON(8) = "1" Then
+                    btnMOTOR2_2Press.Text = "RUN"
+                    btnMOTOR2_2Press.BackColor = Color.LightGreen
+                ElseIf M2CON(10) = "1" And M2CON(9) = "0" AndAlso M2CON(8) = "0" Then
+                    btnMOTOR2_2Press.Text = "OFF"
+                    btnMOTOR2_2Press.BackColor = Color.Salmon
+                ElseIf M2CON(10) = "1" And M2CON(9) = "0" AndAlso M2CON(8) = "1" Then
+                    btnMOTOR2_2Press.Text = ""
+                    btnMOTOR2_2Press.BackColor = Color.LightGray
                 End If
 
-                If (levelNum = 1 Or levelNum = 2) Then
-                    'LIGHT2 1.Press
-                    If L2CON(7) = "0" And L2CON(6) = "0" AndAlso L2CON(5) = "0" Then
-                        btnLIGHT2_1Press.Text = "OFF"
-                        btnLIGHT2_1Press.BackColor = Color.Salmon
-                    ElseIf L2CON(7) = "0" And L2CON(6) = "0" AndAlso L2CON(5) = "1" Then
-                        btnLIGHT2_1Press.Text = "ON"
-                        btnLIGHT2_1Press.BackColor = Color.LightGreen
-                    ElseIf L2CON(7) = "0" And L2CON(6) = "1" AndAlso L2CON(5) = "0" Then
-                        btnLIGHT2_1Press.Text = "FLASH"
-                        btnLIGHT2_1Press.BackColor = Color.Orange
-                    ElseIf L2CON(7) = "0" And L2CON(6) = "1" AndAlso L2CON(5) = "1" Then
-                        btnLIGHT2_1Press.Text = ""
-                        btnLIGHT2_1Press.BackColor = Color.LightGray
-                    End If
+            End If
 
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
+
+                'Motor2 3.Press
+                If M2CON(13) = "0" And M2CON(12) = "0" AndAlso M2CON(11) = "0" Then
+                    btnMOTOR2_3Press.Text = "AUTO"
+                    btnMOTOR2_3Press.BackColor = Color.Orange
+                ElseIf M2CON(13) = "0" And M2CON(12) = "0" AndAlso M2CON(11) = "1" Then
+                    btnMOTOR2_3Press.Text = "SYNC"
+                    btnMOTOR2_3Press.BackColor = Color.Orange
+                ElseIf M2CON(13) = "0" And M2CON(12) = "1" AndAlso M2CON(11) = "0" Then
+                    btnMOTOR2_3Press.Text = "PEDAL"
+                    btnMOTOR2_3Press.BackColor = Color.Orange
+                ElseIf M2CON(13) = "0" And M2CON(12) = "1" AndAlso M2CON(11) = "1" Then
+                    btnMOTOR2_3Press.Text = "RUN"
+                    btnMOTOR2_3Press.BackColor = Color.LightGreen
+                ElseIf M2CON(13) = "1" And M2CON(12) = "0" AndAlso M2CON(11) = "0" Then
+                    btnMOTOR2_3Press.Text = "OFF"
+                    btnMOTOR2_3Press.BackColor = Color.Salmon
+                ElseIf M2CON(13) = "1" And M2CON(12) = "0" AndAlso M2CON(11) = "1" Then
+                    btnMOTOR2_3Press.Text = ""
+                    btnMOTOR2_3Press.BackColor = Color.LightGray
                 End If
 
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
-                    'LIGHT2 2.Press
-                    If L2CON(10) = "0" And L2CON(9) = "0" AndAlso L2CON(8) = "0" Then
-                        btnLIGHT2_2Press.Text = "OFF"
-                        btnLIGHT2_2Press.BackColor = Color.Salmon
-                    ElseIf L2CON(10) = "0" And L2CON(9) = "0" AndAlso L2CON(8) = "1" Then
-                        btnLIGHT2_2Press.Text = "ON"
-                        btnLIGHT2_2Press.BackColor = Color.LightGreen
-                    ElseIf L2CON(10) = "0" And L2CON(9) = "1" AndAlso L2CON(8) = "0" Then
-                        btnLIGHT2_2Press.Text = "FLASH"
-                        btnLIGHT2_2Press.BackColor = Color.Orange
-                    ElseIf L2CON(10) = "0" And L2CON(9) = "1" AndAlso L2CON(8) = "1" Then
-                        btnLIGHT2_2Press.Text = ""
-                        btnLIGHT2_2Press.BackColor = Color.LightGray
-                    End If
+            End If
 
+        End If
+
+        If (lineNum = 2) Then
+
+            'Dim L1CON() As Byte = ConvertBitStringToByteArray(testArray(2)) 'testArray(2).ToCharArray
+
+            If (levelNum = 1) Then
+                'LIGHT1 Power On
+                If L1CON(4) = "0" And L1CON(3) = "0" AndAlso L1CON(2) = "0" Then
+                    btnLIGHT1powerON.Text = "OFF"
+                    btnLIGHT1powerON.BackColor = Color.Salmon
+                ElseIf L1CON(4) = "0" And L1CON(3) = "0" AndAlso L1CON(2) = "1" Then
+                    btnLIGHT1powerON.Text = "ON"
+                    btnLIGHT1powerON.BackColor = Color.LightGreen
+                ElseIf L1CON(4) = "0" And L1CON(3) = "1" AndAlso L1CON(2) = "0" Then
+                    btnLIGHT1powerON.Text = "FLASH"
+                    btnLIGHT1powerON.BackColor = Color.Orange
+                ElseIf L1CON(4) = "0" And L1CON(3) = "1" AndAlso L1CON(2) = "1" Then
+                    btnLIGHT1powerON.Text = ""
+                    btnLIGHT1powerON.BackColor = Color.LightGray
                 End If
 
-                If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
-                    'LIGHT2 3.Press
-                    If L2CON(13) = "0" And L2CON(12) = "0" AndAlso L2CON(11) = "0" Then
-                        btnLIGHT2_3Press.Text = "OFF"
-                        btnLIGHT2_3Press.BackColor = Color.Salmon
-                    ElseIf L2CON(13) = "0" And L2CON(12) = "0" AndAlso L2CON(11) = "1" Then
-                        btnLIGHT2_3Press.Text = "ON"
-                        btnLIGHT2_3Press.BackColor = Color.LightGreen
-                    ElseIf L2CON(13) = "0" And L2CON(12) = "1" AndAlso L2CON(11) = "0" Then
-                        btnLIGHT2_3Press.Text = "FLASH"
-                        btnLIGHT2_3Press.BackColor = Color.Orange
-                    ElseIf L2CON(13) = "0" And L2CON(12) = "1" AndAlso L2CON(11) = "1" Then
-                        btnLIGHT2_3Press.Text = ""
-                        btnLIGHT2_3Press.BackColor = Color.LightGray
-                    End If
+            End If
+
+            If (levelNum = 1 Or levelNum = 2) Then
+
+                'LIGHT1 1.Press
+                If L1CON(7) = "0" And L1CON(6) = "0" AndAlso L1CON(5) = "0" Then
+                    btnLIGHT1_1Press.Text = "OFF"
+                    btnLIGHT1_1Press.BackColor = Color.Salmon
+                ElseIf L1CON(7) = "0" And L1CON(6) = "0" AndAlso L1CON(5) = "1" Then
+                    btnLIGHT1_1Press.Text = "ON"
+                    btnLIGHT1_1Press.BackColor = Color.LightGreen
+                ElseIf L1CON(7) = "0" And L1CON(6) = "1" AndAlso L1CON(5) = "0" Then
+                    btnLIGHT1_1Press.Text = "FLASH"
+                    btnLIGHT1_1Press.BackColor = Color.Orange
+                ElseIf L1CON(7) = "0" And L1CON(6) = "1" AndAlso L1CON(5) = "1" Then
+                    btnLIGHT1_1Press.Text = ""
+                    btnLIGHT1_1Press.BackColor = Color.LightGray
+                End If
+
+            End If
+
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
+                'LIGHT1 2.Press
+                If L1CON(10) = "0" And L1CON(9) = "0" AndAlso L1CON(8) = "0" Then
+                    btnLIGHT1_2Press.Text = "OFF"
+                    btnLIGHT1_2Press.BackColor = Color.Salmon
+                ElseIf L1CON(10) = "0" And L1CON(9) = "0" AndAlso L1CON(8) = "1" Then
+                    btnLIGHT1_2Press.Text = "ON"
+                    btnLIGHT1_2Press.BackColor = Color.LightGreen
+                ElseIf L1CON(10) = "0" And L1CON(9) = "1" AndAlso L1CON(8) = "0" Then
+                    btnLIGHT1_2Press.Text = "FLASH"
+                    btnLIGHT1_2Press.BackColor = Color.Orange
+                ElseIf L1CON(10) = "0" And L1CON(9) = "1" AndAlso L1CON(8) = "1" Then
+                    btnLIGHT1_2Press.Text = ""
+                    btnLIGHT1_2Press.BackColor = Color.LightGray
+                End If
+
+            End If
+
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
+
+                'LIGHT1 3.Press
+                If L1CON(13) = "0" And L1CON(12) = "0" AndAlso L1CON(11) = "0" Then
+                    btnLIGHT1_3Press.Text = "OFF"
+                    btnLIGHT1_3Press.BackColor = Color.Salmon
+                ElseIf L1CON(13) = "0" And L1CON(12) = "0" AndAlso L1CON(11) = "1" Then
+                    btnLIGHT1_3Press.Text = "ON"
+                    btnLIGHT1_3Press.BackColor = Color.LightGreen
+                ElseIf L1CON(13) = "0" And L1CON(12) = "1" AndAlso L1CON(11) = "0" Then
+                    btnLIGHT1_3Press.Text = "FLASH"
+                    btnLIGHT1_3Press.BackColor = Color.Orange
+                ElseIf L1CON(13) = "0" And L1CON(12) = "1" AndAlso L1CON(11) = "1" Then
+                    btnLIGHT1_3Press.Text = ""
+                    btnLIGHT1_3Press.BackColor = Color.LightGray
+                End If
+            End If
+
+        End If
+
+        If (lineNum = 3) Then
+
+            'Dim L2CON() As Byte = ConvertBitStringToByteArray(testArray(3)) 'testArray(3).ToCharArray
+
+            If (levelNum = 1) Then
+                'LIGHT2 Power On
+                If L2CON(4) = "0" And L2CON(3) = "0" AndAlso L2CON(2) = "0" Then
+                    btnLIGHT2powerON.Text = "OFF"
+                    btnLIGHT2powerON.BackColor = Color.Salmon
+                ElseIf L2CON(4) = "0" And L2CON(3) = "0" AndAlso L2CON(2) = "1" Then
+                    btnLIGHT2powerON.Text = "ON"
+                    btnLIGHT2powerON.BackColor = Color.LightGreen
+                ElseIf L2CON(4) = "0" And L2CON(3) = "1" AndAlso L2CON(2) = "0" Then
+                    btnLIGHT2powerON.Text = "FLASH"
+                    btnLIGHT2powerON.BackColor = Color.Orange
+                ElseIf L2CON(4) = "0" And L2CON(3) = "1" AndAlso L2CON(2) = "1" Then
+                    btnLIGHT2powerON.Text = ""
+                    btnLIGHT2powerON.BackColor = Color.LightGray
+                End If
+            End If
+
+            If (levelNum = 1 Or levelNum = 2) Then
+                'LIGHT2 1.Press
+                If L2CON(7) = "0" And L2CON(6) = "0" AndAlso L2CON(5) = "0" Then
+                    btnLIGHT2_1Press.Text = "OFF"
+                    btnLIGHT2_1Press.BackColor = Color.Salmon
+                ElseIf L2CON(7) = "0" And L2CON(6) = "0" AndAlso L2CON(5) = "1" Then
+                    btnLIGHT2_1Press.Text = "ON"
+                    btnLIGHT2_1Press.BackColor = Color.LightGreen
+                ElseIf L2CON(7) = "0" And L2CON(6) = "1" AndAlso L2CON(5) = "0" Then
+                    btnLIGHT2_1Press.Text = "FLASH"
+                    btnLIGHT2_1Press.BackColor = Color.Orange
+                ElseIf L2CON(7) = "0" And L2CON(6) = "1" AndAlso L2CON(5) = "1" Then
+                    btnLIGHT2_1Press.Text = ""
+                    btnLIGHT2_1Press.BackColor = Color.LightGray
+                End If
+
+            End If
+
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3) Then
+                'LIGHT2 2.Press
+                If L2CON(10) = "0" And L2CON(9) = "0" AndAlso L2CON(8) = "0" Then
+                    btnLIGHT2_2Press.Text = "OFF"
+                    btnLIGHT2_2Press.BackColor = Color.Salmon
+                ElseIf L2CON(10) = "0" And L2CON(9) = "0" AndAlso L2CON(8) = "1" Then
+                    btnLIGHT2_2Press.Text = "ON"
+                    btnLIGHT2_2Press.BackColor = Color.LightGreen
+                ElseIf L2CON(10) = "0" And L2CON(9) = "1" AndAlso L2CON(8) = "0" Then
+                    btnLIGHT2_2Press.Text = "FLASH"
+                    btnLIGHT2_2Press.BackColor = Color.Orange
+                ElseIf L2CON(10) = "0" And L2CON(9) = "1" AndAlso L2CON(8) = "1" Then
+                    btnLIGHT2_2Press.Text = ""
+                    btnLIGHT2_2Press.BackColor = Color.LightGray
+                End If
+
+            End If
+
+            If (levelNum = 1 Or levelNum = 2 Or levelNum = 3 Or levelNum = 4) Then
+                'LIGHT2 3.Press
+                If L2CON(13) = "0" And L2CON(12) = "0" AndAlso L2CON(11) = "0" Then
+                    btnLIGHT2_3Press.Text = "OFF"
+                    btnLIGHT2_3Press.BackColor = Color.Salmon
+                ElseIf L2CON(13) = "0" And L2CON(12) = "0" AndAlso L2CON(11) = "1" Then
+                    btnLIGHT2_3Press.Text = "ON"
+                    btnLIGHT2_3Press.BackColor = Color.LightGreen
+                ElseIf L2CON(13) = "0" And L2CON(12) = "1" AndAlso L2CON(11) = "0" Then
+                    btnLIGHT2_3Press.Text = "FLASH"
+                    btnLIGHT2_3Press.BackColor = Color.Orange
+                ElseIf L2CON(13) = "0" And L2CON(12) = "1" AndAlso L2CON(11) = "1" Then
+                    btnLIGHT2_3Press.Text = ""
+                    btnLIGHT2_3Press.BackColor = Color.LightGray
                 End If
             End If
         End If
+
     End Sub
 
-    Private Sub cmbPrograms_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPrograms.SelectedIndexChanged
+    Private Sub cmbPorts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPorts.SelectedIndexChanged
+        ports = IO.Ports.SerialPort.GetPortNames()
+        'varsa ekleme yoksa cıkar
+        For Each port In ports
+            cmbPorts.Items.Add(port)
+            'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
+        Next port
+
+    End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        If (thReadAll.IsAlive = False) Then
+            thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
+            thReadAll.Start()
+            'thReadAll.Join()
+            'thReadAll.Priority = ThreadPriority.AboveNormal
+            'thReadAll.IsBackground = True
+            'Else
+            '    If (thReadAll.IsBackground = False) Then
+            '        'thReadAll.Resume()
+            'End If
+        End If
 
     End Sub
 End Class
