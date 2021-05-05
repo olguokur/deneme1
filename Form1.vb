@@ -23,6 +23,8 @@ Module Module1
     Public port As String
     Public PortName As String
 
+    Public msjFlag As Integer = 0
+
     Public cycleFlag As Boolean = False
 
     Public Structure Input
@@ -45,8 +47,8 @@ End Module
 
 Public Class Form1
 
-    Dim thReadAll As New Thread(New ThreadStart(AddressOf Me.ReadAll))
-    Dim thReadDev As New Thread(New ThreadStart(AddressOf Me.ReadDev))
+    'Dim thReadAll As New Thread(New ThreadStart(AddressOf Me.ReadAll))
+    'Dim thReadDev As New Thread(New ThreadStart(AddressOf Me.ReadDev))
 
 
     Private Sub btnMOTOR2onOFF_Click(sender As Object, e As EventArgs) Handles btnMOTOR2onOFF.Click
@@ -652,7 +654,7 @@ Public Class Form1
 
         ClearForm()
 
-        GroupBox2.Visible = False
+        gbMaintenance.Visible = False
 
         For Each port In ports
             cmbPorts.Items.Add(port)
@@ -1745,6 +1747,7 @@ Public Class Form1
     Private Sub btnMOTOR1_Click(sender As Object, e As EventArgs) Handles btnMOTOR1.Click
 
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             Exit Sub
         End If
         If (btnMOTOR1.BackColor = Color.LightGray) Then
@@ -1759,11 +1762,11 @@ Public Class Form1
     End Sub
 
     Private Sub ProgramsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProgramsToolStripMenuItem.Click
-        GroupBox1.Visible = True
-        GroupBox2.Visible = False
-        GroupBox7.Visible = False
-        'Timer1.Stop()
-        thReadDev.Abort()
+        gbProgram.Visible = True
+        gbMaintenance.Visible = False
+        gbConSettings.Visible = False
+        Timer_Stop()
+        'thReadDev.Abort()
     End Sub
 
     Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -1781,17 +1784,21 @@ Public Class Form1
     End Sub
 
     Private Sub MaintenanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MaintenanceToolStripMenuItem.Click
-        GroupBox2.Visible = True
-        GroupBox1.Visible = False
-        GroupBox7.Visible = False
+        gbMaintenance.Visible = True
+        gbProgram.Visible = False
+        gbConSettings.Visible = False
         ClearDeviceProperty()
         ClearTimeProperty()
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             ClearDeviceProperty()
             ClearTimeProperty()
             'ClearForm()
             Exit Sub
         End If
+
+        ' Timer1.Start()
+        ReadAll()
 
         '--------------------
 
@@ -1814,16 +1821,16 @@ Public Class Form1
 
         '--------------------
 
-        If (thReadDev.IsAlive = False) Then
+        'If (thReadDev.IsAlive = False) Then
 
-            thReadDev = New Thread(New ThreadStart(AddressOf Me.ReadDev))
-            thReadDev.IsBackground = True
-            thReadDev.Start()
-            thReadDev.Join()
-            'thReadDev.Priority = ThreadPriority.Highest
-        Else
-            ' thReadDev.Resume()
-        End If
+        '    thReadDev = New Thread(New ThreadStart(AddressOf Me.ReadDev))
+        '    thReadDev.IsBackground = True
+        '    thReadDev.Start()
+        '    thReadDev.Join()
+        '    thReadDev.Priority = ThreadPriority.Highest
+        'Else
+        '    thReadDev.Resume()
+        'End If
 
     End Sub
 
@@ -2214,10 +2221,32 @@ Public Class Form1
 
     End Sub
 
+    Function GetBluetoothConnectedDevices() As List(Of String)
+        Dim R As New List(Of String)
+        Try
+            Dim searcher As New ManagementObjectSearcher(New ManagementScope("\\.\root\CIMV2", Nothing),
+                                                         New WqlObjectQuery("Select Name from Win32_SerialPort"), Nothing)
+            'where pnpclass = 'bluetooth' and service is null and description = 'bluetooth device'
+            For Each share As ManagementObject In searcher.[Get]()
+                Console.WriteLine(searcher.[Get].Count.ToString)
+
+                Try
+                    If Not IsNothing(share("Name")) AndAlso share("Name").ToString.Trim = "" Then
+                        R.Add(share("Name").ToString.Trim)
+                    End If
+                Catch
+                    Continue For
+                End Try
+            Next
+        Catch
+        End Try
+        Return R
+    End Function
+
     Private Sub ConnectionSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectionSToolStripMenuItem.Click
-        GroupBox7.Visible = True
-        GroupBox1.Visible = False
-        GroupBox2.Visible = False
+        gbConSettings.Visible = True
+        gbProgram.Visible = False
+        gbMaintenance.Visible = False
 
         cmbPorts.SelectedText = ""
         cmbPorts.Items.Clear()
@@ -2228,23 +2257,34 @@ Public Class Form1
         Dim port As String
         'Dim PortName As String
 
+        ' GetBluetoothConnectedDevices()
+
         For Each port In ports
             cmbPorts.Items.Add(port)
             'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
         Next port
 
         'MessageBox.Show("PORTLAR" + port)
-
-        'Dim ManObjSearch As ManagementObjectSearcher = New ManagementObjectSearcher("root\cimv2", "SELECT * FROM Win32_SerialPort")
+        ''Win32_DeviceChangeEvent --Win32_SerialPort
+        'Dim ManObjSearch As ManagementObjectSearcher = New ManagementObjectSearcher("root\cimv2", "SELECT * FROM Win32_DeviceChangeEvent")
         'Dim ManObjReturn As ManagementObjectCollection
         'ManObjReturn = ManObjSearch.Get()
         'For Each ManObj In ManObjReturn
+        '    Console.WriteLine("for ici")
+        '    Console.WriteLine("-----------------------------------" + ManObj.GetPropertyValue("Name").ToString())
+        '    Console.WriteLine("MSSerial_PortName instance")
+        '    Console.WriteLine("-----------------------------------")
+        '    Console.WriteLine("InstanceName: {0}", ManObj["InstanceName"])
+        '    Console.WriteLine("-----------------------------------")
+        '    Console.WriteLine("MSSerial_PortName instance")
+        '    Console.WriteLine("-----------------------------------")
+        '    ' Console.WriteLine("PortName: {0}", ManObj["PortName"])
+
         '    Dim ss As PropertyDataCollection
         '    ss = ManObj.Properties
         'Next
 
-
-
+        Timer_Stop()
 
     End Sub
 
@@ -2254,7 +2294,7 @@ Public Class Form1
 
             If SerialPort1.IsOpen = True Then
                 MsgBox("Serial Port that you want to connect is using by another program")
-                lblStatus.Text = PortName & " connected."
+                lblStatus.Text = "Port connection is successfull"
                 Exit Sub
             End If
 
@@ -2280,33 +2320,12 @@ Public Class Form1
             If SerialPort1.IsOpen = False Then
                 Try
                     SerialPort1.Open()
-
-                    Thread.Sleep(2000)
-
-                    'If (thReadAll.IsAlive = False) Then
-
-                    '    thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
-
-                    '    thReadAll.Start()
-
-                    '    thReadAll.Join()
-
-                    '    ' thReadAll.IsBackground = True
-                    '    'thReadAll.Priority = ThreadPriority.AboveNormal
-                    'Else
-                    '    If (thReadAll.IsBackground = False) Then
-                    '        'thReadAll.Resume()
-                    '    End If
-                    'End If
-
-
-
                 Catch ex As Exception
                     MsgBox("Serial Port that you want to connect is using by another program")
                 End Try
 
             End If
-            lblStatus.Text = PortName & " connected."
+            lblStatus.Text = "Port connection is successfull"
 
         End If
     End Sub
@@ -2369,7 +2388,11 @@ Public Class Form1
 
                 SerialPort1.Write(writeBytes, 0, writeBytes.Length)
 
-                SerialPort1_DataReceived(Convert.ToInt32(third))
+                If (SerialPort1_DataReceived(Convert.ToInt32(third)) = False) Then
+                    'lblStatus.Text = "No device connection."
+                    Return txtBuff
+                    Exit Function
+                End If
 
                 Try
                     Dim buff(SerialPort1.BytesToRead) As Byte
@@ -2410,21 +2433,28 @@ Public Class Form1
                     Console.WriteLine("------------------>READ DATA  (ADDRESS) ->(" + address + ")" + txtBuff)
 
                     Console.WriteLine("------------------>READ RAW DATA ->" + defM1C)
-                    If (txtBuff = "11111111111111111111111111111111") Then
-                        MessageBox.Show("Please check the device connection.")
-                        Thread.CurrentThread.Abort()
-                    End If
+                    'If (txtBuff = "11111111111111111111111111111111") Then
+                    '    'msjFlag = 1
+                    '    'MessageBox.Show("Please check the device connection.")
+                    '    'Thread.CurrentThread.Abort()
+                    '    'lblStatus.Text = "No device connection."
+
+                    'End If
                 Catch ex As Exception
                     Console.WriteLine("------------------>READ ERROR ->" + ex.Message)
+                    'lblStatus.Text = "No device connection."
                 End Try
             Else
-                MessageBox.Show("Please check the port connection.")
+                'MessageBox.Show("Please check the port connection.")
+                'msjFlag = 1
+                lblStatus.Text = "No port connection."
 
             End If
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
+            'lblStatus.Text = "No device connection."
+            'msjFlag = 1
         End Try
-
         Return txtBuff
     End Function
 
@@ -2444,6 +2474,16 @@ Public Class Form1
         btnLIGHT1.BackColor = Color.LightGray
         btnLIGHT2.BackColor = Color.LightGray
         btnAlarm.BackColor = Color.LightGray
+
+        TEST(7) = 0
+        TEST(6) = 0
+        TEST(5) = 0
+        TEST(4) = 0
+        TEST(3) = 0
+        TEST(2) = 0
+        TEST(1) = 0
+        TEST(0) = 0
+
         lblVs.Text = ""
     End Sub
 
@@ -2485,57 +2525,57 @@ Public Class Form1
 
                 Dim cell1Int As String = txtBuffProperty.Substring(24, 8)
 
-                    Dim cell2Int As String = txtBuffProperty.Substring(16, 8)
+                Dim cell2Int As String = txtBuffProperty.Substring(16, 8)
 
-                    lblVs.Text = "V" + ((10 + vsNum).ToString) + "-R" + ((-1 + rvsNum).ToString)
+                lblVs.Text = "V" + ((10 + vsNum).ToString) + "-R" + ((-1 + rvsNum).ToString)
 
-                    If txtBuffChrArr(6) = "0" Then
-                        RadioButton_Cell1_RX.Checked = False
-                        RadioButton_Cell1_RX.ForeColor = Color.Black
-                    ElseIf txtBuffChrArr(6) = "1" Then
-                        RadioButton_Cell1_RX.ForeColor = Color.Red
-                        RadioButton_Cell1_RX.Checked = True
-                    End If
-                    If txtBuffChrArr(5) = "0" Then
-                        RadioButton_Cell1_TX.Checked = False
-                        RadioButton_Cell1_TX.ForeColor = Color.Black
-                    ElseIf txtBuffChrArr(5) = "1" Then
-                        RadioButton_Cell1_TX.Checked = True
-                        RadioButton_Cell1_TX.ForeColor = Color.Red
-                    End If
-
-                    If txtBuffChrArr(4) = "0" Then
-                        RadioButton_Cell2_RX.Checked = False
-                    ElseIf txtBuffChrArr(4) = "1" Then
-                        RadioButton_Cell2_RX.Checked = True
-                    End If
-                    If txtBuffChrArr(3) = "0" Then
-                        RadioButton_Cell2_TX.Checked = False
-                    ElseIf txtBuffChrArr(3) = "1" Then
-                        RadioButton_Cell2_TX.Checked = True
-                    End If
-
-                    If txtBuffChrArr(2) = "0" Then
-                        RadioButton_Inputs_P1.Checked = False
-                    ElseIf txtBuffChrArr(2) = "1" Then
-                        RadioButton_Inputs_P1.Checked = True
-                    End If
-                    If txtBuffChrArr(1) = "0" Then
-                        RadioButton_Inputs_P2.Checked = False
-                    ElseIf txtBuffChrArr(1) = "1" Then
-                        RadioButton_Inputs_P2.Checked = True
-                    End If
-
-                    If txtBuffChrArr(0) = "0" Then
-                        RadioButton_Inputs_ALM.Checked = False
-                    ElseIf txtBuffChrArr(0) = "1" Then
-                        RadioButton_Inputs_ALM.Checked = True
-                    End If
-
-                    lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
-                    lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
+                If txtBuffChrArr(6) = "0" Then
+                    RadioButton_Cell1_RX.Checked = False
+                    RadioButton_Cell1_RX.ForeColor = Color.Black
+                ElseIf txtBuffChrArr(6) = "1" Then
+                    RadioButton_Cell1_RX.ForeColor = Color.Red
+                    RadioButton_Cell1_RX.Checked = True
                 End If
+                If txtBuffChrArr(5) = "0" Then
+                    RadioButton_Cell1_TX.Checked = False
+                    RadioButton_Cell1_TX.ForeColor = Color.Black
+                ElseIf txtBuffChrArr(5) = "1" Then
+                    RadioButton_Cell1_TX.Checked = True
+                    RadioButton_Cell1_TX.ForeColor = Color.Red
+                End If
+
+                If txtBuffChrArr(4) = "0" Then
+                    RadioButton_Cell2_RX.Checked = False
+                ElseIf txtBuffChrArr(4) = "1" Then
+                    RadioButton_Cell2_RX.Checked = True
+                End If
+                If txtBuffChrArr(3) = "0" Then
+                    RadioButton_Cell2_TX.Checked = False
+                ElseIf txtBuffChrArr(3) = "1" Then
+                    RadioButton_Cell2_TX.Checked = True
+                End If
+
+                If txtBuffChrArr(2) = "0" Then
+                    RadioButton_Inputs_P1.Checked = False
+                ElseIf txtBuffChrArr(2) = "1" Then
+                    RadioButton_Inputs_P1.Checked = True
+                End If
+                If txtBuffChrArr(1) = "0" Then
+                    RadioButton_Inputs_P2.Checked = False
+                ElseIf txtBuffChrArr(1) = "1" Then
+                    RadioButton_Inputs_P2.Checked = True
+                End If
+
+                If txtBuffChrArr(0) = "0" Then
+                    RadioButton_Inputs_ALM.Checked = False
+                ElseIf txtBuffChrArr(0) = "1" Then
+                    RadioButton_Inputs_ALM.Checked = True
+                End If
+
+                lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
+                lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
             End If
+        End If
     End Sub
 
     Private Sub ReadAll()
@@ -2544,37 +2584,83 @@ Public Class Form1
         'Thread.Sleep(1000)
 
         Dim txtBuffM1C As String = ReadPortByAddress("19", True) '
-        If (CheckPortConnection() = False) Then
-            'thReadAll.IsBackground = False
-            thReadAll.Abort()
+
+        If (txtBuffM1C Is Nothing Or txtBuffM1C = "" Or txtBuffM1C = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtBuffM1TCon As String = ReadPortByAddress("1E", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtBuffM1TCon Is Nothing Or txtBuffM1TCon = "" Or txtBuffM1TCon = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtBuffM2C As String = ReadPortByAddress("23", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtBuffM2C Is Nothing Or txtBuffM2C = "" Or txtBuffM2C = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtbuffm2ton As String = ReadPortByAddress("28", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtbuffm2ton Is Nothing Or txtbuffm2ton = "" Or txtbuffm2ton = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtbuffl1c As String = ReadPortByAddress("2d", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtbuffl1c Is Nothing Or txtbuffl1c = "" Or txtbuffl1c = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtBuffL1Tcon As String = ReadPortByAddress("32", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtBuffL1Tcon Is Nothing Or txtBuffL1Tcon = "" Or txtBuffL1Tcon = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtBuffL2C As String = ReadPortByAddress("37", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtBuffL2C Is Nothing Or txtBuffL2C = "" Or txtBuffL2C = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
+
         Dim txtBuffL2Tcon As String = ReadPortByAddress("3C", True)
-        If (CheckPortConnection() = False) Then
-            thReadAll.Abort()
+
+        If (txtBuffL2Tcon Is Nothing Or txtBuffL2Tcon = "" Or txtBuffL2Tcon = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            Timer1.Start()
+            Exit Sub
         End If
 
         If txtBuffM1C.Length > 0 Then
@@ -2609,6 +2695,8 @@ Public Class Form1
             lblL2TCon.Text = ConvertBinToStr(txtBuffL2Tcon, 0, 0)
         End If
         Thread.Sleep(100)
+
+        Timer1.Start()
 
         Console.WriteLine("ReadAll END")
 
@@ -2671,7 +2759,9 @@ Public Class Form1
 
             SerialPort1.Write(writeBytes, 0, writeBytes.Length)
 
-            SerialPort1_DataReceived(Convert.ToInt32(inp.amount))
+            If (SerialPort1_DataReceived(Convert.ToInt32(inp.amount)) = False) Then
+                msjFlag = 2
+            End If
 
             'Timer1.Enabled = False
 
@@ -2753,7 +2843,7 @@ Public Class Form1
 
                 If (len = records.Count) Then
                     MessageBox.Show("Successfully transmitted.")
-                    lblActionStatus.Text = "Program was sent successfully" + Environment.NewLine + Environment.NewLine + System.DateTime.Now
+                    lblActionStatus.Text = "The last program was sent " + Environment.NewLine + System.DateTime.Now
                 End If
             End If
         Catch ex As Exception
@@ -2769,14 +2859,14 @@ Public Class Form1
             Dim count As Integer = 0
             If SerialPort1.IsOpen Then
                 While SerialPort1.BytesToRead < length
-                    '  Console.WriteLine("while" + SerialPort1.BytesToRead.ToString)
+                    'Console.WriteLine("while" + count.ToString + "->" + SerialPort1.BytesToRead.ToString)
                     count += 1
-                    If (count > 100) Then
+                    If (count > 100000) Then
                         return_key = False
-                        'Exit While
-
+                        Exit While
                     End If
                 End While
+                ' Console.WriteLine("while" + count.ToString + "->" + SerialPort1.BytesToRead.ToString)
             End If
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
@@ -2818,10 +2908,11 @@ Public Class Form1
 
     Private Function CheckPortConnection() As Boolean
         If SerialPort1.IsOpen = False Then
-            MessageBox.Show("Please check the port connection.")
-            lblStatus.Text = "No Connection"
+            lblStatus.Text = "No port connection."
             SerialPort1.Close()
             Return False
+        Else
+            lblStatus.Text = "Port connection is successfull"
         End If
         Return True
     End Function
@@ -2829,10 +2920,11 @@ Public Class Form1
 
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        'btnSend.Enabled = False
+        btnSend.Enabled = False
 
         If (CheckPortConnection() = False) Then
-            '   btnSend.Enabled = True
+            MessageBox.Show("Please check the port connection.")
+            btnSend.Enabled = True
             Exit Sub
         End If
 
@@ -2941,7 +3033,7 @@ Public Class Form1
         records.Add(input5)
         records.Add(input6)
         WriteBulk(records)
-        'btnSend.Enabled = True
+        btnSend.Enabled = True
     End Sub
 
     Private Sub btnRFP_Click(sender As Object, e As EventArgs) Handles btnRFP.Click
@@ -2969,27 +3061,29 @@ Public Class Form1
 
     Private Sub ReadDev()
 
-        If (CheckPortConnection() = False) Then
+        msjFlag = 0
+        'While SerialPort1.IsOpen
+        Console.WriteLine("ReadDev BEGIN")
+
+        Dim txtBuffDev As String = ReadPortByAddress("0A", False) ' Device version register
+
+
+        If (txtBuffDev Is Nothing Or txtBuffDev = "" Or txtBuffDev = "11111111111111111111111111111111") Then
+            lblVs.Text = "Device not found."
             ClearDeviceProperty()
             ClearTimeProperty()
+
             Exit Sub
         End If
-        While SerialPort1.IsOpen
-            Console.WriteLine("ReadDev BEGIN")
-            Dim txtBuffDev As String = ReadPortByAddress("0A", False) ' Device version register
-            ViewDeviceVersionRegister(txtBuffDev)
-            'TEST gönder
-            SendTest()
-            System.Threading.Thread.Sleep(400)
-            Console.WriteLine("ReadDev END")
-        End While
 
-    End Sub
+        ViewDeviceVersionRegister(txtBuffDev)
+        'TEST gönder
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
+        SendTest()
+        System.Threading.Thread.Sleep(400)
+        Console.WriteLine("ReadDev END")
+        'End While
 
-        'thReadDev.IsBackground = True
-        'thReadDev.Start()
     End Sub
 
     Private Sub lblM1C_Click(sender As Object, e As EventArgs) Handles lblM1C.Click
@@ -2997,7 +3091,7 @@ Public Class Form1
     End Sub
 
     Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        Timer1.Stop()
+        Timer_Stop()
     End Sub
 
     Private Sub lblCell1Intensity_Click(sender As Object, e As EventArgs) Handles lblCell1Intensity.Click
@@ -3007,6 +3101,7 @@ Public Class Form1
     Private Sub btnLIGHT1_Click(sender As Object, e As EventArgs) Handles btnLIGHT1.Click
 
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             Exit Sub
         End If
         If (btnLIGHT1.BackColor = Color.LightGray) Then
@@ -3089,6 +3184,7 @@ Public Class Form1
     Private Sub btnMOTOR2_Click(sender As Object, e As EventArgs) Handles btnMOTOR2.Click
 
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             Exit Sub
         End If
         If (btnMOTOR2.BackColor = Color.LightGray) Then
@@ -3103,6 +3199,7 @@ Public Class Form1
     Private Sub btnLIGHT2_Click(sender As Object, e As EventArgs) Handles btnLIGHT2.Click
 
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             Exit Sub
         End If
         If (btnLIGHT2.BackColor = Color.LightGray) Then
@@ -3117,6 +3214,7 @@ Public Class Form1
     Private Sub btnAlarm_Click(sender As Object, e As EventArgs) Handles btnAlarm.Click
 
         If (CheckPortConnection() = False) Then
+            MessageBox.Show("Please check the port connection.")
             Exit Sub
         End If
         If (btnAlarm.BackColor = Color.LightGray) Then
@@ -3393,27 +3491,67 @@ Public Class Form1
     End Sub
 
     Private Sub cmbPorts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPorts.SelectedIndexChanged
-        ports = IO.Ports.SerialPort.GetPortNames()
-        'varsa ekleme yoksa cıkar
-        For Each port In ports
-            cmbPorts.Items.Add(port)
-            'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
-        Next port
+        'ports = IO.Ports.SerialPort.GetPortNames()
+        ''varsa ekleme yoksa cıkar
+        'For Each port In ports
+        '    cmbPorts.Items.Add(port)
+        '    'MsgBox(port, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, "Serial port detecetd")
+        'Next port
 
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-        If (thReadAll.IsAlive = False) Then
-            thReadAll = New Thread(New ThreadStart(AddressOf Me.ReadAll))
-            thReadAll.Start()
-            'thReadAll.Join()
-            'thReadAll.Priority = ThreadPriority.AboveNormal
-            'thReadAll.IsBackground = True
-            'Else
-            '    If (thReadAll.IsBackground = False) Then
-            '        'thReadAll.Resume()
+        btnRefresh.Enabled = False
+        Timer_Stop()
+        ReadAll()
+        btnRefresh.Enabled = True
+    End Sub
+
+    Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim portFlag As Boolean = True
+        portFlag = CheckPortConnection()
+        If (portFlag) Then
+            ReadDev()
+            If (msjFlag = 1) Then
+                lblStatus.Text = "Please check the connection."
+                'msjFlag = -1
+            End If
+        Else
+            'msjFlag = 1
+            ClearDeviceProperty()
+            ClearTimeProperty()
+            'If (msjFlag = 0) Then
+            '    lblStatus.Text = "Please check the connection."
+            '    msjFlag = 1
             'End If
+
+
         End If
+    End Sub
+
+    Private Sub Timer_Stop()
+        Timer1.Stop()
+        'ClearDeviceProperty()
+    End Sub
+
+
+    Private Sub chbLock_CheckStateChanged(sender As Object, e As EventArgs) Handles chbLock.CheckStateChanged
+        If (chbLock.Checked = True) Then
+            gbLock.Enabled = False
+        Else
+            Dim result As DialogResult
+            result = MessageBox.Show("Are you sure to unlock the screen?", "Unlock Screen", MessageBoxButtons.YesNo)
+            If result = DialogResult.No Then
+                chbLock.Checked = True
+                gbLock.Enabled = False
+            ElseIf result = DialogResult.Yes Then
+                gbLock.Enabled = True
+            End If
+        End If
+
+    End Sub
+
+    Private Sub gbLock_Enter(sender As Object, e As EventArgs) Handles gbLock.Enter
 
     End Sub
 End Class
