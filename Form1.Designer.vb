@@ -25,6 +25,9 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.gbProgram = New System.Windows.Forms.GroupBox()
+        Me.chbLock = New System.Windows.Forms.CheckBox()
+        Me.lblActionStatus = New System.Windows.Forms.Label()
+        Me.btnSend = New System.Windows.Forms.Button()
         Me.gbLock = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnRFP = New System.Windows.Forms.Button()
@@ -77,9 +80,6 @@ Partial Class Form1
         Me.btnLIGHT2_1Press = New System.Windows.Forms.Button()
         Me.btnLIGHT1_3Press = New System.Windows.Forms.Button()
         Me.btnLIGHT2powerON = New System.Windows.Forms.Button()
-        Me.chbLock = New System.Windows.Forms.CheckBox()
-        Me.lblActionStatus = New System.Windows.Forms.Label()
-        Me.btnSend = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ConnectionSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProgramsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -134,6 +134,7 @@ Partial Class Form1
         Me.lblProgramInfo = New System.Windows.Forms.Label()
         Me.lblResult = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.lblProgramInfo1 = New System.Windows.Forms.Label()
         Me.gbProgram.SuspendLayout()
         Me.gbLock.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
@@ -151,10 +152,10 @@ Partial Class Form1
         '
         'gbProgram
         '
-        Me.gbProgram.Controls.Add(Me.gbLock)
         Me.gbProgram.Controls.Add(Me.chbLock)
         Me.gbProgram.Controls.Add(Me.lblActionStatus)
         Me.gbProgram.Controls.Add(Me.btnSend)
+        Me.gbProgram.Controls.Add(Me.gbLock)
         Me.gbProgram.Location = New System.Drawing.Point(20, 42)
         Me.gbProgram.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.gbProgram.Name = "gbProgram"
@@ -163,6 +164,34 @@ Partial Class Form1
         Me.gbProgram.TabIndex = 0
         Me.gbProgram.TabStop = False
         Me.gbProgram.Text = "Program Settings"
+        '
+        'chbLock
+        '
+        Me.chbLock.AutoSize = True
+        Me.chbLock.Location = New System.Drawing.Point(31, 487)
+        Me.chbLock.Name = "chbLock"
+        Me.chbLock.Size = New System.Drawing.Size(148, 24)
+        Me.chbLock.TabIndex = 59
+        Me.chbLock.Text = "LOCK SCREEN"
+        Me.chbLock.UseVisualStyleBackColor = True
+        '
+        'lblActionStatus
+        '
+        Me.lblActionStatus.AutoSize = True
+        Me.lblActionStatus.Location = New System.Drawing.Point(234, 490)
+        Me.lblActionStatus.Name = "lblActionStatus"
+        Me.lblActionStatus.Size = New System.Drawing.Size(13, 20)
+        Me.lblActionStatus.TabIndex = 51
+        Me.lblActionStatus.Text = " "
+        '
+        'btnSend
+        '
+        Me.btnSend.Location = New System.Drawing.Point(565, 492)
+        Me.btnSend.Name = "btnSend"
+        Me.btnSend.Size = New System.Drawing.Size(108, 35)
+        Me.btnSend.TabIndex = 42
+        Me.btnSend.Text = "SEND"
+        Me.btnSend.UseVisualStyleBackColor = True
         '
         'gbLock
         '
@@ -761,37 +790,8 @@ Partial Class Form1
         Me.btnLIGHT2powerON.Text = "OFF"
         Me.btnLIGHT2powerON.UseVisualStyleBackColor = True
         '
-        'chbLock
-        '
-        Me.chbLock.AutoSize = True
-        Me.chbLock.Location = New System.Drawing.Point(31, 487)
-        Me.chbLock.Name = "chbLock"
-        Me.chbLock.Size = New System.Drawing.Size(148, 24)
-        Me.chbLock.TabIndex = 59
-        Me.chbLock.Text = "LOCK SCREEN"
-        Me.chbLock.UseVisualStyleBackColor = True
-        '
-        'lblActionStatus
-        '
-        Me.lblActionStatus.AutoSize = True
-        Me.lblActionStatus.Location = New System.Drawing.Point(234, 490)
-        Me.lblActionStatus.Name = "lblActionStatus"
-        Me.lblActionStatus.Size = New System.Drawing.Size(13, 20)
-        Me.lblActionStatus.TabIndex = 51
-        Me.lblActionStatus.Text = " "
-        '
-        'btnSend
-        '
-        Me.btnSend.Location = New System.Drawing.Point(565, 492)
-        Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(108, 35)
-        Me.btnSend.TabIndex = 42
-        Me.btnSend.Text = "SEND"
-        Me.btnSend.UseVisualStyleBackColor = True
-        '
         'MenuStrip1
         '
-        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
@@ -1334,11 +1334,12 @@ Partial Class Form1
         '
         'Button1
         '
+        Me.Button1.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(303, 35)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(100, 38)
         Me.Button1.TabIndex = 45
-        Me.Button1.Text = "Connect"
+        Me.Button1.Text = "CONNECT"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'lblStatus
@@ -1352,9 +1353,11 @@ Partial Class Form1
         '
         'gbConSettings
         '
+        Me.gbConSettings.Controls.Add(Me.lblProgramInfo1)
         Me.gbConSettings.Controls.Add(Me.lblProgramInfo)
         Me.gbConSettings.Controls.Add(Me.cmbPorts)
         Me.gbConSettings.Controls.Add(Me.Button1)
+        Me.gbConSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbConSettings.Location = New System.Drawing.Point(20, 42)
         Me.gbConSettings.Name = "gbConSettings"
         Me.gbConSettings.Size = New System.Drawing.Size(720, 540)
@@ -1366,11 +1369,13 @@ Partial Class Form1
         'lblProgramInfo
         '
         Me.lblProgramInfo.AutoSize = True
-        Me.lblProgramInfo.Location = New System.Drawing.Point(299, 507)
+        Me.lblProgramInfo.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgramInfo.Location = New System.Drawing.Point(8, 459)
         Me.lblProgramInfo.Name = "lblProgramInfo"
-        Me.lblProgramInfo.Size = New System.Drawing.Size(228, 20)
+        Me.lblProgramInfo.Size = New System.Drawing.Size(697, 38)
         Me.lblProgramInfo.TabIndex = 46
-        Me.lblProgramInfo.Text = "Designed By MartElektronik  © "
+        Me.lblProgramInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(10) & "All rights reserved. Unauthorized use of the software may violate copyright, tra" &
+    "demark, and other laws."
         '
         'lblResult
         '
@@ -1385,6 +1390,16 @@ Partial Class Form1
         '
         Me.Timer1.Interval = 500
         '
+        'lblProgramInfo1
+        '
+        Me.lblProgramInfo1.AutoSize = True
+        Me.lblProgramInfo1.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgramInfo1.Location = New System.Drawing.Point(8, 447)
+        Me.lblProgramInfo1.Name = "lblProgramInfo1"
+        Me.lblProgramInfo1.Size = New System.Drawing.Size(260, 19)
+        Me.lblProgramInfo1.TabIndex = 47
+        Me.lblProgramInfo1.Text = "Copyright ©️ 2021 by Mart Elektronik."
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1394,16 +1409,16 @@ Partial Class Form1
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.gbMaintenance)
         Me.Controls.Add(Me.gbProgram)
         Me.Controls.Add(Me.gbConSettings)
-        Me.Controls.Add(Me.gbMaintenance)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Mart Elektronik"
+        Me.Text = "Checkout Programmer V1.0"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)
@@ -1544,4 +1559,5 @@ Partial Class Form1
     Friend WithEvents gbLock As GroupBox
     Friend WithEvents chbLock As CheckBox
     Friend WithEvents lblProgramInfo As Label
+    Friend WithEvents lblProgramInfo1 As Label
 End Class

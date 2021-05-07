@@ -3540,7 +3540,7 @@ Public Class Form1
             gbLock.Enabled = False
         Else
             Dim result As DialogResult
-            result = MessageBox.Show("Are you sure to unlock the screen?", "Unlock Screen", MessageBoxButtons.YesNo)
+            result = MessageBox.Show("Unlock the screen?", "Unlock Screen", MessageBoxButtons.YesNo)
             If result = DialogResult.No Then
                 chbLock.Checked = True
                 gbLock.Enabled = False
@@ -3551,7 +3551,4 @@ Public Class Form1
 
     End Sub
 
-    Private Sub gbLock_Enter(sender As Object, e As EventArgs) Handles gbLock.Enter
-
-    End Sub
 End Class
