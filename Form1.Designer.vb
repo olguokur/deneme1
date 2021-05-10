@@ -131,10 +131,10 @@ Partial Class Form1
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.gbConSettings = New System.Windows.Forms.GroupBox()
+        Me.lblProgramInfo1 = New System.Windows.Forms.Label()
         Me.lblProgramInfo = New System.Windows.Forms.Label()
         Me.lblResult = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.lblProgramInfo1 = New System.Windows.Forms.Label()
         Me.gbProgram.SuspendLayout()
         Me.gbLock.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
@@ -792,6 +792,7 @@ Partial Class Form1
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
@@ -1366,11 +1367,21 @@ Partial Class Form1
         Me.gbConSettings.Text = "Connection Settings"
         Me.gbConSettings.Visible = False
         '
+        'lblProgramInfo1
+        '
+        Me.lblProgramInfo1.AutoSize = True
+        Me.lblProgramInfo1.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgramInfo1.Location = New System.Drawing.Point(3, 447)
+        Me.lblProgramInfo1.Name = "lblProgramInfo1"
+        Me.lblProgramInfo1.Size = New System.Drawing.Size(260, 19)
+        Me.lblProgramInfo1.TabIndex = 47
+        Me.lblProgramInfo1.Text = "Copyright ©️ 2021 by Mart Elektronik."
+        '
         'lblProgramInfo
         '
         Me.lblProgramInfo.AutoSize = True
         Me.lblProgramInfo.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgramInfo.Location = New System.Drawing.Point(8, 459)
+        Me.lblProgramInfo.Location = New System.Drawing.Point(3, 459)
         Me.lblProgramInfo.Name = "lblProgramInfo"
         Me.lblProgramInfo.Size = New System.Drawing.Size(697, 38)
         Me.lblProgramInfo.TabIndex = 46
@@ -1390,16 +1401,6 @@ Partial Class Form1
         '
         Me.Timer1.Interval = 500
         '
-        'lblProgramInfo1
-        '
-        Me.lblProgramInfo1.AutoSize = True
-        Me.lblProgramInfo1.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgramInfo1.Location = New System.Drawing.Point(8, 447)
-        Me.lblProgramInfo1.Name = "lblProgramInfo1"
-        Me.lblProgramInfo1.Size = New System.Drawing.Size(260, 19)
-        Me.lblProgramInfo1.TabIndex = 47
-        Me.lblProgramInfo1.Text = "Copyright ©️ 2021 by Mart Elektronik."
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1409,9 +1410,9 @@ Partial Class Form1
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.gbConSettings)
         Me.Controls.Add(Me.gbMaintenance)
         Me.Controls.Add(Me.gbProgram)
-        Me.Controls.Add(Me.gbConSettings)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
