@@ -135,6 +135,7 @@ Partial Class Form1
         Me.lblProgramInfo = New System.Windows.Forms.Label()
         Me.lblResult = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label31 = New System.Windows.Forms.Label()
         Me.gbProgram.SuspendLayout()
         Me.gbLock.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
@@ -317,6 +318,7 @@ Partial Class Form1
         '
         'GroupBox8
         '
+        Me.GroupBox8.Controls.Add(Me.Label31)
         Me.GroupBox8.Controls.Add(Me.CmbTurnOff)
         Me.GroupBox8.Controls.Add(Me.Label2)
         Me.GroupBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -326,7 +328,6 @@ Partial Class Form1
         Me.GroupBox8.Size = New System.Drawing.Size(198, 78)
         Me.GroupBox8.TabIndex = 48
         Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "MOTOR 1 (min)"
         '
         'CmbTurnOff
         '
@@ -336,7 +337,7 @@ Partial Class Form1
         Me.CmbTurnOff.Items.AddRange(New Object() {"1", "2", "3", "4", "5"})
         Me.CmbTurnOff.Location = New System.Drawing.Point(98, 29)
         Me.CmbTurnOff.Name = "CmbTurnOff"
-        Me.CmbTurnOff.Size = New System.Drawing.Size(82, 28)
+        Me.CmbTurnOff.Size = New System.Drawing.Size(47, 28)
         Me.CmbTurnOff.TabIndex = 44
         '
         'Label2
@@ -797,26 +798,26 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(763, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(763, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'StatusStrip1
@@ -836,8 +837,8 @@ Partial Class Form1
         Me.gbMaintenance.Controls.Add(Me.lblVs)
         Me.gbMaintenance.Controls.Add(Me.GroupBox6)
         Me.gbMaintenance.Controls.Add(Me.GroupBox5)
-        Me.gbMaintenance.Controls.Add(Me.GroupBox3)
         Me.gbMaintenance.Controls.Add(Me.GroupBox4)
+        Me.gbMaintenance.Controls.Add(Me.GroupBox3)
         Me.gbMaintenance.Location = New System.Drawing.Point(20, 42)
         Me.gbMaintenance.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.gbMaintenance.Name = "gbMaintenance"
@@ -1401,6 +1402,16 @@ Partial Class Form1
         '
         Me.Timer1.Interval = 500
         '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label31.Location = New System.Drawing.Point(152, 35)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(42, 20)
+        Me.Label31.TabIndex = 46
+        Me.Label31.Text = "min."
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1410,9 +1421,9 @@ Partial Class Form1
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.gbProgram)
         Me.Controls.Add(Me.gbConSettings)
         Me.Controls.Add(Me.gbMaintenance)
-        Me.Controls.Add(Me.gbProgram)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -1561,4 +1572,5 @@ Partial Class Form1
     Friend WithEvents chbLock As CheckBox
     Friend WithEvents lblProgramInfo As Label
     Friend WithEvents lblProgramInfo1 As Label
+    Friend WithEvents Label31 As Label
 End Class
