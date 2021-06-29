@@ -36,7 +36,7 @@ Partial Class Form1
         Me.RadioButton_R_PEDAL = New System.Windows.Forms.RadioButton()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.gbAutoOff = New System.Windows.Forms.GroupBox()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.CmbTurnOff = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -93,8 +93,6 @@ Partial Class Form1
         Me.btnAlarm = New System.Windows.Forms.Button()
         Me.btnLIGHT1 = New System.Windows.Forms.Button()
         Me.btnLIGHT2 = New System.Windows.Forms.Button()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.lblVs = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_Inputs_ALM = New System.Windows.Forms.RadioButton()
         Me.RadioButton_Inputs_P2 = New System.Windows.Forms.RadioButton()
@@ -127,6 +125,8 @@ Partial Class Form1
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.lblVs = New System.Windows.Forms.Label()
         Me.cmbPorts = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
@@ -136,10 +136,11 @@ Partial Class Form1
         Me.lblProgramInfo = New System.Windows.Forms.Label()
         Me.lblResult = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.TmrVersion = New System.Windows.Forms.Timer(Me.components)
         Me.gbProgram.SuspendLayout()
         Me.gbLock.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
+        Me.gbAutoOff.SuspendLayout()
         Me.gbMotor2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.gbMaintenance.SuspendLayout()
@@ -201,7 +202,7 @@ Partial Class Form1
         Me.gbLock.Controls.Add(Me.GroupBox9)
         Me.gbLock.Controls.Add(Me.Label29)
         Me.gbLock.Controls.Add(Me.Label3)
-        Me.gbLock.Controls.Add(Me.GroupBox8)
+        Me.gbLock.Controls.Add(Me.gbAutoOff)
         Me.gbLock.Controls.Add(Me.Label4)
         Me.gbLock.Controls.Add(Me.gbMotor2)
         Me.gbLock.Controls.Add(Me.Label5)
@@ -316,18 +317,18 @@ Partial Class Form1
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "MOTOR 2"
         '
-        'GroupBox8
+        'gbAutoOff
         '
-        Me.GroupBox8.Controls.Add(Me.Label31)
-        Me.GroupBox8.Controls.Add(Me.CmbTurnOff)
-        Me.GroupBox8.Controls.Add(Me.Label2)
-        Me.GroupBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox8.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.GroupBox8.Location = New System.Drawing.Point(13, 365)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(198, 78)
-        Me.GroupBox8.TabIndex = 48
-        Me.GroupBox8.TabStop = False
+        Me.gbAutoOff.Controls.Add(Me.Label31)
+        Me.gbAutoOff.Controls.Add(Me.CmbTurnOff)
+        Me.gbAutoOff.Controls.Add(Me.Label2)
+        Me.gbAutoOff.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAutoOff.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.gbAutoOff.Location = New System.Drawing.Point(13, 365)
+        Me.gbAutoOff.Name = "gbAutoOff"
+        Me.gbAutoOff.Size = New System.Drawing.Size(198, 78)
+        Me.gbAutoOff.TabIndex = 48
+        Me.gbAutoOff.TabStop = False
         '
         'Label31
         '
@@ -815,19 +816,19 @@ Partial Class Form1
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 32)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 30)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 32)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 30)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 32)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 30)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'StatusStrip1
@@ -843,8 +844,6 @@ Partial Class Form1
         'gbMaintenance
         '
         Me.gbMaintenance.Controls.Add(Me.gbTest)
-        Me.gbMaintenance.Controls.Add(Me.Label30)
-        Me.gbMaintenance.Controls.Add(Me.lblVs)
         Me.gbMaintenance.Controls.Add(Me.GroupBox6)
         Me.gbMaintenance.Controls.Add(Me.GroupBox5)
         Me.gbMaintenance.Controls.Add(Me.GroupBox4)
@@ -939,24 +938,6 @@ Partial Class Form1
         Me.btnLIGHT2.TabIndex = 7
         Me.btnLIGHT2.Text = "LIGHT 2"
         Me.btnLIGHT2.UseVisualStyleBackColor = False
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(23, 458)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(146, 20)
-        Me.Label30.TabIndex = 50
-        Me.Label30.Text = "Device Information:"
-        '
-        'lblVs
-        '
-        Me.lblVs.AutoSize = True
-        Me.lblVs.Location = New System.Drawing.Point(193, 458)
-        Me.lblVs.Name = "lblVs"
-        Me.lblVs.Size = New System.Drawing.Size(129, 20)
-        Me.lblVs.TabIndex = 10
-        Me.lblVs.Text = "Device not found"
         '
         'GroupBox6
         '
@@ -1335,6 +1316,24 @@ Partial Class Form1
         Me.Label16.TabIndex = 0
         Me.Label16.Text = "MOTOR 1 CYCLE : "
         '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(436, 603)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(146, 20)
+        Me.Label30.TabIndex = 50
+        Me.Label30.Text = "Device Information:"
+        '
+        'lblVs
+        '
+        Me.lblVs.AutoSize = True
+        Me.lblVs.Location = New System.Drawing.Point(606, 603)
+        Me.lblVs.Name = "lblVs"
+        Me.lblVs.Size = New System.Drawing.Size(129, 20)
+        Me.lblVs.TabIndex = 10
+        Me.lblVs.Text = "Device not found"
+        '
         'cmbPorts
         '
         Me.cmbPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -1412,39 +1411,45 @@ Partial Class Form1
         '
         Me.Timer1.Interval = 500
         '
+        'TmrVersion
+        '
+        Me.TmrVersion.Enabled = True
+        Me.TmrVersion.Interval = 1000
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(763, 659)
         Me.Controls.Add(Me.lblResult)
+        Me.Controls.Add(Me.Label30)
+        Me.Controls.Add(Me.lblVs)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.gbMaintenance)
         Me.Controls.Add(Me.gbProgram)
         Me.Controls.Add(Me.gbConSettings)
+        Me.Controls.Add(Me.gbMaintenance)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Checkout Programmer V1.0"
+        Me.Text = "Checkout Programmer V1.1"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)
         Me.gbLock.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout()
+        Me.gbAutoOff.ResumeLayout(False)
+        Me.gbAutoOff.PerformLayout()
         Me.gbMotor2.ResumeLayout(False)
         Me.gbMotor2.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.gbMaintenance.ResumeLayout(False)
-        Me.gbMaintenance.PerformLayout()
         Me.gbTest.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
@@ -1551,7 +1556,7 @@ Partial Class Form1
     Friend WithEvents Label15 As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents Label28 As Label
-    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents gbAutoOff As GroupBox
     Friend WithEvents btnRFP As Button
     Friend WithEvents Label29 As Label
     Friend WithEvents lblM2TCon As Label
@@ -1573,4 +1578,5 @@ Partial Class Form1
     Friend WithEvents lblProgramInfo As Label
     Friend WithEvents lblProgramInfo1 As Label
     Friend WithEvents Label31 As Label
+    Friend WithEvents TmrVersion As Timer
 End Class

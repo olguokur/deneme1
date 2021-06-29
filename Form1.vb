@@ -65,16 +65,28 @@ Public Class Form1
             btnMOTOR2_3Press.BackColor = Color.LightGray
 
             M2CON(0) = 0
+
+            gbMotor2.Enabled = True
         Else
             btnMOTOR2onOFF.Text = "ON"
             btnMOTOR2onOFF.BackColor = Color.LightGreen
             M2CON(0) = 1
-
             GetHistoric(1, 1)
-
+            gbMotor2.Enabled = False
         End If
     End Sub
 
+
+    Private Sub EnableParameterView(flag As Boolean)
+        Label7.Visible = flag
+        btnDelayMinus.Visible = flag
+        btnDelayPlus.Visible = flag
+        lblDelay.Visible = flag
+        Label29.Visible = flag
+        btnRFP.Visible = flag
+        gbAutoOff.Visible = flag
+        gbMotor2.Visible = flag
+    End Sub
     Private Sub btnLIGHT1onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT1onOFF.Click
         If btnLIGHT1onOFF.Text = "ON" Then
 
@@ -655,6 +667,7 @@ Public Class Form1
         ClearForm()
 
         gbMaintenance.Visible = False
+        btnSend.Enabled = False
 
         For Each port In ports
             cmbPorts.Items.Add(port)
@@ -1766,7 +1779,61 @@ Public Class Form1
         gbMaintenance.Visible = False
         gbConSettings.Visible = False
         Timer_Stop()
+        'GET DEVICE INFO AND ARRANGE GUI. IF VERSION OLDER THAN R5 DISABLE TIME INFO
+        'ReadDev()
+        'DesignScreenView() ' arrange new screen parameters
+
+
         'thReadDev.Abort()
+    End Sub
+
+    Private Function getVersion() As Integer
+        Dim vs As Integer = 0
+
+        Dim version As String
+        version = lblVs.Text
+
+        If version.Length > 0 Then
+            Dim parsedList As String()
+            parsedList = version.Split("-")
+            If parsedList.Length > 1 Then
+                If parsedList(1).Length > 1 Then
+                    version = parsedList(1).Substring(1)
+                    Try
+                        vs = Convert.ToInt32(version)
+                    Catch ex As Exception
+                        vs = 0
+                    End Try
+                End If
+            End If
+        End If
+        Return vs
+    End Function
+
+    Private Sub DesignScreenView()
+        Dim version As Integer
+        version = getVersion()
+
+        If version > 5 Then
+            'gbAutoOff.Enabled = True
+            'gbMotor2.Enabled = True
+            'btnDelayMinus.Enabled = True
+            'btnDelayPlus.Enabled = True
+            'btnRFP.Enabled = True
+            EnableParameterView(True)
+            If btnMOTOR2onOFF.Text = "OFF" Then
+                gbMotor2.Enabled = False
+            Else
+                gbMotor2.Enabled = True
+            End If
+        Else
+            'gbAutoOff.Enabled = False
+            'gbMotor2.Enabled = False
+            'btnDelayMinus.Enabled = False
+            'btnDelayPlus.Enabled = False
+            'btnRFP.Enabled = False
+            EnableParameterView(False)
+        End If
     End Sub
 
     Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -3026,12 +3093,18 @@ Public Class Form1
         input6.amount = "02"
         input6.bitText = TCON
 
+        Dim version As Integer
+        version = getVersion()
+
+
         ' records.Add(input1)
         records.Add(input2)
         records.Add(input3)
         records.Add(input4)
         records.Add(input5)
-        records.Add(input6)
+        If version > 5 Then
+            records.Add(input6)
+        End If
         WriteBulk(records)
         btnSend.Enabled = True
     End Sub
@@ -3072,9 +3145,10 @@ Public Class Form1
             lblVs.Text = "Device not found."
             ClearDeviceProperty()
             ClearTimeProperty()
-
+            btnSend.Enabled = False
             Exit Sub
         End If
+        btnSend.Enabled = True
 
         ViewDeviceVersionRegister(txtBuffDev)
         'TEST gönder
@@ -3170,7 +3244,7 @@ Public Class Form1
                 Next
                 If (input.status = "F") Then
                     'btnMOTOR2.BackColor = Color.LightGray
-                    MessageBox.Show("Transmit Error please SEND again.")
+                    'MessageBox.Show("Transmit Error please SEND again.")
                 Else
                     'btnMOTOR2.BackColor = Color.LightGreen
                 End If
@@ -3551,4 +3625,12 @@ Public Class Form1
 
     End Sub
 
+    Private Sub TmrVersion_Tick(sender As Object, e As EventArgs) Handles TmrVersion.Tick
+        If gbProgram.Visible = True Then
+
+            'GET PROGRAM VERSION
+            ReadDev()
+            DesignScreenView()
+        End If
+    End Sub
 End Class
