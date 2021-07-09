@@ -78,12 +78,12 @@ Public Class Form1
 
 
     Private Sub EnableParameterView(flag As Boolean)
-        Label7.Visible = flag
-        btnDelayMinus.Visible = flag
-        btnDelayPlus.Visible = flag
-        lblDelay.Visible = flag
-        Label29.Visible = flag
-        btnRFP.Visible = flag
+        'Label7.Visible = flag
+        'btnDelayMinus.Visible = flag
+        'btnDelayPlus.Visible = flag
+        'lblDelay.Visible = flag
+        'Label29.Visible = flag
+        'btnRFP.Visible = flag
         gbAutoOff.Visible = flag
         gbMotor2.Visible = flag
     End Sub
@@ -692,7 +692,6 @@ Public Class Form1
 
     Private Sub ClearForm()
 
-
         btnMOTOR2onOFF.Text = "OFF"
         btnMOTOR2onOFF.BackColor = Color.Salmon
         btnMOTOR2pwrON.Text = ""
@@ -726,7 +725,6 @@ Public Class Form1
         cmbTFirst.SelectedIndex = cmbTFirst.FindStringExact("5")
         CmbTon.SelectedIndex = CmbTon.FindStringExact("5")
         cmbToff.SelectedIndex = cmbToff.FindStringExact("5")
-
 
         RadioButton_F_SWITCH.Checked = False
 
@@ -1814,7 +1812,7 @@ Public Class Form1
         Dim version As Integer
         version = getVersion()
 
-        If version > 5 Then
+        If version > 5 Or version = 0 Then
             'gbAutoOff.Enabled = True
             'gbMotor2.Enabled = True
             'btnDelayMinus.Enabled = True
@@ -3095,7 +3093,6 @@ Public Class Form1
 
         Dim version As Integer
         version = getVersion()
-
 
         ' records.Add(input1)
         records.Add(input2)

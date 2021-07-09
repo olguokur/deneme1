@@ -512,9 +512,9 @@ Partial Class Form1
         Me.Label6.Location = New System.Drawing.Point(8, 250)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(160, 20)
+        Me.Label6.Size = New System.Drawing.Size(149, 20)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "NUMBER OF CELLS"
+        Me.Label6.Text = "NUMBER OF CELL"
         '
         'Label7
         '
@@ -809,26 +809,26 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(763, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(763, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 30)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 30)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 30)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'StatusStrip1
@@ -1436,7 +1436,7 @@ Partial Class Form1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Checkout Programmer V1.1"
+        Me.Text = "Checkout Programmer V1.2"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)
