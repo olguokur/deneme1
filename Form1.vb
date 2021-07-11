@@ -77,7 +77,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub EnableParameterView(flag As Boolean)
+    Private Sub EnableParameterViewTimePart(flag As Boolean)
         'Label7.Visible = flag
         'btnDelayMinus.Visible = flag
         'btnDelayPlus.Visible = flag
@@ -86,6 +86,13 @@ Public Class Form1
         'btnRFP.Visible = flag
         gbAutoOff.Visible = flag
         gbMotor2.Visible = flag
+    End Sub
+
+    Private Sub EnableParameterViewP1Part(flag As Boolean)
+        Label29.Visible = flag
+        btnRFP.Visible = flag
+        'gbAutoOff.Visible = flag
+        'gbMotor2.Visible = flag
     End Sub
     Private Sub btnLIGHT1onOFF_Click(sender As Object, e As EventArgs) Handles btnLIGHT1onOFF.Click
         If btnLIGHT1onOFF.Text = "ON" Then
@@ -1813,24 +1820,24 @@ Public Class Form1
         version = getVersion()
 
         If version > 5 Or version = 0 Then
-            'gbAutoOff.Enabled = True
-            'gbMotor2.Enabled = True
-            'btnDelayMinus.Enabled = True
-            'btnDelayPlus.Enabled = True
-            'btnRFP.Enabled = True
-            EnableParameterView(True)
+            EnableParameterViewTimePart(True)
+            EnableParameterViewP1Part(True)
             If btnMOTOR2onOFF.Text = "OFF" Then
                 gbMotor2.Enabled = False
             Else
                 gbMotor2.Enabled = True
             End If
         Else
-            'gbAutoOff.Enabled = False
-            'gbMotor2.Enabled = False
-            'btnDelayMinus.Enabled = False
-            'btnDelayPlus.Enabled = False
-            'btnRFP.Enabled = False
-            EnableParameterView(False)
+            If version = 5 Then
+                EnableParameterViewTimePart(False)
+                EnableParameterViewP1Part(True)
+            ElseIf version = 4 Then
+                EnableParameterViewTimePart(False)
+                EnableParameterViewP1Part(False)
+            Else
+                EnableParameterViewTimePart(False)
+                EnableParameterViewP1Part(False)
+            End If
         End If
     End Sub
 
