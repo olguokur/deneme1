@@ -1436,7 +1436,7 @@ Partial Class Form1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Checkout Programmer V1.3"
+        Me.Text = "Checkout Programmer V1.2"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)

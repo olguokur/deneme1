@@ -1818,25 +1818,21 @@ Public Class Form1
     Private Sub DesignScreenView()
         Dim version As Integer
         version = getVersion()
-
-        If version > 5 Or version = 0 Then
-            EnableParameterViewTimePart(True)
-            EnableParameterViewP1Part(True)
-            If btnMOTOR2onOFF.Text = "OFF" Then
-                gbMotor2.Enabled = False
-            Else
-                gbMotor2.Enabled = True
-            End If
+        ' If version > 5 Or version = 0 Then
+        EnableParameterViewTimePart(True)
+        EnableParameterViewP1Part(True)
+        If btnMOTOR2onOFF.Text = "OFF" Then
+            gbMotor2.Enabled = False
         Else
-            If version = 5 Then
+            gbMotor2.Enabled = True
+        End If
+        'End If
+        If (version <> 0) Then
+            If version < 6 Then
                 EnableParameterViewTimePart(False)
-                EnableParameterViewP1Part(True)
-            ElseIf version = 4 Then
-                EnableParameterViewTimePart(False)
-                EnableParameterViewP1Part(False)
-            Else
-                EnableParameterViewTimePart(False)
-                EnableParameterViewP1Part(False)
+                If version < 4 Then
+                    EnableParameterViewP1Part(False)
+                End If
             End If
         End If
     End Sub
