@@ -41,7 +41,7 @@ Module Module1
 
     End Structure
 
-    'Public tryNumber As Integer = 0
+    'BEFORE P1 INPUT ON DISPLAY 20.09.2021
 
 End Module
 
