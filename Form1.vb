@@ -88,6 +88,11 @@ Public Class Form1
         gbMotor2.Visible = flag
     End Sub
 
+    Private Sub EnableParameterViewP1InputPart(flag As Boolean)
+
+        GroupBox1.Visible = flag
+    End Sub
+
     Private Sub EnableParameterViewP1Part(flag As Boolean)
         Label29.Visible = flag
         btnRFP.Visible = flag
@@ -639,6 +644,7 @@ Public Class Form1
         toolTip1.SetToolTip(Me.Label4, "Set the Light 1 parameters")
         toolTip1.SetToolTip(Me.Label5, "Set the Light 2 parameters")
         toolTip1.SetToolTip(Me.GroupBox9, "Select the 'Pedal 2 Input' function (Pedal or Flap Switch)")
+        toolTip1.SetToolTip(Me.GroupBox1, "Select the 'Pedal 1 Input' function (Self Button or Front Pedal)")
         toolTip1.SetToolTip(Me.GroupBox6, "Check if related inputs are working")
         toolTip1.SetToolTip(Me.Label8, "Set the alarm action")
         toolTip1.SetToolTip(Me.Label6, "Select the photocell quantity")
@@ -736,6 +742,10 @@ Public Class Form1
         RadioButton_F_SWITCH.Checked = False
 
         RadioButton_R_PEDAL.Checked = True
+
+        RadioButton_SelfButton.Checked = False
+        RadioButton_FrontPedal.Checked = True
+        EnableParameterViewP1Part(True)
 
         btnRFP.Text = "OFF"
         btnRFP.BackColor = Color.Salmon
@@ -1422,6 +1432,16 @@ Public Class Form1
             End If
         End If
 
+        'DCR 15 for self button is active P1 PARt invisible
+        If DCR(15) = 1 Then
+            RadioButton_SelfButton.Checked = True
+            RadioButton_FrontPedal.Checked = False
+        Else
+            RadioButton_SelfButton.Checked = False
+            RadioButton_FrontPedal.Checked = True
+        End If
+
+
         TCON = testArray(5) 'testArray(4).ToCharArray
 
         Dim timeAuto As String
@@ -1816,8 +1836,12 @@ Public Class Form1
     End Function
 
     Private Sub DesignScreenView()
+        Console.WriteLine("DesignScreenView started")
+
         Dim version As Integer
+
         version = getVersion()
+
         ' If version > 5 Or version = 0 Then
         EnableParameterViewTimePart(True)
         EnableParameterViewP1Part(True)
@@ -1828,13 +1852,30 @@ Public Class Form1
         End If
         'End If
         If (version <> 0) Then
+            Console.WriteLine("version <>0")
             If version < 6 Then
+                Console.WriteLine("version < 6")
+                EnableParameterViewP1InputPart(False)
                 EnableParameterViewTimePart(False)
                 If version < 4 Then
                     EnableParameterViewP1Part(False)
                 End If
+            ElseIf version = 6 Then
+                Console.WriteLine("version = 6")
+                EnableParameterViewP1InputPart(False)
+            ElseIf version > 6 Then
+                Console.WriteLine("version > 6")
+                EnableParameterViewP1InputPart(True)
+                If RadioButton_SelfButton.Checked = True And RadioButton_FrontPedal.Checked = False Then
+                    Console.WriteLine("P1 False")
+                    EnableParameterViewP1Part(False)
+                ElseIf RadioButton_SelfButton.Checked = False And RadioButton_FrontPedal.Checked = True Then
+                    Console.WriteLine("P1 True")
+                    EnableParameterViewP1Part(True)
+                End If
             End If
         End If
+        Console.WriteLine("DesignScreenView ended")
     End Sub
 
     Private Sub MERCADONAToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -2259,7 +2300,13 @@ Public Class Form1
             DCR(7) = 0
         End If
 
-        DCR(15) = 0
+        If RadioButton_SelfButton.Checked Then
+            DCR(15) = 1
+        Else
+            DCR(15) = 0
+        End If
+
+
         DCR(14) = 0
 
         Dim timeLine As String
@@ -2285,7 +2332,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub RadioButton_F_SWITCH_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_F_SWITCH.CheckedChanged
+    Private Sub RadioButton_F_SWITCH_CheckedChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -2581,10 +2628,10 @@ Public Class Form1
                 txtBuffChrArr = txtBuffProperty.ToCharArray()
 
                 Dim vsNum As String = txtBuffProperty.Substring(12, 4)
-                vsNum = ConvertBinToStr(vsNum, 0, 0)
+                vsNum = ConvertBinToStr(vsNum, 0, 0, False)
 
                 Dim rvsNum As String = txtBuffProperty.Substring(8, 4)
-                rvsNum = ConvertBinToStr(rvsNum, 0, 0)
+                rvsNum = ConvertBinToStr(rvsNum, 0, 0, False)
 
                 If (vsNum = "0" Or rvsNum = "0") Then
                     MessageBox.Show("Versiyon hatası oluştu.")
@@ -2640,10 +2687,15 @@ Public Class Form1
                     RadioButton_Inputs_ALM.Checked = True
                 End If
 
-                lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1)
-                lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1)
+                lblCell1Intensity.Text = ConvertBinToStr(cell1Int, 1, 1, False)
+                lblCell2Intensity.Text = ConvertBinToStr(cell2Int, 1, 1, False)
             End If
         End If
+    End Sub
+
+    Private Sub startTimer()
+        'TODO AC
+        Timer1.Start()
     End Sub
 
     Private Sub ReadAll()
@@ -2651,119 +2703,119 @@ Public Class Form1
 
         'Thread.Sleep(1000)
 
-        Dim txtBuffM1C As String = ReadPortByAddress("19", True) '
+        Dim txtBuffM1C As String = ReadPortByAddress("19", True) '25
 
-        If (txtBuffM1C Is Nothing Or txtBuffM1C = "" Or txtBuffM1C = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffM1C Is Nothing Or txtBuffM1C = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtBuffM1TCon As String = ReadPortByAddress("1E", True)
+        Dim txtBuffM1TCon As String = ReadPortByAddress("1E", True) '30
 
-        If (txtBuffM1TCon Is Nothing Or txtBuffM1TCon = "" Or txtBuffM1TCon = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffM1TCon Is Nothing Or txtBuffM1TCon = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtBuffM2C As String = ReadPortByAddress("23", True)
+        Dim txtBuffM2C As String = ReadPortByAddress("23", True) '35
 
-        If (txtBuffM2C Is Nothing Or txtBuffM2C = "" Or txtBuffM2C = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffM2C Is Nothing Or txtBuffM2C = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtbuffm2ton As String = ReadPortByAddress("28", True)
+        Dim txtbuffm2ton As String = ReadPortByAddress("28", True) '40
 
-        If (txtbuffm2ton Is Nothing Or txtbuffm2ton = "" Or txtbuffm2ton = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtbuffm2ton Is Nothing Or txtbuffm2ton = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtbuffl1c As String = ReadPortByAddress("2d", True)
+        Dim txtbuffl1c As String = ReadPortByAddress("2d", True) '45
 
-        If (txtbuffl1c Is Nothing Or txtbuffl1c = "" Or txtbuffl1c = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtbuffl1c Is Nothing Or txtbuffl1c = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtBuffL1Tcon As String = ReadPortByAddress("32", True)
+        Dim txtBuffL1Tcon As String = ReadPortByAddress("32", True) '50
 
-        If (txtBuffL1Tcon Is Nothing Or txtBuffL1Tcon = "" Or txtBuffL1Tcon = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffL1Tcon Is Nothing Or txtBuffL1Tcon = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtBuffL2C As String = ReadPortByAddress("37", True)
+        Dim txtBuffL2C As String = ReadPortByAddress("37", True) '55
 
-        If (txtBuffL2C Is Nothing Or txtBuffL2C = "" Or txtBuffL2C = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffL2C Is Nothing Or txtBuffL2C = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
-        Dim txtBuffL2Tcon As String = ReadPortByAddress("3C", True)
+        Dim txtBuffL2Tcon As String = ReadPortByAddress("3C", True) '60
 
-        If (txtBuffL2Tcon Is Nothing Or txtBuffL2Tcon = "" Or txtBuffL2Tcon = "11111111111111111111111111111111") Then
-            lblVs.Text = "Device not found."
-            ClearDeviceProperty()
-            ClearTimeProperty()
-            Timer1.Start()
+        If (txtBuffL2Tcon Is Nothing Or txtBuffL2Tcon = "") Then
+            'lblVs.Text = "Device not found."
+            'ClearDeviceProperty()
+            'ClearTimeProperty()
+            startTimer()
             Exit Sub
         End If
 
         If txtBuffM1C.Length > 0 Then
-            lblM1C.Text = ConvertBinToStr(txtBuffM1C, 0, 0)
+            lblM1C.Text = ConvertBinToStr(txtBuffM1C, 0, 0, True)
         End If
 
         If txtBuffM1TCon.Length > 0 Then
-            lblM1TCon.Text = ConvertBinToStr(txtBuffM1TCon, 0, 0)
+            lblM1TCon.Text = ConvertBinToStr(txtBuffM1TCon, 0, 0, True)
         End If
 
         If txtBuffM2C.Length > 0 Then
-            lblM2C.Text = ConvertBinToStr(txtBuffM2C, 0, 0)
+            lblM2C.Text = ConvertBinToStr(txtBuffM2C, 0, 0, True)
         End If
 
         If txtbuffm2ton.Length > 0 Then
-            lblM2TCon.Text = ConvertBinToStr(txtbuffm2ton, 0, 0)
+            lblM2TCon.Text = ConvertBinToStr(txtbuffm2ton, 0, 0, True)
         End If
 
         If txtbuffl1c.Length > 0 Then
-            lblL1C.Text = ConvertBinToStr(txtbuffl1c, 0, 0)
+            lblL1C.Text = ConvertBinToStr(txtbuffl1c, 0, 0, True)
         End If
 
         If txtBuffL1Tcon.Length > 0 Then
-            lblL1TCon.Text = ConvertBinToStr(txtBuffL1Tcon, 0, 0)
+            lblL1TCon.Text = ConvertBinToStr(txtBuffL1Tcon, 0, 0, True)
         End If
 
         If txtBuffL2C.Length > 0 Then
-            lblL2C.Text = ConvertBinToStr(txtBuffL2C, 0, 0)
+            lblL2C.Text = ConvertBinToStr(txtBuffL2C, 0, 0, True)
         End If
 
         If txtBuffL2Tcon.Length > 0 Then
-            lblL2TCon.Text = ConvertBinToStr(txtBuffL2Tcon, 0, 0)
+            lblL2TCon.Text = ConvertBinToStr(txtBuffL2Tcon, 0, 0, True)
         End If
         Thread.Sleep(100)
-
+        'TODO AC
         Timer1.Start()
 
         Console.WriteLine("ReadAll END")
@@ -2963,15 +3015,23 @@ Public Class Form1
         Return chrArr
     End Function
 
-    Private Function ConvertBinToStr(strBin As String, min As Integer, max As Integer) As Integer
+    Private Function ConvertBinToStr(strBin As String, min As Integer, max As Integer, NAPartEnable As Boolean) As UInteger
         Dim strOfInt As Integer
+        Dim deneme As UInteger
         If strBin.Length > 0 Then
-            strOfInt = Convert.ToInt32(strBin, 2)
-            'If (strOfInt > 0) Then
-            'Console.WriteLine(strOfInt)
-            'End If
+            'If NAPartEnable = True And strBin = "11111111111111111111111111111111" Then
+            '    'strOfInt = -1
+            'Else
+            'strOfInt = Convert.ToInt32(strBin, 2)
+            deneme = Convert.ToUInt32(strBin, 2)
         End If
-        Return strOfInt
+
+        'End If
+        Console.WriteLine("DIKKAT")
+        Console.WriteLine(deneme)
+        Console.WriteLine(deneme + 1)
+        Console.WriteLine(Convert.ToInt32(strBin, 2))
+        Return deneme
     End Function
 
     Private Function CheckPortConnection() As Boolean
@@ -3627,10 +3687,29 @@ Public Class Form1
 
     Private Sub TmrVersion_Tick(sender As Object, e As EventArgs) Handles TmrVersion.Tick
         If gbProgram.Visible = True Then
-
+            'TODO AC
             'GET PROGRAM VERSION
             ReadDev()
-            DesignScreenView()
+            '?DesignScreenView()
         End If
     End Sub
+
+    Private Sub RadioButton_SelfButton_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_SelfButton.CheckedChanged
+        'EnableParameterViewP1Part(False)
+        If (RadioButton_SelfButton.Checked = True) Then
+            EnableParameterViewP1Part(False)
+        Else
+            EnableParameterViewP1Part(True)
+        End If
+    End Sub
+
+    Private Sub RadioButton_FrontPedal_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_FrontPedal.CheckedChanged
+        If (RadioButton_FrontPedal.Checked = True) Then
+            EnableParameterViewP1Part(True)
+        Else
+            EnableParameterViewP1Part(False)
+        End If
+    End Sub
+
+
 End Class

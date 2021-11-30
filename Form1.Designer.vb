@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form, bileşen listesini temizlemeyi bırakmayı geçersiz kılar.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOT: Aşağıdaki yordam Windows Form Tasarımcısı için gereklidir
     'Windows Form Tasarımcısı kullanılarak değiştirilebilir.  
     'Kod düzenleyicisini kullanarak değiştirmeyin.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
@@ -29,6 +29,9 @@ Partial Class Form1
         Me.lblActionStatus = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.gbLock = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_SelfButton = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_FrontPedal = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnRFP = New System.Windows.Forms.Button()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
@@ -85,6 +88,7 @@ Partial Class Form1
         Me.ConnectionSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProgramsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaintenanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.gbMaintenance = New System.Windows.Forms.GroupBox()
         Me.gbTest = New System.Windows.Forms.GroupBox()
@@ -139,6 +143,7 @@ Partial Class Form1
         Me.TmrVersion = New System.Windows.Forms.Timer(Me.components)
         Me.gbProgram.SuspendLayout()
         Me.gbLock.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.gbAutoOff.SuspendLayout()
         Me.gbMotor2.SuspendLayout()
@@ -197,6 +202,7 @@ Partial Class Form1
         '
         'gbLock
         '
+        Me.gbLock.Controls.Add(Me.GroupBox1)
         Me.gbLock.Controls.Add(Me.Label1)
         Me.gbLock.Controls.Add(Me.btnRFP)
         Me.gbLock.Controls.Add(Me.GroupBox9)
@@ -241,6 +247,41 @@ Partial Class Form1
         Me.gbLock.TabIndex = 58
         Me.gbLock.TabStop = False
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.RadioButton_SelfButton)
+        Me.GroupBox1.Controls.Add(Me.RadioButton_FrontPedal)
+        Me.GroupBox1.Location = New System.Drawing.Point(13, 233)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(146, 89)
+        Me.GroupBox1.TabIndex = 57
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "P1 INPUT"
+        '
+        'RadioButton_SelfButton
+        '
+        Me.RadioButton_SelfButton.AutoSize = True
+        Me.RadioButton_SelfButton.Location = New System.Drawing.Point(8, 27)
+        Me.RadioButton_SelfButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_SelfButton.Name = "RadioButton_SelfButton"
+        Me.RadioButton_SelfButton.Size = New System.Drawing.Size(115, 24)
+        Me.RadioButton_SelfButton.TabIndex = 35
+        Me.RadioButton_SelfButton.Text = "Self-Button"
+        Me.RadioButton_SelfButton.UseVisualStyleBackColor = True
+        '
+        'RadioButton_FrontPedal
+        '
+        Me.RadioButton_FrontPedal.AutoSize = True
+        Me.RadioButton_FrontPedal.Checked = True
+        Me.RadioButton_FrontPedal.Location = New System.Drawing.Point(8, 55)
+        Me.RadioButton_FrontPedal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_FrontPedal.Name = "RadioButton_FrontPedal"
+        Me.RadioButton_FrontPedal.Size = New System.Drawing.Size(116, 24)
+        Me.RadioButton_FrontPedal.TabIndex = 34
+        Me.RadioButton_FrontPedal.TabStop = True
+        Me.RadioButton_FrontPedal.Text = "Front Pedal"
+        Me.RadioButton_FrontPedal.UseVisualStyleBackColor = True
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -255,7 +296,7 @@ Partial Class Form1
         'btnRFP
         '
         Me.btnRFP.BackColor = System.Drawing.Color.LightGreen
-        Me.btnRFP.Location = New System.Drawing.Point(600, 299)
+        Me.btnRFP.Location = New System.Drawing.Point(126, 328)
         Me.btnRFP.Name = "btnRFP"
         Me.btnRFP.Size = New System.Drawing.Size(77, 35)
         Me.btnRFP.TabIndex = 57
@@ -266,7 +307,7 @@ Partial Class Form1
         '
         Me.GroupBox9.Controls.Add(Me.RadioButton_F_SWITCH)
         Me.GroupBox9.Controls.Add(Me.RadioButton_R_PEDAL)
-        Me.GroupBox9.Location = New System.Drawing.Point(256, 245)
+        Me.GroupBox9.Location = New System.Drawing.Point(206, 233)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Size = New System.Drawing.Size(146, 89)
         Me.GroupBox9.TabIndex = 56
@@ -279,9 +320,9 @@ Partial Class Form1
         Me.RadioButton_F_SWITCH.Location = New System.Drawing.Point(8, 27)
         Me.RadioButton_F_SWITCH.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadioButton_F_SWITCH.Name = "RadioButton_F_SWITCH"
-        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(111, 24)
+        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(116, 24)
         Me.RadioButton_F_SWITCH.TabIndex = 35
-        Me.RadioButton_F_SWITCH.Text = "F.SWITCH"
+        Me.RadioButton_F_SWITCH.Text = "Flap Switch"
         Me.RadioButton_F_SWITCH.UseVisualStyleBackColor = True
         '
         'RadioButton_R_PEDAL
@@ -291,16 +332,16 @@ Partial Class Form1
         Me.RadioButton_R_PEDAL.Location = New System.Drawing.Point(8, 55)
         Me.RadioButton_R_PEDAL.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadioButton_R_PEDAL.Name = "RadioButton_R_PEDAL"
-        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(103, 24)
+        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(113, 24)
         Me.RadioButton_R_PEDAL.TabIndex = 34
         Me.RadioButton_R_PEDAL.TabStop = True
-        Me.RadioButton_R_PEDAL.Text = "R.PEDAL"
+        Me.RadioButton_R_PEDAL.Text = "Rear Pedal"
         Me.RadioButton_R_PEDAL.UseVisualStyleBackColor = True
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(490, 306)
+        Me.Label29.Location = New System.Drawing.Point(16, 335)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(107, 20)
         Me.Label29.TabIndex = 56
@@ -509,7 +550,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 250)
+        Me.Label6.Location = New System.Drawing.Point(404, 241)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(149, 20)
@@ -519,7 +560,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 309)
+        Me.Label7.Location = New System.Drawing.Point(405, 287)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(63, 20)
@@ -540,7 +581,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(404, 250)
+        Me.Label8.Location = New System.Drawing.Point(404, 333)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(65, 20)
@@ -618,7 +659,7 @@ Partial Class Form1
         'lblDelay
         '
         Me.lblDelay.AutoSize = True
-        Me.lblDelay.Location = New System.Drawing.Point(125, 309)
+        Me.lblDelay.Location = New System.Drawing.Point(518, 287)
         Me.lblDelay.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDelay.Name = "lblDelay"
         Me.lblDelay.Size = New System.Drawing.Size(39, 20)
@@ -639,7 +680,7 @@ Partial Class Form1
         'btnDelayPlus
         '
         Me.btnDelayPlus.BackColor = System.Drawing.Color.LightBlue
-        Me.btnDelayPlus.Location = New System.Drawing.Point(164, 301)
+        Me.btnDelayPlus.Location = New System.Drawing.Point(557, 279)
         Me.btnDelayPlus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDelayPlus.Name = "btnDelayPlus"
         Me.btnDelayPlus.Size = New System.Drawing.Size(40, 35)
@@ -661,7 +702,7 @@ Partial Class Form1
         'btnDelayMinus
         '
         Me.btnDelayMinus.BackColor = System.Drawing.Color.LightBlue
-        Me.btnDelayMinus.Location = New System.Drawing.Point(85, 301)
+        Me.btnDelayMinus.Location = New System.Drawing.Point(478, 279)
         Me.btnDelayMinus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnDelayMinus.Name = "btnDelayMinus"
         Me.btnDelayMinus.Size = New System.Drawing.Size(40, 35)
@@ -683,7 +724,7 @@ Partial Class Form1
         'btnAlarm_Buzzer_Light
         '
         Me.btnAlarm_Buzzer_Light.BackColor = System.Drawing.Color.LightBlue
-        Me.btnAlarm_Buzzer_Light.Location = New System.Drawing.Point(477, 243)
+        Me.btnAlarm_Buzzer_Light.Location = New System.Drawing.Point(477, 326)
         Me.btnAlarm_Buzzer_Light.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnAlarm_Buzzer_Light.Name = "btnAlarm_Buzzer_Light"
         Me.btnAlarm_Buzzer_Light.Size = New System.Drawing.Size(200, 35)
@@ -705,7 +746,7 @@ Partial Class Form1
         'btnNumberOfCells
         '
         Me.btnNumberOfCells.BackColor = System.Drawing.Color.LightBlue
-        Me.btnNumberOfCells.Location = New System.Drawing.Point(189, 243)
+        Me.btnNumberOfCells.Location = New System.Drawing.Point(585, 234)
         Me.btnNumberOfCells.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.btnNumberOfCells.Name = "btnNumberOfCells"
         Me.btnNumberOfCells.Size = New System.Drawing.Size(54, 35)
@@ -806,10 +847,10 @@ Partial Class Form1
         '
         Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.StatusToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(763, 33)
+        Me.MenuStrip1.Size = New System.Drawing.Size(761, 33)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -831,13 +872,19 @@ Partial Class Form1
         Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
+        'StatusToolStripMenuItem
+        '
+        Me.StatusToolStripMenuItem.Name = "StatusToolStripMenuItem"
+        Me.StatusToolStripMenuItem.Size = New System.Drawing.Size(76, 29)
+        Me.StatusToolStripMenuItem.Text = "Status"
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 637)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 633)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 21, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(763, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(761, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -1420,7 +1467,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(763, 659)
+        Me.ClientSize = New System.Drawing.Size(761, 655)
         Me.Controls.Add(Me.lblResult)
         Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.lblVs)
@@ -1436,11 +1483,13 @@ Partial Class Form1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Checkout Programmer V1.2.1"
+        Me.Text = "Checkout Programmer V1.3.1"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)
         Me.gbLock.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox9.PerformLayout()
         Me.gbAutoOff.ResumeLayout(False)
@@ -1579,4 +1628,8 @@ Partial Class Form1
     Friend WithEvents lblProgramInfo1 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents TmrVersion As Timer
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents RadioButton_SelfButton As RadioButton
+    Friend WithEvents RadioButton_FrontPedal As RadioButton
+    Friend WithEvents StatusToolStripMenuItem As ToolStripMenuItem
 End Class
