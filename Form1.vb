@@ -675,6 +675,14 @@ Public Class Form1
 
         cmbPrograms.SelectedItem = "NEW"
 
+        If (cmbBuzzer.Items.Count = 0) Then
+            cmbBuzzer.Items.Add("BUZZER")
+            cmbBuzzer.Items.Add("BUZZER+LIGHT 1")
+            cmbBuzzer.Items.Add("BUZZER+LIGHT 2")
+            cmbBuzzer.Items.Add("OFF")
+            cmbBuzzer.SelectedText = "BUZZER"
+        End If
+
         GetListOfSettings()
 
         ClearForm()
@@ -731,6 +739,9 @@ Public Class Form1
 
         btnAlarm_Buzzer_Light.Text = "BUZZER"
         btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
+
+        cmbBuzzer.Text = "BUZZER"
+
 
         lblDelay.Text = "0,2s"
 
@@ -1394,18 +1405,33 @@ Public Class Form1
         End If
 
         If DCR(4) = 1 And DCR(5) = 1 AndAlso DCR(6) = 0 Then 'btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+            cmbBuzzer.Text = "BUZZER+LIGHT 1"
+
             btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 1"
             btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
 
         ElseIf DCR(4) = 1 And DCR(5) = 0 AndAlso DCR(6) = 1 Then 'btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+            cmbBuzzer.Text = "BUZZER+LIGHT 2"
+
             btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2"
             btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
 
         ElseIf DCR(4) = 0 And DCR(5) = 0 AndAlso DCR(6) = 0 Then 'btnAlarm_Buzzer_Light.Text = "OFF" Then
+            If (DCR(14) = 0) Then
+                cmbBuzzer.Text = "OFF"
+            ElseIf (DCR(14) = 1 And (cmbBuzzer.Items.Contains("Smart Till") = True)) Then
+                cmbBuzzer.Text = "Smart Till"
+            Else
+                cmbBuzzer.Text = ""
+            End If
+
+
             btnAlarm_Buzzer_Light.Text = "OFF"
             btnAlarm_Buzzer_Light.BackColor = Color.Salmon
 
         ElseIf DCR(4) = 1 And DCR(5) = 0 AndAlso DCR(6) = 0 Then 'btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+            cmbBuzzer.Text = "BUZZER"
+
             btnAlarm_Buzzer_Light.Text = "BUZZER"
             btnAlarm_Buzzer_Light.BackColor = Color.LightBlue
 
@@ -1841,6 +1867,7 @@ Public Class Form1
         Dim version As Integer
 
         version = getVersion()
+        'version = Int(TextBox1.Text)
 
         ' If version > 5 Or version = 0 Then
         EnableParameterViewTimePart(True)
@@ -1853,7 +1880,11 @@ Public Class Form1
         'End If
         If (version <> 0) Then
             Console.WriteLine("version <>0")
+
             If version < 6 Then
+                If (cmbBuzzer.Items.Contains("Smart Till") = True) Then
+                    cmbBuzzer.Items.Remove("Smart Till")
+                End If
                 Console.WriteLine("version < 6")
                 EnableParameterViewP1InputPart(False)
                 EnableParameterViewTimePart(False)
@@ -1861,6 +1892,9 @@ Public Class Form1
                     EnableParameterViewP1Part(False)
                 End If
             ElseIf version = 6 Then
+                If (cmbBuzzer.Items.Contains("Smart Till") = True) Then
+                    cmbBuzzer.Items.Remove("Smart Till")
+                End If
                 Console.WriteLine("version = 6")
                 EnableParameterViewP1InputPart(False)
             ElseIf version > 6 Then
@@ -1873,6 +1907,16 @@ Public Class Form1
                     Console.WriteLine("P1 True")
                     EnableParameterViewP1Part(True)
                 End If
+                If version > 7 Then
+                    If (cmbBuzzer.Items.Contains("Smart Till") = False) Then
+                        cmbBuzzer.Items.Add("Smart Till")
+                    End If
+                Else
+                    If (cmbBuzzer.Items.Contains("Smart Till") = True) Then
+                        cmbBuzzer.Items.Remove("Smart Till")
+                    End If
+                End If
+
             End If
         End If
         Console.WriteLine("DesignScreenView ended")
@@ -1944,6 +1988,7 @@ Public Class Form1
     End Sub
 
     Private Sub GetLastStateBeforeSave()
+        DCR(14) = 0
         If btnMOTOR2onOFF.Text = "ON" Then
             M2CON(0) = 1
         Else
@@ -2225,6 +2270,7 @@ Public Class Form1
         ElseIf btnNumberOfCells.Text = "2" Then
             DCR(0) = 1
         End If
+        DCR(14) = 0
 
         If btnRFP.Text = "ON" Then
             DCR(1) = 1
@@ -2232,25 +2278,31 @@ Public Class Form1
             DCR(1) = 0
         End If
 
-        If btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 1" Then
+        If cmbBuzzer.Text = "BUZZER+LIGHT 1" Then
             DCR(6) = 0
             DCR(5) = 1
             DCR(4) = 1
 
-        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER+LIGHT 2" Then
+        ElseIf cmbBuzzer.Text = "BUZZER+LIGHT 2" Then
             DCR(6) = 1
             DCR(5) = 0
             DCR(4) = 1
 
-        ElseIf btnAlarm_Buzzer_Light.Text = "OFF" Then
+        ElseIf cmbBuzzer.Text = "OFF" Then
             DCR(6) = 0
             DCR(5) = 0
             DCR(4) = 0
 
-        ElseIf btnAlarm_Buzzer_Light.Text = "BUZZER" Then
+        ElseIf cmbBuzzer.Text = "BUZZER" Then
             DCR(6) = 0
             DCR(5) = 0
             DCR(4) = 1
+
+        ElseIf cmbBuzzer.Text = "Smart Till" Then
+            DCR(6) = 0
+            DCR(5) = 0
+            DCR(4) = 0
+            DCR(14) = 1
 
         End If
 
@@ -2307,7 +2359,7 @@ Public Class Form1
         End If
 
 
-        DCR(14) = 0
+
 
         Dim timeLine As String
 
@@ -3690,7 +3742,7 @@ Public Class Form1
             'TODO AC
             'GET PROGRAM VERSION
             ReadDev()
-            '?DesignScreenView()
+            DesignScreenView()
         End If
     End Sub
 
@@ -3712,4 +3764,11 @@ Public Class Form1
     End Sub
 
 
+    Private Sub CmbTon_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbTon.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub CmbTurnOff_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbTurnOff.SelectedIndexChanged
+
+    End Sub
 End Class

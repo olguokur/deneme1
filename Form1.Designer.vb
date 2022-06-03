@@ -29,6 +29,7 @@ Partial Class Form1
         Me.lblActionStatus = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.gbLock = New System.Windows.Forms.GroupBox()
+        Me.cmbBuzzer = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.RadioButton_SelfButton = New System.Windows.Forms.RadioButton()
         Me.RadioButton_FrontPedal = New System.Windows.Forms.RadioButton()
@@ -163,11 +164,11 @@ Partial Class Form1
         Me.gbProgram.Controls.Add(Me.lblActionStatus)
         Me.gbProgram.Controls.Add(Me.btnSend)
         Me.gbProgram.Controls.Add(Me.gbLock)
-        Me.gbProgram.Location = New System.Drawing.Point(20, 42)
-        Me.gbProgram.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.gbProgram.Location = New System.Drawing.Point(18, 34)
+        Me.gbProgram.Margin = New System.Windows.Forms.Padding(4)
         Me.gbProgram.Name = "gbProgram"
-        Me.gbProgram.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.gbProgram.Size = New System.Drawing.Size(720, 540)
+        Me.gbProgram.Padding = New System.Windows.Forms.Padding(4)
+        Me.gbProgram.Size = New System.Drawing.Size(640, 432)
         Me.gbProgram.TabIndex = 0
         Me.gbProgram.TabStop = False
         Me.gbProgram.Text = "Program Settings"
@@ -175,9 +176,10 @@ Partial Class Form1
         'chbLock
         '
         Me.chbLock.AutoSize = True
-        Me.chbLock.Location = New System.Drawing.Point(31, 487)
+        Me.chbLock.Location = New System.Drawing.Point(28, 390)
+        Me.chbLock.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.chbLock.Name = "chbLock"
-        Me.chbLock.Size = New System.Drawing.Size(148, 24)
+        Me.chbLock.Size = New System.Drawing.Size(122, 20)
         Me.chbLock.TabIndex = 59
         Me.chbLock.Text = "LOCK SCREEN"
         Me.chbLock.UseVisualStyleBackColor = True
@@ -185,23 +187,25 @@ Partial Class Form1
         'lblActionStatus
         '
         Me.lblActionStatus.AutoSize = True
-        Me.lblActionStatus.Location = New System.Drawing.Point(234, 490)
+        Me.lblActionStatus.Location = New System.Drawing.Point(208, 392)
         Me.lblActionStatus.Name = "lblActionStatus"
-        Me.lblActionStatus.Size = New System.Drawing.Size(13, 20)
+        Me.lblActionStatus.Size = New System.Drawing.Size(10, 16)
         Me.lblActionStatus.TabIndex = 51
         Me.lblActionStatus.Text = " "
         '
         'btnSend
         '
-        Me.btnSend.Location = New System.Drawing.Point(565, 492)
+        Me.btnSend.Location = New System.Drawing.Point(502, 394)
+        Me.btnSend.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(108, 35)
+        Me.btnSend.Size = New System.Drawing.Size(96, 28)
         Me.btnSend.TabIndex = 42
         Me.btnSend.Text = "SEND"
         Me.btnSend.UseVisualStyleBackColor = True
         '
         'gbLock
         '
+        Me.gbLock.Controls.Add(Me.cmbBuzzer)
         Me.gbLock.Controls.Add(Me.GroupBox1)
         Me.gbLock.Controls.Add(Me.Label1)
         Me.gbLock.Controls.Add(Me.btnRFP)
@@ -241,19 +245,31 @@ Partial Class Form1
         Me.gbLock.Controls.Add(Me.btnLIGHT2_1Press)
         Me.gbLock.Controls.Add(Me.btnLIGHT1_3Press)
         Me.gbLock.Controls.Add(Me.btnLIGHT2powerON)
-        Me.gbLock.Location = New System.Drawing.Point(12, 23)
+        Me.gbLock.Location = New System.Drawing.Point(11, 18)
+        Me.gbLock.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gbLock.Name = "gbLock"
-        Me.gbLock.Size = New System.Drawing.Size(686, 447)
+        Me.gbLock.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.gbLock.Size = New System.Drawing.Size(610, 358)
         Me.gbLock.TabIndex = 58
         Me.gbLock.TabStop = False
+        '
+        'cmbBuzzer
+        '
+        Me.cmbBuzzer.FormattingEnabled = True
+        Me.cmbBuzzer.Location = New System.Drawing.Point(425, 264)
+        Me.cmbBuzzer.Name = "cmbBuzzer"
+        Me.cmbBuzzer.Size = New System.Drawing.Size(166, 24)
+        Me.cmbBuzzer.TabIndex = 59
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.RadioButton_SelfButton)
         Me.GroupBox1.Controls.Add(Me.RadioButton_FrontPedal)
-        Me.GroupBox1.Location = New System.Drawing.Point(13, 233)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 186)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(146, 89)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox1.Size = New System.Drawing.Size(130, 71)
         Me.GroupBox1.TabIndex = 57
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "P1 INPUT"
@@ -261,10 +277,10 @@ Partial Class Form1
         'RadioButton_SelfButton
         '
         Me.RadioButton_SelfButton.AutoSize = True
-        Me.RadioButton_SelfButton.Location = New System.Drawing.Point(8, 27)
-        Me.RadioButton_SelfButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_SelfButton.Location = New System.Drawing.Point(7, 22)
+        Me.RadioButton_SelfButton.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_SelfButton.Name = "RadioButton_SelfButton"
-        Me.RadioButton_SelfButton.Size = New System.Drawing.Size(115, 24)
+        Me.RadioButton_SelfButton.Size = New System.Drawing.Size(92, 20)
         Me.RadioButton_SelfButton.TabIndex = 35
         Me.RadioButton_SelfButton.Text = "Self-Button"
         Me.RadioButton_SelfButton.UseVisualStyleBackColor = True
@@ -273,10 +289,10 @@ Partial Class Form1
         '
         Me.RadioButton_FrontPedal.AutoSize = True
         Me.RadioButton_FrontPedal.Checked = True
-        Me.RadioButton_FrontPedal.Location = New System.Drawing.Point(8, 55)
-        Me.RadioButton_FrontPedal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_FrontPedal.Location = New System.Drawing.Point(7, 44)
+        Me.RadioButton_FrontPedal.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_FrontPedal.Name = "RadioButton_FrontPedal"
-        Me.RadioButton_FrontPedal.Size = New System.Drawing.Size(116, 24)
+        Me.RadioButton_FrontPedal.Size = New System.Drawing.Size(97, 20)
         Me.RadioButton_FrontPedal.TabIndex = 34
         Me.RadioButton_FrontPedal.TabStop = True
         Me.RadioButton_FrontPedal.Text = "Front Pedal"
@@ -286,19 +302,20 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(7, 19)
+        Me.Label1.Location = New System.Drawing.Point(6, 15)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(140, 22)
+        Me.Label1.Size = New System.Drawing.Size(118, 18)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Program Name: "
         '
         'btnRFP
         '
         Me.btnRFP.BackColor = System.Drawing.Color.LightGreen
-        Me.btnRFP.Location = New System.Drawing.Point(126, 328)
+        Me.btnRFP.Location = New System.Drawing.Point(112, 262)
+        Me.btnRFP.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnRFP.Name = "btnRFP"
-        Me.btnRFP.Size = New System.Drawing.Size(77, 35)
+        Me.btnRFP.Size = New System.Drawing.Size(68, 28)
         Me.btnRFP.TabIndex = 57
         Me.btnRFP.Text = "ON"
         Me.btnRFP.UseVisualStyleBackColor = False
@@ -307,9 +324,11 @@ Partial Class Form1
         '
         Me.GroupBox9.Controls.Add(Me.RadioButton_F_SWITCH)
         Me.GroupBox9.Controls.Add(Me.RadioButton_R_PEDAL)
-        Me.GroupBox9.Location = New System.Drawing.Point(206, 233)
+        Me.GroupBox9.Location = New System.Drawing.Point(183, 186)
+        Me.GroupBox9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(146, 89)
+        Me.GroupBox9.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox9.Size = New System.Drawing.Size(130, 71)
         Me.GroupBox9.TabIndex = 56
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "P2 INPUT"
@@ -317,10 +336,10 @@ Partial Class Form1
         'RadioButton_F_SWITCH
         '
         Me.RadioButton_F_SWITCH.AutoSize = True
-        Me.RadioButton_F_SWITCH.Location = New System.Drawing.Point(8, 27)
-        Me.RadioButton_F_SWITCH.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_F_SWITCH.Location = New System.Drawing.Point(7, 22)
+        Me.RadioButton_F_SWITCH.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_F_SWITCH.Name = "RadioButton_F_SWITCH"
-        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(116, 24)
+        Me.RadioButton_F_SWITCH.Size = New System.Drawing.Size(96, 20)
         Me.RadioButton_F_SWITCH.TabIndex = 35
         Me.RadioButton_F_SWITCH.Text = "Flap Switch"
         Me.RadioButton_F_SWITCH.UseVisualStyleBackColor = True
@@ -329,10 +348,10 @@ Partial Class Form1
         '
         Me.RadioButton_R_PEDAL.AutoSize = True
         Me.RadioButton_R_PEDAL.Checked = True
-        Me.RadioButton_R_PEDAL.Location = New System.Drawing.Point(8, 55)
-        Me.RadioButton_R_PEDAL.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_R_PEDAL.Location = New System.Drawing.Point(7, 44)
+        Me.RadioButton_R_PEDAL.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_R_PEDAL.Name = "RadioButton_R_PEDAL"
-        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(113, 24)
+        Me.RadioButton_R_PEDAL.Size = New System.Drawing.Size(97, 20)
         Me.RadioButton_R_PEDAL.TabIndex = 34
         Me.RadioButton_R_PEDAL.TabStop = True
         Me.RadioButton_R_PEDAL.Text = "Rear Pedal"
@@ -341,9 +360,9 @@ Partial Class Form1
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(16, 335)
+        Me.Label29.Location = New System.Drawing.Point(14, 268)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(107, 20)
+        Me.Label29.Size = New System.Drawing.Size(91, 16)
         Me.Label29.TabIndex = 56
         Me.Label29.Text = "P1 RESTART"
         '
@@ -351,10 +370,10 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(8, 88)
+        Me.Label3.Location = New System.Drawing.Point(7, 70)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(87, 20)
+        Me.Label3.Size = New System.Drawing.Size(79, 17)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "MOTOR 2"
         '
@@ -365,9 +384,11 @@ Partial Class Form1
         Me.gbAutoOff.Controls.Add(Me.Label2)
         Me.gbAutoOff.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbAutoOff.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.gbAutoOff.Location = New System.Drawing.Point(13, 365)
+        Me.gbAutoOff.Location = New System.Drawing.Point(12, 292)
+        Me.gbAutoOff.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gbAutoOff.Name = "gbAutoOff"
-        Me.gbAutoOff.Size = New System.Drawing.Size(198, 78)
+        Me.gbAutoOff.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.gbAutoOff.Size = New System.Drawing.Size(176, 62)
         Me.gbAutoOff.TabIndex = 48
         Me.gbAutoOff.TabStop = False
         '
@@ -375,9 +396,9 @@ Partial Class Form1
         '
         Me.Label31.AutoSize = True
         Me.Label31.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label31.Location = New System.Drawing.Point(152, 35)
+        Me.Label31.Location = New System.Drawing.Point(135, 28)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(42, 20)
+        Me.Label31.Size = New System.Drawing.Size(38, 17)
         Me.Label31.TabIndex = 46
         Me.Label31.Text = "min."
         '
@@ -387,9 +408,10 @@ Partial Class Form1
         Me.CmbTurnOff.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CmbTurnOff.FormattingEnabled = True
         Me.CmbTurnOff.Items.AddRange(New Object() {"1", "2", "3", "4", "5"})
-        Me.CmbTurnOff.Location = New System.Drawing.Point(98, 29)
+        Me.CmbTurnOff.Location = New System.Drawing.Point(87, 23)
+        Me.CmbTurnOff.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.CmbTurnOff.Name = "CmbTurnOff"
-        Me.CmbTurnOff.Size = New System.Drawing.Size(47, 28)
+        Me.CmbTurnOff.Size = New System.Drawing.Size(42, 24)
         Me.CmbTurnOff.TabIndex = 44
         '
         'Label2
@@ -397,9 +419,9 @@ Partial Class Form1
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label2.Location = New System.Drawing.Point(5, 35)
+        Me.Label2.Location = New System.Drawing.Point(4, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(87, 20)
+        Me.Label2.Size = New System.Drawing.Size(76, 17)
         Me.Label2.TabIndex = 45
         Me.Label2.Text = "Auto OFF"
         '
@@ -407,10 +429,10 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(8, 133)
+        Me.Label4.Location = New System.Drawing.Point(7, 106)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(77, 20)
+        Me.Label4.Size = New System.Drawing.Size(68, 17)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "LIGHT 1"
         '
@@ -427,9 +449,11 @@ Partial Class Form1
         Me.gbMotor2.Controls.Add(Me.Label28)
         Me.gbMotor2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbMotor2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.gbMotor2.Location = New System.Drawing.Point(215, 365)
+        Me.gbMotor2.Location = New System.Drawing.Point(191, 292)
+        Me.gbMotor2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gbMotor2.Name = "gbMotor2"
-        Me.gbMotor2.Size = New System.Drawing.Size(462, 78)
+        Me.gbMotor2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.gbMotor2.Size = New System.Drawing.Size(411, 62)
         Me.gbMotor2.TabIndex = 55
         Me.gbMotor2.TabStop = False
         Me.gbMotor2.Text = "MOTOR 2 (sec)"
@@ -438,9 +462,9 @@ Partial Class Form1
         '
         Me.Label24.AutoSize = True
         Me.Label24.ForeColor = System.Drawing.Color.Black
-        Me.Label24.Location = New System.Drawing.Point(26, 35)
+        Me.Label24.Location = New System.Drawing.Point(23, 28)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(40, 20)
+        Me.Label24.Size = New System.Drawing.Size(36, 17)
         Me.Label24.TabIndex = 47
         Me.Label24.Text = "first"
         '
@@ -449,18 +473,19 @@ Partial Class Form1
         Me.cmbToff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbToff.FormattingEnabled = True
         Me.cmbToff.Items.AddRange(New Object() {"1", "1,5", "2", "2,5", "3", "3,5", "4", "4,5", "5"})
-        Me.cmbToff.Location = New System.Drawing.Point(216, 29)
+        Me.cmbToff.Location = New System.Drawing.Point(192, 23)
+        Me.cmbToff.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbToff.Name = "cmbToff"
-        Me.cmbToff.Size = New System.Drawing.Size(78, 28)
+        Me.cmbToff.Size = New System.Drawing.Size(70, 24)
         Me.cmbToff.TabIndex = 54
         '
         'Label25
         '
         Me.Label25.AutoSize = True
         Me.Label25.ForeColor = System.Drawing.Color.Black
-        Me.Label25.Location = New System.Drawing.Point(335, 37)
+        Me.Label25.Location = New System.Drawing.Point(298, 30)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(29, 20)
+        Me.Label25.Size = New System.Drawing.Size(26, 17)
         Me.Label25.TabIndex = 49
         Me.Label25.Text = "on"
         '
@@ -469,18 +494,19 @@ Partial Class Form1
         Me.CmbTon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbTon.FormattingEnabled = True
         Me.CmbTon.Items.AddRange(New Object() {"1", "1,5", "2", "2,5", "3", "3,5", "4", "4,5", "5"})
-        Me.CmbTon.Location = New System.Drawing.Point(369, 29)
+        Me.CmbTon.Location = New System.Drawing.Point(328, 23)
+        Me.CmbTon.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.CmbTon.Name = "CmbTon"
-        Me.CmbTon.Size = New System.Drawing.Size(78, 28)
+        Me.CmbTon.Size = New System.Drawing.Size(70, 24)
         Me.CmbTon.TabIndex = 53
         '
         'Label27
         '
         Me.Label27.AutoSize = True
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(180, 37)
+        Me.Label27.Location = New System.Drawing.Point(160, 30)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(31, 20)
+        Me.Label27.Size = New System.Drawing.Size(27, 17)
         Me.Label27.TabIndex = 51
         Me.Label27.Text = "off"
         '
@@ -489,9 +515,10 @@ Partial Class Form1
         Me.cmbTFirst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTFirst.FormattingEnabled = True
         Me.cmbTFirst.Items.AddRange(New Object() {"1", "1,5", "2", "2,5", "3", "3,5", "4", "4,5", "5"})
-        Me.cmbTFirst.Location = New System.Drawing.Point(71, 29)
+        Me.cmbTFirst.Location = New System.Drawing.Point(63, 23)
+        Me.cmbTFirst.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbTFirst.Name = "cmbTFirst"
-        Me.cmbTFirst.Size = New System.Drawing.Size(78, 28)
+        Me.cmbTFirst.Size = New System.Drawing.Size(70, 24)
         Me.cmbTFirst.TabIndex = 52
         '
         'Label15
@@ -499,9 +526,9 @@ Partial Class Form1
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(7, 27)
+        Me.Label15.Location = New System.Drawing.Point(6, 22)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(25, 26)
+        Me.Label15.Size = New System.Drawing.Size(23, 24)
         Me.Label15.TabIndex = 55
         Me.Label15.Text = "T"
         '
@@ -510,9 +537,9 @@ Partial Class Form1
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(161, 29)
+        Me.Label26.Location = New System.Drawing.Point(143, 23)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(25, 26)
+        Me.Label26.Size = New System.Drawing.Size(23, 24)
         Me.Label26.TabIndex = 56
         Me.Label26.Text = "T"
         '
@@ -521,9 +548,9 @@ Partial Class Form1
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.Black
-        Me.Label28.Location = New System.Drawing.Point(315, 29)
+        Me.Label28.Location = New System.Drawing.Point(280, 23)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(25, 26)
+        Me.Label28.Size = New System.Drawing.Size(23, 24)
         Me.Label28.TabIndex = 57
         Me.Label28.Text = "T"
         '
@@ -531,10 +558,10 @@ Partial Class Form1
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(8, 180)
+        Me.Label5.Location = New System.Drawing.Point(7, 144)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(77, 20)
+        Me.Label5.Size = New System.Drawing.Size(68, 17)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "LIGHT 2"
         '
@@ -542,38 +569,39 @@ Partial Class Form1
         '
         Me.cmbPrograms.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPrograms.FormattingEnabled = True
-        Me.cmbPrograms.Location = New System.Drawing.Point(158, 19)
+        Me.cmbPrograms.Location = New System.Drawing.Point(140, 15)
+        Me.cmbPrograms.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbPrograms.Name = "cmbPrograms"
-        Me.cmbPrograms.Size = New System.Drawing.Size(378, 28)
+        Me.cmbPrograms.Size = New System.Drawing.Size(336, 24)
         Me.cmbPrograms.TabIndex = 43
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(404, 241)
+        Me.Label6.Location = New System.Drawing.Point(359, 193)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(149, 20)
+        Me.Label6.Size = New System.Drawing.Size(122, 16)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "NUMBER OF CELL"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(405, 287)
+        Me.Label7.Location = New System.Drawing.Point(360, 230)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(63, 20)
+        Me.Label7.Size = New System.Drawing.Size(51, 16)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = "DELAY"
         '
         'btnLIGHT2onOFF
         '
         Me.btnLIGHT2onOFF.BackColor = System.Drawing.Color.LightGreen
-        Me.btnLIGHT2onOFF.Location = New System.Drawing.Point(108, 171)
-        Me.btnLIGHT2onOFF.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2onOFF.Location = New System.Drawing.Point(96, 137)
+        Me.btnLIGHT2onOFF.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2onOFF.Name = "btnLIGHT2onOFF"
-        Me.btnLIGHT2onOFF.Size = New System.Drawing.Size(77, 35)
+        Me.btnLIGHT2onOFF.Size = New System.Drawing.Size(68, 28)
         Me.btnLIGHT2onOFF.TabIndex = 33
         Me.btnLIGHT2onOFF.Text = "ON"
         Me.btnLIGHT2onOFF.UseVisualStyleBackColor = False
@@ -581,20 +609,20 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(404, 333)
+        Me.Label8.Location = New System.Drawing.Point(314, 272)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(65, 20)
+        Me.Label8.Size = New System.Drawing.Size(97, 16)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "ALARM"
+        Me.Label8.Text = "ALARM INPUT"
         '
         'btnLIGHT1onOFF
         '
         Me.btnLIGHT1onOFF.BackColor = System.Drawing.Color.LightGreen
-        Me.btnLIGHT1onOFF.Location = New System.Drawing.Point(108, 126)
-        Me.btnLIGHT1onOFF.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1onOFF.Location = New System.Drawing.Point(96, 101)
+        Me.btnLIGHT1onOFF.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1onOFF.Name = "btnLIGHT1onOFF"
-        Me.btnLIGHT1onOFF.Size = New System.Drawing.Size(77, 35)
+        Me.btnLIGHT1onOFF.Size = New System.Drawing.Size(68, 28)
         Me.btnLIGHT1onOFF.TabIndex = 32
         Me.btnLIGHT1onOFF.Text = "ON"
         Me.btnLIGHT1onOFF.UseVisualStyleBackColor = False
@@ -603,10 +631,10 @@ Partial Class Form1
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(216, 55)
+        Me.Label11.Location = New System.Drawing.Point(192, 44)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(86, 20)
+        Me.Label11.Size = New System.Drawing.Size(78, 17)
         Me.Label11.TabIndex = 10
         Me.Label11.Text = "Power On"
         '
@@ -615,10 +643,10 @@ Partial Class Form1
         Me.btnSAVE.BackColor = System.Drawing.Color.DodgerBlue
         Me.btnSAVE.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSAVE.ForeColor = System.Drawing.Color.White
-        Me.btnSAVE.Location = New System.Drawing.Point(557, 15)
-        Me.btnSAVE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnSAVE.Location = New System.Drawing.Point(495, 12)
+        Me.btnSAVE.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSAVE.Name = "btnSAVE"
-        Me.btnSAVE.Size = New System.Drawing.Size(120, 35)
+        Me.btnSAVE.Size = New System.Drawing.Size(107, 28)
         Me.btnSAVE.TabIndex = 41
         Me.btnSAVE.Text = "SAVE"
         Me.btnSAVE.UseVisualStyleBackColor = False
@@ -627,20 +655,20 @@ Partial Class Form1
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(340, 56)
+        Me.Label12.Location = New System.Drawing.Point(302, 45)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(74, 20)
+        Me.Label12.Size = New System.Drawing.Size(68, 17)
         Me.Label12.TabIndex = 11
         Me.Label12.Text = "1. Press"
         '
         'btnMOTOR2onOFF
         '
         Me.btnMOTOR2onOFF.BackColor = System.Drawing.Color.LightGreen
-        Me.btnMOTOR2onOFF.Location = New System.Drawing.Point(108, 80)
-        Me.btnMOTOR2onOFF.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2onOFF.Location = New System.Drawing.Point(96, 64)
+        Me.btnMOTOR2onOFF.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2onOFF.Name = "btnMOTOR2onOFF"
-        Me.btnMOTOR2onOFF.Size = New System.Drawing.Size(77, 35)
+        Me.btnMOTOR2onOFF.Size = New System.Drawing.Size(68, 28)
         Me.btnMOTOR2onOFF.TabIndex = 31
         Me.btnMOTOR2onOFF.Text = "ON"
         Me.btnMOTOR2onOFF.UseVisualStyleBackColor = False
@@ -649,20 +677,20 @@ Partial Class Form1
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(459, 56)
+        Me.Label13.Location = New System.Drawing.Point(408, 45)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(74, 20)
+        Me.Label13.Size = New System.Drawing.Size(68, 17)
         Me.Label13.TabIndex = 12
         Me.Label13.Text = "2. Press"
         '
         'lblDelay
         '
         Me.lblDelay.AutoSize = True
-        Me.lblDelay.Location = New System.Drawing.Point(518, 287)
+        Me.lblDelay.Location = New System.Drawing.Point(460, 230)
         Me.lblDelay.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDelay.Name = "lblDelay"
-        Me.lblDelay.Size = New System.Drawing.Size(39, 20)
+        Me.lblDelay.Size = New System.Drawing.Size(31, 16)
         Me.lblDelay.TabIndex = 30
         Me.lblDelay.Text = "0,2s"
         '
@@ -670,20 +698,20 @@ Partial Class Form1
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(583, 56)
+        Me.Label14.Location = New System.Drawing.Point(518, 45)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(69, 20)
+        Me.Label14.Size = New System.Drawing.Size(63, 17)
         Me.Label14.TabIndex = 13
         Me.Label14.Text = "3.Press"
         '
         'btnDelayPlus
         '
         Me.btnDelayPlus.BackColor = System.Drawing.Color.LightBlue
-        Me.btnDelayPlus.Location = New System.Drawing.Point(557, 279)
-        Me.btnDelayPlus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnDelayPlus.Location = New System.Drawing.Point(495, 223)
+        Me.btnDelayPlus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelayPlus.Name = "btnDelayPlus"
-        Me.btnDelayPlus.Size = New System.Drawing.Size(40, 35)
+        Me.btnDelayPlus.Size = New System.Drawing.Size(36, 28)
         Me.btnDelayPlus.TabIndex = 29
         Me.btnDelayPlus.Text = "+"
         Me.btnDelayPlus.UseVisualStyleBackColor = False
@@ -691,10 +719,10 @@ Partial Class Form1
         'btnMOTOR2pwrON
         '
         Me.btnMOTOR2pwrON.BackColor = System.Drawing.Color.Orange
-        Me.btnMOTOR2pwrON.Location = New System.Drawing.Point(206, 80)
-        Me.btnMOTOR2pwrON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2pwrON.Location = New System.Drawing.Point(183, 64)
+        Me.btnMOTOR2pwrON.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2pwrON.Name = "btnMOTOR2pwrON"
-        Me.btnMOTOR2pwrON.Size = New System.Drawing.Size(115, 35)
+        Me.btnMOTOR2pwrON.Size = New System.Drawing.Size(102, 28)
         Me.btnMOTOR2pwrON.TabIndex = 14
         Me.btnMOTOR2pwrON.Text = "AUTO"
         Me.btnMOTOR2pwrON.UseVisualStyleBackColor = False
@@ -702,10 +730,10 @@ Partial Class Form1
         'btnDelayMinus
         '
         Me.btnDelayMinus.BackColor = System.Drawing.Color.LightBlue
-        Me.btnDelayMinus.Location = New System.Drawing.Point(478, 279)
-        Me.btnDelayMinus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnDelayMinus.Location = New System.Drawing.Point(425, 223)
+        Me.btnDelayMinus.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelayMinus.Name = "btnDelayMinus"
-        Me.btnDelayMinus.Size = New System.Drawing.Size(40, 35)
+        Me.btnDelayMinus.Size = New System.Drawing.Size(36, 28)
         Me.btnDelayMinus.TabIndex = 28
         Me.btnDelayMinus.Text = "-"
         Me.btnDelayMinus.UseVisualStyleBackColor = False
@@ -713,10 +741,10 @@ Partial Class Form1
         'btnMOTOR2_1Press
         '
         Me.btnMOTOR2_1Press.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.btnMOTOR2_1Press.Location = New System.Drawing.Point(323, 80)
-        Me.btnMOTOR2_1Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2_1Press.Location = New System.Drawing.Point(287, 64)
+        Me.btnMOTOR2_1Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2_1Press.Name = "btnMOTOR2_1Press"
-        Me.btnMOTOR2_1Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnMOTOR2_1Press.Size = New System.Drawing.Size(103, 28)
         Me.btnMOTOR2_1Press.TabIndex = 15
         Me.btnMOTOR2_1Press.Text = "RUN"
         Me.btnMOTOR2_1Press.UseVisualStyleBackColor = False
@@ -724,21 +752,22 @@ Partial Class Form1
         'btnAlarm_Buzzer_Light
         '
         Me.btnAlarm_Buzzer_Light.BackColor = System.Drawing.Color.LightBlue
-        Me.btnAlarm_Buzzer_Light.Location = New System.Drawing.Point(477, 326)
-        Me.btnAlarm_Buzzer_Light.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnAlarm_Buzzer_Light.Location = New System.Drawing.Point(589, 218)
+        Me.btnAlarm_Buzzer_Light.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAlarm_Buzzer_Light.Name = "btnAlarm_Buzzer_Light"
-        Me.btnAlarm_Buzzer_Light.Size = New System.Drawing.Size(200, 35)
+        Me.btnAlarm_Buzzer_Light.Size = New System.Drawing.Size(13, 28)
         Me.btnAlarm_Buzzer_Light.TabIndex = 27
         Me.btnAlarm_Buzzer_Light.Text = "BUZZER"
         Me.btnAlarm_Buzzer_Light.UseVisualStyleBackColor = False
+        Me.btnAlarm_Buzzer_Light.Visible = False
         '
         'btnMOTOR2_2Press
         '
         Me.btnMOTOR2_2Press.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.btnMOTOR2_2Press.Location = New System.Drawing.Point(442, 80)
-        Me.btnMOTOR2_2Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2_2Press.Location = New System.Drawing.Point(393, 64)
+        Me.btnMOTOR2_2Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2_2Press.Name = "btnMOTOR2_2Press"
-        Me.btnMOTOR2_2Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnMOTOR2_2Press.Size = New System.Drawing.Size(103, 28)
         Me.btnMOTOR2_2Press.TabIndex = 16
         Me.btnMOTOR2_2Press.Text = "PEDAL"
         Me.btnMOTOR2_2Press.UseVisualStyleBackColor = False
@@ -746,145 +775,145 @@ Partial Class Form1
         'btnNumberOfCells
         '
         Me.btnNumberOfCells.BackColor = System.Drawing.Color.LightBlue
-        Me.btnNumberOfCells.Location = New System.Drawing.Point(585, 234)
-        Me.btnNumberOfCells.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnNumberOfCells.Location = New System.Drawing.Point(520, 187)
+        Me.btnNumberOfCells.Margin = New System.Windows.Forms.Padding(4)
         Me.btnNumberOfCells.Name = "btnNumberOfCells"
-        Me.btnNumberOfCells.Size = New System.Drawing.Size(54, 35)
+        Me.btnNumberOfCells.Size = New System.Drawing.Size(48, 28)
         Me.btnNumberOfCells.TabIndex = 26
         Me.btnNumberOfCells.Text = "1"
         Me.btnNumberOfCells.UseVisualStyleBackColor = False
         '
         'btnMOTOR2_3Press
         '
-        Me.btnMOTOR2_3Press.Location = New System.Drawing.Point(561, 80)
-        Me.btnMOTOR2_3Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2_3Press.Location = New System.Drawing.Point(499, 64)
+        Me.btnMOTOR2_3Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2_3Press.Name = "btnMOTOR2_3Press"
-        Me.btnMOTOR2_3Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnMOTOR2_3Press.Size = New System.Drawing.Size(103, 28)
         Me.btnMOTOR2_3Press.TabIndex = 17
         Me.btnMOTOR2_3Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT2_3Press
         '
-        Me.btnLIGHT2_3Press.Location = New System.Drawing.Point(561, 171)
-        Me.btnLIGHT2_3Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2_3Press.Location = New System.Drawing.Point(499, 137)
+        Me.btnLIGHT2_3Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2_3Press.Name = "btnLIGHT2_3Press"
-        Me.btnLIGHT2_3Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT2_3Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT2_3Press.TabIndex = 25
         Me.btnLIGHT2_3Press.Text = "OFF"
         Me.btnLIGHT2_3Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT1powerON
         '
-        Me.btnLIGHT1powerON.Location = New System.Drawing.Point(206, 126)
-        Me.btnLIGHT1powerON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1powerON.Location = New System.Drawing.Point(183, 101)
+        Me.btnLIGHT1powerON.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1powerON.Name = "btnLIGHT1powerON"
-        Me.btnLIGHT1powerON.Size = New System.Drawing.Size(115, 35)
+        Me.btnLIGHT1powerON.Size = New System.Drawing.Size(102, 28)
         Me.btnLIGHT1powerON.TabIndex = 18
         Me.btnLIGHT1powerON.Text = "ON"
         Me.btnLIGHT1powerON.UseVisualStyleBackColor = True
         '
         'btnLIGHT1_1Press
         '
-        Me.btnLIGHT1_1Press.Location = New System.Drawing.Point(323, 126)
-        Me.btnLIGHT1_1Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1_1Press.Location = New System.Drawing.Point(287, 101)
+        Me.btnLIGHT1_1Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1_1Press.Name = "btnLIGHT1_1Press"
-        Me.btnLIGHT1_1Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT1_1Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT1_1Press.TabIndex = 19
         Me.btnLIGHT1_1Press.Text = "ON"
         Me.btnLIGHT1_1Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT2_2Press
         '
-        Me.btnLIGHT2_2Press.Location = New System.Drawing.Point(442, 171)
-        Me.btnLIGHT2_2Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2_2Press.Location = New System.Drawing.Point(393, 137)
+        Me.btnLIGHT2_2Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2_2Press.Name = "btnLIGHT2_2Press"
-        Me.btnLIGHT2_2Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT2_2Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT2_2Press.TabIndex = 24
         Me.btnLIGHT2_2Press.Text = "ON"
         Me.btnLIGHT2_2Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT1_2Press
         '
-        Me.btnLIGHT1_2Press.Location = New System.Drawing.Point(442, 126)
-        Me.btnLIGHT1_2Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1_2Press.Location = New System.Drawing.Point(393, 101)
+        Me.btnLIGHT1_2Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1_2Press.Name = "btnLIGHT1_2Press"
-        Me.btnLIGHT1_2Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT1_2Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT1_2Press.TabIndex = 20
         Me.btnLIGHT1_2Press.Text = "OFF"
         Me.btnLIGHT1_2Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT2_1Press
         '
-        Me.btnLIGHT2_1Press.Location = New System.Drawing.Point(323, 171)
-        Me.btnLIGHT2_1Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2_1Press.Location = New System.Drawing.Point(287, 137)
+        Me.btnLIGHT2_1Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2_1Press.Name = "btnLIGHT2_1Press"
-        Me.btnLIGHT2_1Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT2_1Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT2_1Press.TabIndex = 23
         Me.btnLIGHT2_1Press.Text = "FLASH"
         Me.btnLIGHT2_1Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT1_3Press
         '
-        Me.btnLIGHT1_3Press.Location = New System.Drawing.Point(561, 126)
-        Me.btnLIGHT1_3Press.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1_3Press.Location = New System.Drawing.Point(499, 101)
+        Me.btnLIGHT1_3Press.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1_3Press.Name = "btnLIGHT1_3Press"
-        Me.btnLIGHT1_3Press.Size = New System.Drawing.Size(116, 35)
+        Me.btnLIGHT1_3Press.Size = New System.Drawing.Size(103, 28)
         Me.btnLIGHT1_3Press.TabIndex = 21
         Me.btnLIGHT1_3Press.Text = "OFF"
         Me.btnLIGHT1_3Press.UseVisualStyleBackColor = True
         '
         'btnLIGHT2powerON
         '
-        Me.btnLIGHT2powerON.Location = New System.Drawing.Point(206, 171)
-        Me.btnLIGHT2powerON.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2powerON.Location = New System.Drawing.Point(183, 137)
+        Me.btnLIGHT2powerON.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2powerON.Name = "btnLIGHT2powerON"
-        Me.btnLIGHT2powerON.Size = New System.Drawing.Size(115, 35)
+        Me.btnLIGHT2powerON.Size = New System.Drawing.Size(102, 28)
         Me.btnLIGHT2powerON.TabIndex = 22
         Me.btnLIGHT2powerON.Text = "OFF"
         Me.btnLIGHT2powerON.UseVisualStyleBackColor = True
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectionSToolStripMenuItem, Me.ProgramsToolStripMenuItem, Me.MaintenanceToolStripMenuItem, Me.StatusToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(761, 33)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(676, 28)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ConnectionSToolStripMenuItem
         '
         Me.ConnectionSToolStripMenuItem.Name = "ConnectionSToolStripMenuItem"
-        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(187, 29)
+        Me.ConnectionSToolStripMenuItem.Size = New System.Drawing.Size(155, 24)
         Me.ConnectionSToolStripMenuItem.Text = "Connection Settings"
         '
         'ProgramsToolStripMenuItem
         '
         Me.ProgramsToolStripMenuItem.Name = "ProgramsToolStripMenuItem"
-        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(97, 29)
+        Me.ProgramsToolStripMenuItem.Size = New System.Drawing.Size(80, 24)
         Me.ProgramsToolStripMenuItem.Text = "Program"
         '
         'MaintenanceToolStripMenuItem
         '
         Me.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem"
-        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(128, 29)
+        Me.MaintenanceToolStripMenuItem.Size = New System.Drawing.Size(108, 24)
         Me.MaintenanceToolStripMenuItem.Text = "Maintenance"
         '
         'StatusToolStripMenuItem
         '
         Me.StatusToolStripMenuItem.Name = "StatusToolStripMenuItem"
-        Me.StatusToolStripMenuItem.Size = New System.Drawing.Size(76, 29)
+        Me.StatusToolStripMenuItem.Size = New System.Drawing.Size(63, 24)
         Me.StatusToolStripMenuItem.Text = "Status"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 633)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 502)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 21, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(761, 22)
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(2, 0, 19, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(676, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -895,11 +924,11 @@ Partial Class Form1
         Me.gbMaintenance.Controls.Add(Me.GroupBox5)
         Me.gbMaintenance.Controls.Add(Me.GroupBox4)
         Me.gbMaintenance.Controls.Add(Me.GroupBox3)
-        Me.gbMaintenance.Location = New System.Drawing.Point(20, 42)
-        Me.gbMaintenance.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.gbMaintenance.Location = New System.Drawing.Point(18, 34)
+        Me.gbMaintenance.Margin = New System.Windows.Forms.Padding(4)
         Me.gbMaintenance.Name = "gbMaintenance"
-        Me.gbMaintenance.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.gbMaintenance.Size = New System.Drawing.Size(720, 540)
+        Me.gbMaintenance.Padding = New System.Windows.Forms.Padding(4)
+        Me.gbMaintenance.Size = New System.Drawing.Size(640, 432)
         Me.gbMaintenance.TabIndex = 3
         Me.gbMaintenance.TabStop = False
         Me.gbMaintenance.Text = "Maintenance"
@@ -914,9 +943,11 @@ Partial Class Form1
         Me.gbTest.Controls.Add(Me.btnLIGHT2)
         Me.gbTest.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbTest.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.gbTest.Location = New System.Drawing.Point(20, 352)
+        Me.gbTest.Location = New System.Drawing.Point(18, 282)
+        Me.gbTest.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gbTest.Name = "gbTest"
-        Me.gbTest.Size = New System.Drawing.Size(629, 84)
+        Me.gbTest.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.gbTest.Size = New System.Drawing.Size(559, 67)
         Me.gbTest.TabIndex = 11
         Me.gbTest.TabStop = False
         Me.gbTest.Text = "TEST"
@@ -926,10 +957,10 @@ Partial Class Form1
         Me.btnMOTOR1.BackColor = System.Drawing.Color.LightGray
         Me.btnMOTOR1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnMOTOR1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnMOTOR1.Location = New System.Drawing.Point(25, 31)
-        Me.btnMOTOR1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR1.Location = New System.Drawing.Point(22, 25)
+        Me.btnMOTOR1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR1.Name = "btnMOTOR1"
-        Me.btnMOTOR1.Size = New System.Drawing.Size(101, 35)
+        Me.btnMOTOR1.Size = New System.Drawing.Size(90, 28)
         Me.btnMOTOR1.TabIndex = 4
         Me.btnMOTOR1.Text = "MOTOR 1"
         Me.btnMOTOR1.UseVisualStyleBackColor = False
@@ -939,10 +970,10 @@ Partial Class Form1
         Me.btnMOTOR2.BackColor = System.Drawing.Color.LightGray
         Me.btnMOTOR2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnMOTOR2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnMOTOR2.Location = New System.Drawing.Point(145, 31)
-        Me.btnMOTOR2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnMOTOR2.Location = New System.Drawing.Point(129, 25)
+        Me.btnMOTOR2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMOTOR2.Name = "btnMOTOR2"
-        Me.btnMOTOR2.Size = New System.Drawing.Size(101, 35)
+        Me.btnMOTOR2.Size = New System.Drawing.Size(90, 28)
         Me.btnMOTOR2.TabIndex = 5
         Me.btnMOTOR2.Text = "MOTOR 2"
         Me.btnMOTOR2.UseVisualStyleBackColor = False
@@ -952,10 +983,10 @@ Partial Class Form1
         Me.btnAlarm.BackColor = System.Drawing.Color.LightGray
         Me.btnAlarm.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAlarm.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnAlarm.Location = New System.Drawing.Point(502, 31)
-        Me.btnAlarm.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnAlarm.Location = New System.Drawing.Point(446, 25)
+        Me.btnAlarm.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAlarm.Name = "btnAlarm"
-        Me.btnAlarm.Size = New System.Drawing.Size(101, 35)
+        Me.btnAlarm.Size = New System.Drawing.Size(90, 28)
         Me.btnAlarm.TabIndex = 8
         Me.btnAlarm.Text = "ALARM"
         Me.btnAlarm.UseVisualStyleBackColor = False
@@ -965,10 +996,10 @@ Partial Class Form1
         Me.btnLIGHT1.BackColor = System.Drawing.Color.LightGray
         Me.btnLIGHT1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLIGHT1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnLIGHT1.Location = New System.Drawing.Point(263, 31)
-        Me.btnLIGHT1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT1.Location = New System.Drawing.Point(234, 25)
+        Me.btnLIGHT1.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT1.Name = "btnLIGHT1"
-        Me.btnLIGHT1.Size = New System.Drawing.Size(101, 35)
+        Me.btnLIGHT1.Size = New System.Drawing.Size(90, 28)
         Me.btnLIGHT1.TabIndex = 6
         Me.btnLIGHT1.Text = "LIGHT 1"
         Me.btnLIGHT1.UseVisualStyleBackColor = False
@@ -978,10 +1009,10 @@ Partial Class Form1
         Me.btnLIGHT2.BackColor = System.Drawing.Color.LightGray
         Me.btnLIGHT2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLIGHT2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnLIGHT2.Location = New System.Drawing.Point(383, 31)
-        Me.btnLIGHT2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnLIGHT2.Location = New System.Drawing.Point(340, 25)
+        Me.btnLIGHT2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnLIGHT2.Name = "btnLIGHT2"
-        Me.btnLIGHT2.Size = New System.Drawing.Size(101, 35)
+        Me.btnLIGHT2.Size = New System.Drawing.Size(90, 28)
         Me.btnLIGHT2.TabIndex = 7
         Me.btnLIGHT2.Text = "LIGHT 2"
         Me.btnLIGHT2.UseVisualStyleBackColor = False
@@ -991,11 +1022,11 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_ALM)
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_P2)
         Me.GroupBox6.Controls.Add(Me.RadioButton_Inputs_P1)
-        Me.GroupBox6.Location = New System.Drawing.Point(338, 254)
-        Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox6.Location = New System.Drawing.Point(300, 203)
+        Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox6.Size = New System.Drawing.Size(311, 71)
+        Me.GroupBox6.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox6.Size = New System.Drawing.Size(276, 57)
         Me.GroupBox6.TabIndex = 3
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "INPUTS"
@@ -1006,11 +1037,11 @@ Partial Class Form1
         Me.RadioButton_Inputs_ALM.Enabled = False
         Me.RadioButton_Inputs_ALM.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButton_Inputs_ALM.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.RadioButton_Inputs_ALM.Location = New System.Drawing.Point(164, 35)
-        Me.RadioButton_Inputs_ALM.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Inputs_ALM.Location = New System.Drawing.Point(146, 28)
+        Me.RadioButton_Inputs_ALM.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Inputs_ALM.Name = "RadioButton_Inputs_ALM"
         Me.RadioButton_Inputs_ALM.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Inputs_ALM.Size = New System.Drawing.Size(75, 24)
+        Me.RadioButton_Inputs_ALM.Size = New System.Drawing.Size(65, 21)
         Me.RadioButton_Inputs_ALM.TabIndex = 6
         Me.RadioButton_Inputs_ALM.TabStop = True
         Me.RadioButton_Inputs_ALM.Text = ":ALM"
@@ -1021,11 +1052,11 @@ Partial Class Form1
         Me.RadioButton_Inputs_P2.AutoSize = True
         Me.RadioButton_Inputs_P2.Enabled = False
         Me.RadioButton_Inputs_P2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Inputs_P2.Location = New System.Drawing.Point(92, 35)
-        Me.RadioButton_Inputs_P2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Inputs_P2.Location = New System.Drawing.Point(82, 28)
+        Me.RadioButton_Inputs_P2.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Inputs_P2.Name = "RadioButton_Inputs_P2"
         Me.RadioButton_Inputs_P2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Inputs_P2.Size = New System.Drawing.Size(60, 24)
+        Me.RadioButton_Inputs_P2.Size = New System.Drawing.Size(53, 21)
         Me.RadioButton_Inputs_P2.TabIndex = 5
         Me.RadioButton_Inputs_P2.TabStop = True
         Me.RadioButton_Inputs_P2.Text = ":P2"
@@ -1037,11 +1068,11 @@ Partial Class Form1
         Me.RadioButton_Inputs_P1.BackColor = System.Drawing.SystemColors.Control
         Me.RadioButton_Inputs_P1.Enabled = False
         Me.RadioButton_Inputs_P1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Inputs_P1.Location = New System.Drawing.Point(18, 34)
-        Me.RadioButton_Inputs_P1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Inputs_P1.Location = New System.Drawing.Point(16, 27)
+        Me.RadioButton_Inputs_P1.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Inputs_P1.Name = "RadioButton_Inputs_P1"
         Me.RadioButton_Inputs_P1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Inputs_P1.Size = New System.Drawing.Size(60, 24)
+        Me.RadioButton_Inputs_P1.Size = New System.Drawing.Size(53, 21)
         Me.RadioButton_Inputs_P1.TabIndex = 4
         Me.RadioButton_Inputs_P1.TabStop = True
         Me.RadioButton_Inputs_P1.Text = ":P1"
@@ -1053,11 +1084,11 @@ Partial Class Form1
         Me.GroupBox5.Controls.Add(Me.Label10)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_TX)
         Me.GroupBox5.Controls.Add(Me.RadioButton_Cell2_RX)
-        Me.GroupBox5.Location = New System.Drawing.Point(338, 114)
-        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox5.Location = New System.Drawing.Point(300, 91)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox5.Size = New System.Drawing.Size(311, 71)
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox5.Size = New System.Drawing.Size(276, 57)
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "CELL 2"
@@ -1065,18 +1096,18 @@ Partial Class Form1
         'lblCell2Intensity
         '
         Me.lblCell2Intensity.AutoSize = True
-        Me.lblCell2Intensity.Location = New System.Drawing.Point(216, 32)
+        Me.lblCell2Intensity.Location = New System.Drawing.Point(192, 26)
         Me.lblCell2Intensity.Name = "lblCell2Intensity"
-        Me.lblCell2Intensity.Size = New System.Drawing.Size(14, 20)
+        Me.lblCell2Intensity.Size = New System.Drawing.Size(11, 16)
         Me.lblCell2Intensity.TabIndex = 5
         Me.lblCell2Intensity.Text = "-"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(179, 30)
+        Me.Label10.Location = New System.Drawing.Point(159, 24)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(37, 20)
+        Me.Label10.Size = New System.Drawing.Size(30, 16)
         Me.Label10.TabIndex = 4
         Me.Label10.Text = "(%):"
         '
@@ -1085,11 +1116,11 @@ Partial Class Form1
         Me.RadioButton_Cell2_TX.AutoSize = True
         Me.RadioButton_Cell2_TX.Enabled = False
         Me.RadioButton_Cell2_TX.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Cell2_TX.Location = New System.Drawing.Point(97, 28)
-        Me.RadioButton_Cell2_TX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Cell2_TX.Location = New System.Drawing.Point(86, 22)
+        Me.RadioButton_Cell2_TX.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Cell2_TX.Name = "RadioButton_Cell2_TX"
         Me.RadioButton_Cell2_TX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Cell2_TX.Size = New System.Drawing.Size(61, 24)
+        Me.RadioButton_Cell2_TX.Size = New System.Drawing.Size(54, 21)
         Me.RadioButton_Cell2_TX.TabIndex = 3
         Me.RadioButton_Cell2_TX.TabStop = True
         Me.RadioButton_Cell2_TX.Text = ":TX"
@@ -1100,11 +1131,11 @@ Partial Class Form1
         Me.RadioButton_Cell2_RX.AutoSize = True
         Me.RadioButton_Cell2_RX.Enabled = False
         Me.RadioButton_Cell2_RX.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Cell2_RX.Location = New System.Drawing.Point(14, 28)
-        Me.RadioButton_Cell2_RX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Cell2_RX.Location = New System.Drawing.Point(12, 22)
+        Me.RadioButton_Cell2_RX.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Cell2_RX.Name = "RadioButton_Cell2_RX"
         Me.RadioButton_Cell2_RX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Cell2_RX.Size = New System.Drawing.Size(64, 24)
+        Me.RadioButton_Cell2_RX.Size = New System.Drawing.Size(55, 21)
         Me.RadioButton_Cell2_RX.TabIndex = 2
         Me.RadioButton_Cell2_RX.TabStop = True
         Me.RadioButton_Cell2_RX.Text = ":RX"
@@ -1116,11 +1147,11 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Label9)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_TX)
         Me.GroupBox4.Controls.Add(Me.RadioButton_Cell1_RX)
-        Me.GroupBox4.Location = New System.Drawing.Point(338, 26)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox4.Location = New System.Drawing.Point(300, 21)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox4.Size = New System.Drawing.Size(311, 71)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox4.Size = New System.Drawing.Size(276, 57)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "CELL 1"
@@ -1128,18 +1159,18 @@ Partial Class Form1
         'lblCell1Intensity
         '
         Me.lblCell1Intensity.AutoSize = True
-        Me.lblCell1Intensity.Location = New System.Drawing.Point(216, 33)
+        Me.lblCell1Intensity.Location = New System.Drawing.Point(192, 26)
         Me.lblCell1Intensity.Name = "lblCell1Intensity"
-        Me.lblCell1Intensity.Size = New System.Drawing.Size(14, 20)
+        Me.lblCell1Intensity.Size = New System.Drawing.Size(11, 16)
         Me.lblCell1Intensity.TabIndex = 3
         Me.lblCell1Intensity.Text = "-"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(179, 32)
+        Me.Label9.Location = New System.Drawing.Point(159, 26)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(37, 20)
+        Me.Label9.Size = New System.Drawing.Size(30, 16)
         Me.Label9.TabIndex = 2
         Me.Label9.Text = "(%):"
         '
@@ -1148,11 +1179,11 @@ Partial Class Form1
         Me.RadioButton_Cell1_TX.AutoSize = True
         Me.RadioButton_Cell1_TX.Enabled = False
         Me.RadioButton_Cell1_TX.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Cell1_TX.Location = New System.Drawing.Point(97, 31)
-        Me.RadioButton_Cell1_TX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Cell1_TX.Location = New System.Drawing.Point(86, 25)
+        Me.RadioButton_Cell1_TX.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Cell1_TX.Name = "RadioButton_Cell1_TX"
         Me.RadioButton_Cell1_TX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Cell1_TX.Size = New System.Drawing.Size(61, 24)
+        Me.RadioButton_Cell1_TX.Size = New System.Drawing.Size(54, 21)
         Me.RadioButton_Cell1_TX.TabIndex = 1
         Me.RadioButton_Cell1_TX.TabStop = True
         Me.RadioButton_Cell1_TX.Text = ":TX"
@@ -1163,11 +1194,11 @@ Partial Class Form1
         Me.RadioButton_Cell1_RX.AutoSize = True
         Me.RadioButton_Cell1_RX.Enabled = False
         Me.RadioButton_Cell1_RX.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton_Cell1_RX.Location = New System.Drawing.Point(14, 29)
-        Me.RadioButton_Cell1_RX.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RadioButton_Cell1_RX.Location = New System.Drawing.Point(12, 23)
+        Me.RadioButton_Cell1_RX.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioButton_Cell1_RX.Name = "RadioButton_Cell1_RX"
         Me.RadioButton_Cell1_RX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RadioButton_Cell1_RX.Size = New System.Drawing.Size(64, 24)
+        Me.RadioButton_Cell1_RX.Size = New System.Drawing.Size(55, 21)
         Me.RadioButton_Cell1_RX.TabIndex = 0
         Me.RadioButton_Cell1_RX.TabStop = True
         Me.RadioButton_Cell1_RX.Text = ":RX"
@@ -1192,11 +1223,11 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.Label19)
         Me.GroupBox3.Controls.Add(Me.Label17)
         Me.GroupBox3.Controls.Add(Me.Label16)
-        Me.GroupBox3.Location = New System.Drawing.Point(20, 26)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox3.Location = New System.Drawing.Point(18, 21)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox3.Size = New System.Drawing.Size(302, 301)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox3.Size = New System.Drawing.Size(268, 241)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "TIMING"
@@ -1204,9 +1235,10 @@ Partial Class Form1
         'btnRefresh
         '
         Me.btnRefresh.BackColor = System.Drawing.Color.SkyBlue
-        Me.btnRefresh.Location = New System.Drawing.Point(190, 264)
+        Me.btnRefresh.Location = New System.Drawing.Point(169, 211)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(106, 31)
+        Me.btnRefresh.Size = New System.Drawing.Size(94, 25)
         Me.btnRefresh.TabIndex = 17
         Me.btnRefresh.Text = "REFRESH"
         Me.btnRefresh.UseVisualStyleBackColor = False
@@ -1214,170 +1246,170 @@ Partial Class Form1
         'lblM2TCon
         '
         Me.lblM2TCon.AutoSize = True
-        Me.lblM2TCon.Location = New System.Drawing.Point(170, 113)
+        Me.lblM2TCon.Location = New System.Drawing.Point(151, 90)
         Me.lblM2TCon.Name = "lblM2TCon"
-        Me.lblM2TCon.Size = New System.Drawing.Size(14, 20)
+        Me.lblM2TCon.Size = New System.Drawing.Size(11, 16)
         Me.lblM2TCon.TabIndex = 13
         Me.lblM2TCon.Text = "-"
         '
         'lblL2TCon
         '
         Me.lblL2TCon.AutoSize = True
-        Me.lblL2TCon.Location = New System.Drawing.Point(170, 236)
+        Me.lblL2TCon.Location = New System.Drawing.Point(151, 189)
         Me.lblL2TCon.Name = "lblL2TCon"
-        Me.lblL2TCon.Size = New System.Drawing.Size(14, 20)
+        Me.lblL2TCon.Size = New System.Drawing.Size(11, 16)
         Me.lblL2TCon.TabIndex = 16
         Me.lblL2TCon.Text = "-"
         '
         'lblL2C
         '
         Me.lblL2C.AutoSize = True
-        Me.lblL2C.Location = New System.Drawing.Point(170, 211)
+        Me.lblL2C.Location = New System.Drawing.Point(151, 169)
         Me.lblL2C.Name = "lblL2C"
-        Me.lblL2C.Size = New System.Drawing.Size(14, 20)
+        Me.lblL2C.Size = New System.Drawing.Size(11, 16)
         Me.lblL2C.TabIndex = 15
         Me.lblL2C.Text = "-"
         '
         'lblL1TCon
         '
         Me.lblL1TCon.AutoSize = True
-        Me.lblL1TCon.Location = New System.Drawing.Point(170, 173)
+        Me.lblL1TCon.Location = New System.Drawing.Point(151, 138)
         Me.lblL1TCon.Name = "lblL1TCon"
-        Me.lblL1TCon.Size = New System.Drawing.Size(14, 20)
+        Me.lblL1TCon.Size = New System.Drawing.Size(11, 16)
         Me.lblL1TCon.TabIndex = 14
         Me.lblL1TCon.Text = "-"
         '
         'lblL1C
         '
         Me.lblL1C.AutoSize = True
-        Me.lblL1C.Location = New System.Drawing.Point(170, 148)
+        Me.lblL1C.Location = New System.Drawing.Point(151, 118)
         Me.lblL1C.Name = "lblL1C"
-        Me.lblL1C.Size = New System.Drawing.Size(14, 20)
+        Me.lblL1C.Size = New System.Drawing.Size(11, 16)
         Me.lblL1C.TabIndex = 13
         Me.lblL1C.Text = "-"
         '
         'lblM2C
         '
         Me.lblM2C.AutoSize = True
-        Me.lblM2C.Location = New System.Drawing.Point(170, 89)
+        Me.lblM2C.Location = New System.Drawing.Point(151, 71)
         Me.lblM2C.Name = "lblM2C"
-        Me.lblM2C.Size = New System.Drawing.Size(14, 20)
+        Me.lblM2C.Size = New System.Drawing.Size(11, 16)
         Me.lblM2C.TabIndex = 12
         Me.lblM2C.Text = "-"
         '
         'lblM1TCon
         '
         Me.lblM1TCon.AutoSize = True
-        Me.lblM1TCon.Location = New System.Drawing.Point(170, 52)
+        Me.lblM1TCon.Location = New System.Drawing.Point(151, 42)
         Me.lblM1TCon.Name = "lblM1TCon"
-        Me.lblM1TCon.Size = New System.Drawing.Size(14, 20)
+        Me.lblM1TCon.Size = New System.Drawing.Size(11, 16)
         Me.lblM1TCon.TabIndex = 12
         Me.lblM1TCon.Text = "-"
         '
         'lblM1C
         '
         Me.lblM1C.AutoSize = True
-        Me.lblM1C.Location = New System.Drawing.Point(170, 28)
+        Me.lblM1C.Location = New System.Drawing.Point(151, 22)
         Me.lblM1C.Name = "lblM1C"
-        Me.lblM1C.Size = New System.Drawing.Size(14, 20)
+        Me.lblM1C.Size = New System.Drawing.Size(11, 16)
         Me.lblM1C.TabIndex = 11
         Me.lblM1C.Text = "-"
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(10, 236)
+        Me.Label22.Location = New System.Drawing.Point(9, 189)
         Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(148, 20)
+        Me.Label22.Size = New System.Drawing.Size(121, 16)
         Me.Label22.TabIndex = 7
         Me.Label22.Text = "LIGHT 2 TCON(h) : "
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(10, 211)
+        Me.Label23.Location = New System.Drawing.Point(9, 169)
         Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(139, 20)
+        Me.Label23.Size = New System.Drawing.Size(111, 16)
         Me.Label23.TabIndex = 6
         Me.Label23.Text = "LIGHT 2 CYCLE : "
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(10, 173)
+        Me.Label20.Location = New System.Drawing.Point(9, 138)
         Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(148, 20)
+        Me.Label20.Size = New System.Drawing.Size(121, 16)
         Me.Label20.TabIndex = 5
         Me.Label20.Text = "LIGHT 1 TCON(h) : "
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(10, 148)
+        Me.Label21.Location = New System.Drawing.Point(9, 118)
         Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(139, 20)
+        Me.Label21.Size = New System.Drawing.Size(111, 16)
         Me.Label21.TabIndex = 4
         Me.Label21.Text = "LIGHT 1 CYCLE : "
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(10, 113)
+        Me.Label18.Location = New System.Drawing.Point(9, 90)
         Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(158, 20)
+        Me.Label18.Size = New System.Drawing.Size(132, 16)
         Me.Label18.TabIndex = 3
         Me.Label18.Text = "MOTOR 2 TCON(h) : "
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(10, 89)
+        Me.Label19.Location = New System.Drawing.Point(9, 71)
         Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(149, 20)
+        Me.Label19.Size = New System.Drawing.Size(122, 16)
         Me.Label19.TabIndex = 2
         Me.Label19.Text = "MOTOR 2 CYCLE : "
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(10, 52)
+        Me.Label17.Location = New System.Drawing.Point(9, 42)
         Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(158, 20)
+        Me.Label17.Size = New System.Drawing.Size(132, 16)
         Me.Label17.TabIndex = 1
         Me.Label17.Text = "MOTOR 1 TCON(h) : "
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(10, 28)
+        Me.Label16.Location = New System.Drawing.Point(9, 22)
         Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(149, 20)
+        Me.Label16.Size = New System.Drawing.Size(122, 16)
         Me.Label16.TabIndex = 0
         Me.Label16.Text = "MOTOR 1 CYCLE : "
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(436, 603)
+        Me.Label30.Location = New System.Drawing.Point(388, 482)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(146, 20)
+        Me.Label30.Size = New System.Drawing.Size(121, 16)
         Me.Label30.TabIndex = 50
         Me.Label30.Text = "Device Information:"
         '
         'lblVs
         '
         Me.lblVs.AutoSize = True
-        Me.lblVs.Location = New System.Drawing.Point(606, 603)
+        Me.lblVs.Location = New System.Drawing.Point(539, 482)
         Me.lblVs.Name = "lblVs"
-        Me.lblVs.Size = New System.Drawing.Size(129, 20)
+        Me.lblVs.Size = New System.Drawing.Size(107, 16)
         Me.lblVs.TabIndex = 10
         Me.lblVs.Text = "Device not found"
         '
@@ -1385,17 +1417,19 @@ Partial Class Form1
         '
         Me.cmbPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPorts.FormattingEnabled = True
-        Me.cmbPorts.Location = New System.Drawing.Point(33, 42)
+        Me.cmbPorts.Location = New System.Drawing.Point(29, 34)
+        Me.cmbPorts.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cmbPorts.Name = "cmbPorts"
-        Me.cmbPorts.Size = New System.Drawing.Size(198, 28)
+        Me.cmbPorts.Size = New System.Drawing.Size(176, 24)
         Me.cmbPorts.TabIndex = 44
         '
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(303, 35)
+        Me.Button1.Location = New System.Drawing.Point(269, 28)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 38)
+        Me.Button1.Size = New System.Drawing.Size(89, 30)
         Me.Button1.TabIndex = 45
         Me.Button1.Text = "CONNECT"
         Me.Button1.UseVisualStyleBackColor = True
@@ -1403,9 +1437,9 @@ Partial Class Form1
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(186, 603)
+        Me.lblStatus.Location = New System.Drawing.Point(165, 482)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(114, 20)
+        Me.lblStatus.Size = New System.Drawing.Size(95, 16)
         Me.lblStatus.TabIndex = 46
         Me.lblStatus.Text = "No Connection"
         '
@@ -1416,9 +1450,11 @@ Partial Class Form1
         Me.gbConSettings.Controls.Add(Me.cmbPorts)
         Me.gbConSettings.Controls.Add(Me.Button1)
         Me.gbConSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbConSettings.Location = New System.Drawing.Point(20, 42)
+        Me.gbConSettings.Location = New System.Drawing.Point(18, 34)
+        Me.gbConSettings.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gbConSettings.Name = "gbConSettings"
-        Me.gbConSettings.Size = New System.Drawing.Size(720, 540)
+        Me.gbConSettings.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.gbConSettings.Size = New System.Drawing.Size(640, 432)
         Me.gbConSettings.TabIndex = 47
         Me.gbConSettings.TabStop = False
         Me.gbConSettings.Text = "Connection Settings"
@@ -1428,9 +1464,9 @@ Partial Class Form1
         '
         Me.lblProgramInfo1.AutoSize = True
         Me.lblProgramInfo1.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgramInfo1.Location = New System.Drawing.Point(3, 447)
+        Me.lblProgramInfo1.Location = New System.Drawing.Point(3, 358)
         Me.lblProgramInfo1.Name = "lblProgramInfo1"
-        Me.lblProgramInfo1.Size = New System.Drawing.Size(260, 19)
+        Me.lblProgramInfo1.Size = New System.Drawing.Size(223, 17)
         Me.lblProgramInfo1.TabIndex = 47
         Me.lblProgramInfo1.Text = "Copyright ©️ 2021 by Mart Elektronik."
         '
@@ -1438,9 +1474,9 @@ Partial Class Form1
         '
         Me.lblProgramInfo.AutoSize = True
         Me.lblProgramInfo.Font = New System.Drawing.Font("Calibri", 8.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProgramInfo.Location = New System.Drawing.Point(3, 459)
+        Me.lblProgramInfo.Location = New System.Drawing.Point(3, 367)
         Me.lblProgramInfo.Name = "lblProgramInfo"
-        Me.lblProgramInfo.Size = New System.Drawing.Size(697, 38)
+        Me.lblProgramInfo.Size = New System.Drawing.Size(599, 34)
         Me.lblProgramInfo.TabIndex = 46
         Me.lblProgramInfo.Text = "" & Global.Microsoft.VisualBasic.ChrW(10) & "All rights reserved. Unauthorized use of the software may violate copyright, tra" &
     "demark, and other laws."
@@ -1448,9 +1484,9 @@ Partial Class Form1
         'lblResult
         '
         Me.lblResult.AutoSize = True
-        Me.lblResult.Location = New System.Drawing.Point(16, 603)
+        Me.lblResult.Location = New System.Drawing.Point(14, 482)
         Me.lblResult.Name = "lblResult"
-        Me.lblResult.Size = New System.Drawing.Size(145, 20)
+        Me.lblResult.Size = New System.Drawing.Size(117, 16)
         Me.lblResult.TabIndex = 47
         Me.lblResult.Text = "Connection Status:"
         '
@@ -1465,9 +1501,9 @@ Partial Class Form1
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(761, 655)
+        Me.ClientSize = New System.Drawing.Size(676, 524)
         Me.Controls.Add(Me.lblResult)
         Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.lblVs)
@@ -1480,10 +1516,10 @@ Partial Class Form1
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "Form1"
-        Me.Text = "Checkout Programmer V1.3.1"
+        Me.Text = "Checkout Programmer V1.4.2"
         Me.gbProgram.ResumeLayout(False)
         Me.gbProgram.PerformLayout()
         Me.gbLock.ResumeLayout(False)
@@ -1632,4 +1668,5 @@ Partial Class Form1
     Friend WithEvents RadioButton_SelfButton As RadioButton
     Friend WithEvents RadioButton_FrontPedal As RadioButton
     Friend WithEvents StatusToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmbBuzzer As ComboBox
 End Class
